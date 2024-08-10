@@ -11,48 +11,18 @@ export class ScreenEffect {
 
   }
 
-  redFlash() {
-    const redFlash = this.scene.add.graphics();
-    redFlash.fillStyle(0xFF0000, 0.25); // Red color with 50% transparency
-    redFlash.fillRect(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height);
+  playFlash(color, duration) {
+    const flash = this.scene.add.graphics();
+    flash.fillStyle(color, 0.35); // Red color with 50% transparency
+    flash.fillRect(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height);
 
     this.scene.tweens.add({
-      targets: redFlash,
+      targets: flash,
       alpha: 0,
-      duration: 300,
+      duration: duration,
       ease: 'Cubic.easeOut',
       onComplete: () => {
-        redFlash.destroy();
-      }
-    });
-  }
-  blueFlash() {
-    const blueFlash = this.scene.add.graphics();
-    blueFlash.fillStyle(0x0081ff, 0.25); // Red color with 50% transparency
-    blueFlash.fillRect(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height);
-
-    this.scene.tweens.add({
-      targets: blueFlash,
-      alpha: 0,
-      duration: 300,
-      ease: 'Cubic.easeOut',
-      onComplete: () => {
-        blueFlash.destroy();
-      }
-    });
-  }
-  greenFlash() {
-    const greenFlash = this.scene.add.graphics();
-    greenFlash.fillStyle(0x00ff3a, 0.25); // Red color with 50% transparency
-    greenFlash.fillRect(0, 0, this.scene.cameras.main.width, this.scene.cameras.main.height);
-
-    this.scene.tweens.add({
-      targets: greenFlash,
-      alpha: 0,
-      duration: 300,
-      ease: 'Cubic.easeOut',
-      onComplete: () => {
-        greenFlash.destroy();
+        flash.destroy();
       }
     });
   }

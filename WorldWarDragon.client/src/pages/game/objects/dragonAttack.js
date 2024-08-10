@@ -51,7 +51,7 @@ export class DragonAttack {
 
   attack() {
 
-    if (this.scene.dragon.dragonHP > 0) {
+    if (this.scene.dragon.dragonHP > 0 && this.scene.playerHp > 0) {
 
 
       if (this.scene.shield > 0) {
@@ -62,7 +62,7 @@ export class DragonAttack {
         sound.play();
         sound.volume = 0.5;
 
-        this.screenEffect.screenEffect.blueFlash();
+        this.scene.screenEffect.playFlash(0x0081ff, 500);
 
       } else {
 
@@ -74,17 +74,9 @@ export class DragonAttack {
         this.scene.playerHp -= 10 * AppState.activeRoom.difficulty
         this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
 
-        if (this.scene.playerHp <= 0) {
-          this.scene.sound.stopAll()
-          this.scene.events.off('dragon:hit')
-          this.scene.events.off('dragon:over')
-          this.scene.events.off('dragon:out')
-          this.scene.events.off('dragon:attackItem')
-          this.scene.playerHp = this.scene.playerMaxHp
-          this.scene.scene.start('GameOver');
-        }
+        this.checkPlayerDeath()
 
-        this.scene.screenEffect.redFlash();
+        this.scene.screenEffect.playFlash(0xFF0000, 500);
         this.scene.screenEffect.animateBite();
 
       }
@@ -95,6 +87,17 @@ export class DragonAttack {
     this.lastAttackTime = this.scene.time.now; // Reset the timer for the next attack
   }
 
+  checkPlayerDeath() {
+    if (this.scene.playerHp <= 0) {
+      this.scene.sound.stopAll()
+      this.scene.events.off('dragon:hit')
+      this.scene.events.off('dragon:over')
+      this.scene.events.off('dragon:out')
+      this.scene.events.off('dragon:attackItem')
+      this.scene.playerHp = this.scene.playerMaxHp
+      this.scene.scene.start('GameOver');
+    }
+  }
 
   getRandomSound() {
     return Phaser.Math.RND.pick(this.dragonSounds);

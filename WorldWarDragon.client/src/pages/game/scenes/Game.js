@@ -12,6 +12,7 @@ import { logger } from "../../../utils/Logger.js";
 import { BossUi } from "../objects/BossUi.js";
 import { PlayerUi } from "../objects/PlayerUI.js";
 import { ScreenEffect } from "../objects/ScreenEffect.js";
+import { Crystal } from "../objects/Crystal.js";
 
 export class Game extends Scene {
     constructor() {
@@ -71,6 +72,7 @@ export class Game extends Scene {
 
         this.playerUi = new PlayerUi(this, AppState.account, this.playerHp, this.playerMaxHp)
 
+        this.crystals = new Crystal(this, centerX, centerY)
         this.item = new Item(this, centerX, centerY);
 
 
