@@ -11,6 +11,7 @@ import { DragonAttack } from "../objects/dragonAttack.js";
 import { logger } from "../../../utils/Logger.js";
 import { BossUi } from "../objects/BossUi.js";
 import { PlayerUi } from "../objects/PlayerUI.js";
+import { ScreenEffect } from "../objects/ScreenEffect.js";
 
 export class Game extends Scene {
     constructor() {
@@ -61,6 +62,8 @@ export class Game extends Scene {
 
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
+
+        this.screenEffect = new ScreenEffect(this)
 
         this.dragon = new Dragon(this, centerX, centerY)
 
