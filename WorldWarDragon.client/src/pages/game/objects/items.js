@@ -42,7 +42,7 @@ export class Item {
       }
     }
 
-    logger.log('ACTION', this.action, 'CODE', inputCodeString, 'INPUT-CODE', inputCode);
+    logger.log('ACTION', this.action, 'CODE', this.inputCodeString, 'INPUT-CODE', inputCode);
 
     if (this.action != 'input') {
       if (AppState.account[this.action] > 0 || AppState.account[`${this.action}Aid`] > 0) {

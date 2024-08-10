@@ -33,7 +33,7 @@ export class Crystal {
       ];
 
       const FRAME_COUNT = 5;
-      const FRAME_RATE = 3;
+      const FRAME_RATE = 6;
 
       this.scene.anims.create({
         key: 'playGif',
@@ -70,13 +70,13 @@ export class Crystal {
           } else {
             this.setInputCode(obj.id)
             obj.play('playGif')
-            obj.setTint(0x00C1FF); // red
+            obj.setTint(0x00C1FF);
             this.addStaticLine(obj);
           }
         });
 
         obj.on('pointerout', () => {
-          if (!this.isDrawing) {
+          if (!this.isDrawing && this.inputCode.length == 0) {
             obj.setTint(0xffffff); // Default color
           }
         });
@@ -170,9 +170,14 @@ export class Crystal {
 
         line.setTo(this.startX, this.startY, this.startX + distance * Math.cos(angle), this.startY + distance * Math.sin(angle));
         line.setLineWidth(this.lineWidth); // Ensure line width is set
+
         // Logic for completing the action when all objects are connected can be added here
         this.scene.item.checkInputCode(this.inputCode)
-        this.cancelDrawing();
+
+        // Delay the cancelDrawing() call by 1.5 seconds (1500 milliseconds)
+        setTimeout(() => {
+          this.cancelDrawing();
+        }, 500);
       }
     } else {
       this.cancelDrawing();

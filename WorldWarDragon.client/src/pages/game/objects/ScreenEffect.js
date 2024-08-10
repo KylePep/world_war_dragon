@@ -33,12 +33,15 @@ export class ScreenEffect {
     const FRAME_COUNT = 5;
     const FRAME_RATE = 30;
 
-    this.scene.anims.create({
-      key: 'animatedBite',
-      frames: this.scene.anims.generateFrameNumbers('animatedBite', { start: 0, end: FRAME_COUNT - 1 }),
-      frameRate: FRAME_RATE,
-      repeat: 0 // Loop the animation
-    });
+    // Check if the animation already exists before creating it
+    if (!this.scene.anims.exists('animatedBite')) {
+      this.scene.anims.create({
+        key: 'animatedBite',
+        frames: this.scene.anims.generateFrameNumbers('animatedBite', { start: 0, end: FRAME_COUNT - 1 }),
+        frameRate: FRAME_RATE,
+        repeat: 0 // Play the animation once
+      });
+    }
 
     const randomAngle = Phaser.Math.Between(-45, 45);
 
