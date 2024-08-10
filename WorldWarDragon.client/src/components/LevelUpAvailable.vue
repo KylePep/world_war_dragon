@@ -1,6 +1,6 @@
 <template>
 
-  <div v-if="availableValor >= levelUpRequirement">
+  <div v-if="account?.id && availableValor >= levelUpRequirement">
     <i class="mdi mdi-alert-circle alert p-0"></i>
   </div>
 </template>
