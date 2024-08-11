@@ -53,6 +53,10 @@
             Dragons defeated is tracked <br>
             Level up indicator added
           </p>
+          <p>
+            8/10/24 - Reworked screen effect system, and drawing system. Effects are more easily called and drawings now
+            have a delay and do not abruptly end after an input.
+          </p>
         </div>
 
         <div class="order-1 order-md-2 col-12 col-md-6 px-0">

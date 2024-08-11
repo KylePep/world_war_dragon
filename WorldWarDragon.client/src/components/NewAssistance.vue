@@ -1,5 +1,5 @@
 <template>
-  <form v-if="account?.id" @submit.prevent="createAssistance()" class="d-flex assistance-container p-3 text-outline-bg">
+  <form v-if="account?.id" @submit.prevent="createAssistance()" class="d-flex form-container p-3 text-outline-bg">
     <div class="pe-3">
       <div class="form-check">
         <input v-model="editable.body" value="attack" class="form-check-input" type="radio" name="body" id="body1"
@@ -58,7 +58,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.assistance-container {
+.form-container {
   background-color: var(--bs-body-bg);
   border: solid 2px var(--bs-outline);
   border-radius: 4px;

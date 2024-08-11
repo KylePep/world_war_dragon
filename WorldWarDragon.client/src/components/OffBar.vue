@@ -33,14 +33,16 @@
         <div class="mdi mdi-circle-multiple " title="Gold">
           : {{ account?.gold }}
         </div>
-        <div class="mdi mdi-medal" title="Valor">
-          : {{ account?.valor }} ( {{ account?.valor - appState.account?.valorSpent }} )
+        <div class="mdi mdi-medal" title="Experience">
+          : {{ account?.valor - appState.account?.valorSpent }}
         </div>
         <div class="mdi mdi-heart" title="Health">
-          : {{ account?.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
+          : {{ account?.health }}
+          <!-- ( {{ appState.healthMod[appState.activeRoom.id] }} ) -->
         </div>
         <div class="mdi mdi-weight-lifter" title="Power">
-          : {{ account?.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
+          : {{ account?.power }}
+          <!-- ( {{ appState.powerMod[appState.activeRoom.id] }} ) -->
         </div>
         <div v-if="account?.attack > 0 || account?.attackAid > 0" class="mdi mdi-sword-cross text-danger"
           title="Attack">
@@ -71,55 +73,87 @@
 
 
         <div class="offcanvas-body text-2p text-outline-bg">
-          <div class="container mb-3 stat-block">
-            <div class="row ">
-              <div class="col-6 mdi mdi-circle-multiple " title="Gold">
-                : {{ account?.gold }}
-              </div>
-              <div class="col-6 mdi mdi-medal" title="Valor">
-                : {{ account?.valor }} ( {{ account?.valor - appState.account?.valorSpent }} )
-              </div>
-              <div class="col-6 mdi mdi-heart" title="Health">
-                : {{ account?.health }} ( {{ appState.healthMod[appState.activeRoom.id] }} )
-              </div>
-              <div class="col-6 mdi mdi-weight-lifter" title="Power">
-                : {{ account?.power }} ( {{ appState.powerMod[appState.activeRoom.id] }} )
+          <div>
+            <Login />
+          </div>
+
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Stats
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body stat-block">
+
+                  <div class="mdi mdi-circle-multiple " title="Gold">
+                    Gold: {{ account?.gold }}
+                  </div>
+                  <div class="mdi mdi-medal" title="Experience">
+                    Experience: {{ account?.valor - appState.account?.valorSpent }}
+                  </div>
+                  <div class="mdi mdi-heart" title="Health">
+                    Health: {{ account?.health }}
+                    <!-- ( {{ appState.healthMod[appState.activeRoom.id] }} ) -->
+                  </div>
+                  <div class="mdi mdi-weight-lifter" title="Power">
+                    Power: {{ account?.power }}
+                    <!-- ( {{ appState.powerMod[appState.activeRoom.id] }} ) -->
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="row ">
-              <div class="col-6 mdi mdi-sword-cross text-danger" title="Attack">
-                : {{ account?.attack }} ( {{ account?.attackAid }} )
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Inventory
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body stat-block">
+                  <div class="mdi mdi-sword-cross text-danger" title="Attack">
+                    Attack: {{ account?.attack }} ( {{ account?.attackAid }} )
+                  </div>
+                  <div class="mdi mdi-shield-sun text-info" title="Shield">
+                    Shield: {{ account?.shield }} ( {{ account?.shieldAid }} )
+                  </div>
+                  <div class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
+                    Heal: {{ account?.heal }} ( {{ account?.healAid }} )
+                  </div>
+                </div>
               </div>
-              <div class="col-6 mdi mdi-shield-sun text-info" title="Shield">
-                : {{ account?.shield }} ( {{ account?.shieldAid }} )
-              </div>
-              <div class="col-6 mdi mdi-bottle-tonic-plus text-success" title="Heal">
-                : {{ account?.heal }} ( {{ account?.healAid }} )
-              </div>
-
             </div>
           </div>
+
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-            <li>
-              <Login />
-            </li>
+            <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
 
-            <li class="nav-item">
+            <li class="">
               <router-link class="btn lighten-30 selectable text-uppercase" @click="closeNavbar()"
                 :to="{ name: 'Home' }">
                 HOME
               </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="">
               <router-link @click="closeNavbar()" :to="{ name: 'Map' }"
                 class="btn lighten-30 selectable text-uppercase">
                 Map
               </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="">
               <router-link class="btn lighten-30 selectable text-uppercase" @click="closeNavbar()"
                 :to="{ name: 'Account' }">
                 Character
@@ -127,7 +161,7 @@
               </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="">
               <router-link @click="closeNavbar()" :to="{ name: 'Tutorial' }"
                 class="btn lighten-30 selectable text-uppercase">
                 Tutorial
@@ -135,21 +169,21 @@
             </li>
 
 
-            <li class="nav-item">
+            <li class="">
               <router-link @click="closeNavbar()" :to="{ name: 'Score' }"
                 class="btn lighten-30 selectable text-uppercase">
                 Hall of Valor
               </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="">
               <router-link @click="closeNavbar()" :to="{ name: 'About' }"
                 class="btn lighten-30 selectable text-uppercase">
                 Lore
               </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="">
               <router-link @click="closeNavbar()" :to="{ name: 'RoadMap' }"
                 class="btn lighten-30 selectable text-uppercase">
                 Changes
@@ -243,7 +277,7 @@ li {
 }
 
 .stat-block {
-  font-size: .6rem;
+  font-size: .75rem;
 }
 
 .game-title {

@@ -1,12 +1,15 @@
 <template>
 
   <section class="row">
-    <div class="col-12 fs-1 fw-bold text-center text-light mt-3 mb-5 text-2p text-outline">
+    <div class="col-12 fs-1 fw-bold text-center text-light mt-3 mb-3 text-2p text-outline">
       <h1 v-if="!activeRoom.name || activeRoom.id == 0" class="fs-1 fw-bold text-center text-light">
-        Select an area
+        Map of Centeria
+        <p class="text-center text-2p fs-6">-Select an area-</p>
       </h1>
+
       <h1 v-else class="fs-1 fw-bold text-center text-light ">
         {{ activeRoom.name }}
+        <p class="text-center text-2p fs-6">-The {{ activeRoom.name }} war room-</p>
       </h1>
     </div>
   </section>
@@ -64,104 +67,12 @@
 
 
     <div v-if="activeRoom.id != 5" class=" col-12 d-flex flex-column justify-content-center align-items-center">
-      <section class="row">
-
-        <div class="col-10 mx-auto boons text-outline text-light">
-          <h2 class="mb-4">BOONS</h2>
-          <div class="mb-3 fs-6">
-            <span>
-              Gold: {{ AppState.goldMod[activeRoom.id] }}
-            </span>
-            <span>
-              Health: {{ AppState.healthMod[activeRoom.id] }}
-            </span>
-            <span>
-              Luck: {{ AppState.luckMod[activeRoom.id] }}
-            </span>
-            <span>
-              Power: {{ AppState.powerMod[activeRoom.id] }}
-            </span>
-
-
-
-          </div>
-        </div>
-
-
-        <div class="col-11 mx-auto ">
-          <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
-          <div class="message-container border border-2 border-light rounded">
-            <div v-for="message in messages" :key="message.id"
-              class="room-container text-outline-bg px-3 d-flex justify-content-between align-items-center">
-              <div>
-                <i :class="message.boon == 'power' ? 'mdi mdi-weight-lifter' : 'd-none'"></i>
-                <i :class="message.boon == 'luck' ? 'mdi mdi-clover' : 'd-none'"></i>
-                <i :class="message.boon == 'health' ? 'mdi mdi-heart' : 'd-none'"></i>
-                <i :class="message.boon == 'gold' ? 'mdi mdi-circle-multiple' : 'd-none'"></i>
-                <div class="d-none d-md-inline ps-3">
-                  {{ message.boon }}
-                </div>
-              </div>
-              <div class="ps-2">{{ message.body }}</div>
-              <div class="ps-2">{{ message?.creator?.name }}</div>
-
-            </div>
-          </div>
-
-        </div>
-        <!-- <div class="col-6 room-container border border-light rounded fs-5 fw-bold text-start">
-          <p>
-            Dragons defeated: 0000
-
-          </p>
-          <p>
-            Damage done to boss Dragon: 0000
-
-          </p>
-          <p>
-            Gold collected: 0000
-
-          </p>
-          <p>
-            Gold lost: 0000
-
-          </p>
-
-          <p>
-            Losses: 0000
-          </p>
-        </div> -->
-
-      </section>
+      <MapRoom />
     </div>
 
 
     <div v-else class="col-12 d-flex flex-column justify-content-center align-items-center">
-      <h2 class="text-light my-4">Assistance</h2>
-      <NewAssistance />
-      <div class="d-flex">
-        <div>
-          <div v-for="assistance in uniqueUnclaimedAssistances" :key="assistance.id"
-            class="room-container px-3 d-flex align-items-center justify-content-between text-success py-1">
-            {{ assistance.body }}
-            {{ assistance?.creator?.name }}
-            <button v-if="account?.id && assistance.creatorId != account?.id && assistance
-              .claim == false" class="selectable btn py-0" @click="
-                claimAssistance(assistance.id)">
-              <i class="mdi mdi-download"></i>
-              Claim</button>
-          </div>
-        </div>
-        <div class="ms-3">
-          <div v-for="assistance in uniqueClaimedAssistances" :key="assistance.id"
-            class="room-container px-3 text-danger d-flex justify-content-between align-items-center">
-            {{ assistance.body }}
-            {{ assistance?.creator?.name }}
-          </div>
-
-        </div>
-
-      </div>
+      <CenteriaRoom />
     </div>
   </section>
 
@@ -241,73 +152,12 @@ export default {
       setBgImg()
     }
     return {
-      messages: computed(() => AppState.messages.filter((m) => m.roomId == AppState.activeRoom.id).reverse()),
 
       activeRoom: computed(() => AppState.activeRoom),
       account: computed(() => AppState.account),
       AppState: computed(() => AppState),
 
-      uniqueUnclaimedAssistances: computed(() => {
-        const seen = new Set();
-        const assistancesClaimed = AppState.assistances.filter((a) => a.claim == false)
-        return assistancesClaimed.filter(assistance => {
-          const key = `${assistance.creator.name}-${assistance.body}`;
-          if (!seen.has(key)) {
-            seen.add(key);
-            return true;
-          }
-          return false;
-        });
-      }),
-
-      uniqueClaimedAssistances: computed(() => {
-        const seen = new Set();
-        const assistancesClaimed = AppState.assistances.filter((a) => a.claim == true)
-        return assistancesClaimed.filter(assistance => {
-          const key = `${assistance.creator.name}-${assistance.body}`;
-          if (!seen.has(key)) {
-            seen.add(key);
-            return true;
-          }
-          return false;
-        });
-      }),
-
       setActiveRoom,
-
-      async deleteMessage(messageId) {
-        try {
-          const confirmDelete = await Pop.confirm('Delete?')
-          if (!confirmDelete) {
-            return
-          }
-          await messagesService.deleteMessage(messageId)
-        } catch (error) {
-          Pop.error(error.message, '[]')
-        }
-      },
-      async deleteAssistance(assistanceId) {
-        try {
-          const confirmDelete = await Pop.confirm('Delete?')
-          if (!confirmDelete) {
-            return
-          }
-          await assistancesService.deleteAssistance(assistanceId)
-        } catch (error) {
-          Pop.error(error.message, '[]')
-        }
-      },
-      async claimAssistance(assistanceId) {
-        try {
-          const confirmClaim = await Pop.confirm('Claim?')
-          if (!confirmClaim) {
-            return
-          }
-          await assistancesService.claimAssistance(assistanceId)
-        } catch (error) {
-          Pop.error(error.message, '[]')
-        }
-      },
 
 
     }
@@ -316,7 +166,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 .map {
   font-size: 2vh;
   background-image: url('/assets/map4.jpeg');
@@ -352,7 +202,7 @@ export default {
 
 .map-section:hover {
   text-shadow: 3px 3px 5px black;
-  background: radial-gradient(circle, rgba(250, 248, 233, 0.7008547008547008) 0%, rgba(248, 246, 225, 0.396011396011396) 17%, rgba(255, 255, 255, 0) 55%, rgba(58, 64, 73, 0) 100%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(circle, rgba(250, 248, 233, 0.248) 0%, rgba(248, 246, 225, 0.083) 17%, rgba(255, 255, 255, 0) 55%, rgba(58, 64, 73, 0) 100%);
 }
 
 .room-size {

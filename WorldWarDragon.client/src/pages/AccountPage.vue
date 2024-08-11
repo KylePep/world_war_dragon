@@ -77,7 +77,7 @@
       <section v-else class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
           <div class="bg-dark p-2 border border-1 border-light rounded text-danger">
-            LEVEL UP | COST: {{ levelUpRequirement }}
+            LEVEL UP {{ levelUpRequirement }} EXP
           </div>
         </div>
       </section>
@@ -94,7 +94,10 @@
             Gold: {{ account.gold || 0 }}
           </div>
           <div class="mdi mdi-medal">
-            Valor: {{ account.valor || 0 }} | EXP: {{ availableValor - valorSpend }}
+            Valor (Career Exp) : {{ account.valor || 0 }}
+          </div>
+          <div class="mdi mdi-medal">
+            EXP: {{ availableValor - valorSpend }}
           </div>
           <div class="mdi mdi-heart">
             Health: {{ account.health || 0 }}

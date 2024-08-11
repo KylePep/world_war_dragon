@@ -9,9 +9,6 @@
           <div class="py-2 pe-3 text text-uppercase fw-semibold">
             {{ account?.name }} Level: {{ account?.level }}
           </div>
-          <div class="text">
-            Dragons Defeated: {{ account?.dragons }}
-          </div>
         </div>
         <router-link :to="{ name: 'Account' }" class=" border-0 selectable no-select">
           <div v-if="account?.picture || identity?.picture">
