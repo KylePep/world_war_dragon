@@ -98,7 +98,7 @@ export class PlayerUi {
     this.uiContainer.add(this.healthBarBackground);
     this.uiContainer.add(this.healthBar);
 
-    this.stats = this.scene.add.text(0, 72, `HP: ${this.playerHp} | ${this.maxHp - this.healthMod}(${this.healthMod}) PWR: ${AppState.account.power} (${this.powerMod
+    this.stats = this.scene.add.text(0, 72, `HP: ${this.playerHp} | ${this.maxHp - this.healthMod}(${this.healthMod}) PWR: ${AppState.account.power} (${Phaser.Math.RoundTo(this.powerMod, -1)
       })`, {
       fontFamily: '"Press Start 2P"', fontSize: '10px',
       stroke: '#000000', strokeThickness: 8,

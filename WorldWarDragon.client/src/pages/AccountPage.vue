@@ -34,6 +34,7 @@
           <div class="text-uppercase fw-bold fs-4">
             Level: {{ account.level }}
           </div>
+          <div class="fs-5">{{ account.email }} </div>
         </div>
       </section>
       <section class="row">

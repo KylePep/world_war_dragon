@@ -43,7 +43,7 @@ export class Map extends Scene {
             align: 'center'
         }).setOrigin(0, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Left', 1)).on('pointerover', () => this.buttonOver(this.toleftios)).on('pointerout', () => this.buttonOut(this.toleftios));
 
-        this.toleftiosStats = this.add.text(0, 0, `${AppState.goldMod[1]} ${AppState.healthMod[1]} ${AppState.luckMod[1]} ${AppState.powerMod[1]}`, {
+        this.toleftiosStats = this.add.text(0, 0, `${AppState.goldMod[1]} ${AppState.healthMod[1]} ${AppState.luckMod[1]} ${Phaser.Math.RoundTo(AppState.powerMod[1], -1)}`, {
             fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -55,7 +55,7 @@ export class Map extends Scene {
             align: 'center'
         }).setOrigin(1, 0).setInteractive().on('pointerdown', () => this.buttonAction('Top Right', 2)).on('pointerover', () => this.buttonOver(this.rysto)).on('pointerout', () => this.buttonOut(this.rysto));
 
-        this.rystoStats = this.add.text(0, 0, `${AppState.goldMod[2]} ${AppState.healthMod[2]} ${AppState.luckMod[2]} ${AppState.powerMod[2]}`, {
+        this.rystoStats = this.add.text(0, 0, `${AppState.goldMod[2]} ${AppState.healthMod[2]} ${AppState.luckMod[2]} ${Phaser.Math.RoundTo(AppState.powerMod[2], -1)}`, {
             fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -73,7 +73,7 @@ export class Map extends Scene {
             align: 'center'
         }).setOrigin(1, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Right', 4)).on('pointerover', () => this.buttonOver(this.boghir)).on('pointerout', () => this.buttonOut(this.boghir));
 
-        this.boghirStats = this.add.text(0, 0, `${AppState.goldMod[4]} ${AppState.healthMod[4]} ${AppState.luckMod[4]} ${AppState.powerMod[4]}`, {
+        this.boghirStats = this.add.text(0, 0, `${AppState.goldMod[4]} ${AppState.healthMod[4]} ${AppState.luckMod[4]} ${Phaser.Math.RoundTo(AppState.powerMod[4], -1)}`, {
             fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -85,7 +85,7 @@ export class Map extends Scene {
             align: 'center'
         }).setOrigin(0, 1).setInteractive().on('pointerdown', () => this.buttonAction('Bottom Left', 3)).on('pointerover', () => this.buttonOver(this.lendbom)).on('pointerout', () => this.buttonOut(this.lendbom));
 
-        this.lendbomStats = this.add.text(0, 0, `${AppState.goldMod[3]} ${AppState.healthMod[3]} ${AppState.luckMod[3]} ${AppState.powerMod[3]}`, {
+        this.lendbomStats = this.add.text(0, 0, `${AppState.goldMod[3]} ${AppState.healthMod[3]} ${AppState.luckMod[3]} ${Phaser.Math.RoundTo(AppState.powerMod[3], -1)}`, {
             fontFamily: '"Press Start 2P"', fontSize: 16, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'

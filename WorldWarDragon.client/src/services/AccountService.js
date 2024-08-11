@@ -8,17 +8,16 @@ class AccountService {
   async getAccount() {
     try {
       const res = await api.get('/account')
+      logger.log('account', res.data)
       AppState.account = new Account(res.data)
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
 
-    if (AppState.account.picture.length < 2) {
-      AppState.account.picture = `/assets/player/player${AppState.account.picture}.jpeg`
-    }
 
 
-    if (AppState.account.newAccount == 'true') {
+
+    if (!AppState.account.newAccount || AppState.account.newAccount == 'true') {
 
       AppState.account.name = 'Recruit'
 
@@ -32,6 +31,11 @@ class AccountService {
 
       this.editAccount(AppState.account)
 
+    } else {
+
+      if (AppState.account.picture.length < 2) {
+        AppState.account.picture = `/assets/player/player${AppState.account.picture}.jpeg`
+      }
     }
 
   }
