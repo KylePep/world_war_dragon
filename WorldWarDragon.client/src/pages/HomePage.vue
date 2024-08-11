@@ -1,8 +1,19 @@
 <template>
   <div class="full-page d-flex flex-column justify-content-around">
     <section class="row">
-      <div class="col-12 text-center d-flex justify-content-center ">
+      <div class="col-12 col-md-6 offset-0 offset-md-3 text-center d-flex justify-content-center ">
         <h1 class="hero-title text-outline p-3">WORLD <br> WAR <br> DRAGON</h1>
+      </div>
+      <div class="col-12 col-md-3 text-2p text-outline">
+        <p class="mb-0">Latest: </p>
+        <div v-if="latestMessage.creator">
+          <i :class="{ 'mdi mdi-weight-lifter': latestMessage.boon == 'power' }"></i>
+          <i :class="{ 'mdi mdi-clover': latestMessage.boon == 'luck' }"></i>
+          <i :class="{ 'mdi mdi-heart': latestMessage.boon == 'health' }"></i>
+          <i :class="{ 'mdi mdi-circle-multiple': latestMessage.boon == 'gold' }"></i>
+          {{ latestMessage.body }} -
+          {{ latestMessage.creator.name }}
+        </div>
       </div>
     </section>
 
@@ -12,13 +23,14 @@
           :style="{ backgroundImage: `url(${activeBoss.image})` }">
           <div class="pt-5 text-outline-bg ">
             <h4 class="px-5">{{ activeBoss.name }}</h4>
-            <h5 class="">{{ Math.round(activeBoss.hp - activeBoss.damages) }}</h5>
 
-            <div class=" px-0 progress bg-dark rounded-0" role="progressbar" aria-label="Example 20px high"
-              :title="`${((activeBoss.hp - activeBoss.damages) / activeBoss.hp) * 100}%`" aria-valuenow="25"
-              aria-valuemin="0" aria-valuemax="100" style="height: 20px">
-              <div class="progress-bar bg-danger"
+
+            <div class=" px-0 progress bg-dark rounded-0" style="height: fit-content;" role="progressbar"
+              aria-label="Example 20px high" :title="`${((activeBoss.hp - activeBoss.damages) / activeBoss.hp) * 100}%`"
+              aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar boss-bar py-1"
                 :style="{ width: `${((activeBoss.hp - activeBoss.damages) / activeBoss.hp) * 100}%` }">
+                <h5 class="mb-0">{{ Math.round(activeBoss.hp - activeBoss.damages) }}</h5>
               </div>
             </div>
 
@@ -68,12 +80,22 @@ import Pop from "../utils/Pop.js";
 import { computed, onMounted, watchEffect } from "vue";
 import { logger } from "../utils/Logger.js";
 import { AuthService } from '../services/AuthService'
+import { messagesService } from "../services/MessagesService.js";
 
 export default {
   setup() {
 
+    async function getLatestMessage() {
+      try {
+        await messagesService.getLatestMessage()
+      } catch (error) {
+        Pop.error(error.message)
+      }
+    }
+
     onMounted(() => {
       setBgImg();
+      getLatestMessage()
     });
 
     const setBgImg = () => {
@@ -89,6 +111,7 @@ export default {
       identity: computed(() => AppState.identity),
       account: computed(() => AppState.account),
       activeBoss: computed(() => AppState.activeBoss),
+      latestMessage: computed(() => AppState.latestMessage),
       bosses: computed(() => AppState.bosses),
 
       async login() {
@@ -142,5 +165,9 @@ export default {
 
   background-position: center;
   background-size: cover;
+}
+
+.boss-bar {
+  background-color: #ff1900;
 }
 </style>

@@ -7,7 +7,7 @@ export class MessagesController extends BaseController {
     super('api/messages')
     this.router
       .get('', this.getMessages)
-
+      .get('/latest', this.getLatestMessage)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createMessage)
@@ -18,6 +18,14 @@ export class MessagesController extends BaseController {
     try {
       const messages = await messagesService.getMessages()
       return res.send(messages)
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getLatestMessage(req, res, next) {
+    try {
+      const message = await messagesService.getLatestMessage()
+      return res.send(message)
     } catch (error) {
       next(error);
     }

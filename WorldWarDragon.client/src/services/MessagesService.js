@@ -28,6 +28,12 @@ class MessagesService {
     logger.log('MODS', AppState.goldMod, AppState.healthMod, AppState.powerMod, AppState.luckMod)
   }
 
+  async getLatestMessage() {
+    const res = await api.get('api/messages/latest')
+    const message = new Message(res.data)
+    AppState.latestMessage = message
+  }
+
   async createMessage(messageData, cost) {
     if (AppState.account.gold < cost) {
       return 'not enough gold'

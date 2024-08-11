@@ -8,6 +8,8 @@ export const AppState = reactive({
   account: null,
   /** @type {import('./models/Message.js').Message.js} */
   messages: [],
+  /** @type {import('./models/Message.js').Message.js} */
+  latestMessage: {},
   /** @type {import('./models/Assistance.js').Assistance.js} */
   assistances: [],
   /** @type {import('./models/Boss.js').Boss.js} */

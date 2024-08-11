@@ -6,6 +6,13 @@ class MessagesService {
     const messages = await dbContext.Message.find().populate('creator', 'name picture')
     return messages
   }
+  async getLatestMessage() {
+    const message = await dbContext.Message
+      .findOne()
+      .sort({ createdAt: -1 })
+      .populate('creator', 'name picture')
+    return message
+  }
 
 
   async createMessage(messageData) {

@@ -27,7 +27,7 @@
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[1] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[1] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[1] }}</i>
-        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[1] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ (AppState.powerMod[1]).toFixed(1) }}</i>
       </section>
     </div>
     <div @click="setActiveRoom(2)" class="col-6 map-section">
@@ -36,7 +36,7 @@
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[2] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[2] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[2] }}</i>
-        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[2] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ (AppState.powerMod[2]).toFixed(1) }}</i>
       </section>
     </div>
     <div @click="setActiveRoom(3)" class="col-6 map-section">
@@ -45,7 +45,7 @@
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[3] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[3] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[3] }}</i>
-        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[3] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ (AppState.powerMod[3]).toFixed(1) }}</i>
       </section>
     </div>
     <div @click="setActiveRoom(4)" class="col-6 map-section">
@@ -54,7 +54,7 @@
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[4] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[4] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[4] }}</i>
-        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ AppState.powerMod[4] }}</i>
+        <i class="col-12 col-md-6 mdi mdi-weight-lifter">: {{ (AppState.powerMod[4]).toFixed(1) }}</i>
       </section>
     </div>
   </section>
