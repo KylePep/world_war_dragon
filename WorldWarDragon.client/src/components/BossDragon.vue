@@ -39,7 +39,6 @@ export default {
       } else {
         isScrolled.value = true
       }
-      logger.log('scroll', isScrolled.value)
     }
 
 

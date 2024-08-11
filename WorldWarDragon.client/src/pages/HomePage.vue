@@ -10,13 +10,29 @@
       <div class="col-12 text-center d-flex justify-content-center">
         <div class="boss-dragon-img border border-2 border-light rounded d-flex flex-column justify-content-end"
           :style="{ backgroundImage: `url(${activeBoss.image})` }">
-          <div class="pt-5 px-5 text-outline-bg ">
-            <h4>{{ activeBoss.name }}</h4>
+          <div class="pt-5 text-outline-bg ">
+            <h4 class="px-5">{{ activeBoss.name }}</h4>
             <h5 class="">{{ Math.round(activeBoss.hp - activeBoss.damages) }}</h5>
+
+            <div class=" px-0 progress bg-dark rounded-0" role="progressbar" aria-label="Example 20px high"
+              :title="`${((activeBoss.hp - activeBoss.damages) / activeBoss.hp) * 100}%`" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100" style="height: 20px">
+              <div class="progress-bar bg-danger"
+                :style="{ width: `${((activeBoss.hp - activeBoss.damages) / activeBoss.hp) * 100}%` }">
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+      <div class="col-12">
+
+      </div>
+
+
+
     </section>
+
 
     <section class="row g-2">
 
@@ -50,9 +66,7 @@
 import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import { computed, onMounted, watchEffect } from "vue";
-import { bossService } from "../services/BossService.js";
 import { logger } from "../utils/Logger.js";
-import { bossDamageService } from "../services/BossDamageService.js";
 import { AuthService } from '../services/AuthService'
 
 export default {
@@ -116,7 +130,6 @@ export default {
 }
 
 .boss-dragon-img {
-  font-family: "Metal Mania", system-ui;
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
