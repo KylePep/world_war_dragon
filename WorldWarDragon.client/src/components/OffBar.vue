@@ -79,7 +79,42 @@
 
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-            <button class="d-flex justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
+            <ul class="d-none d-md-block p-2">
+              <div class="stat-block">
+
+                <div class="mdi mdi-circle-multiple " title="Gold">
+                  Gold: {{ account?.gold }}
+                </div>
+                <div class="mdi mdi-medal" title="Experience">
+                  Experience: {{ account?.valor - appState.account?.valorSpent }}
+                </div>
+                <div class="mdi mdi-heart" title="Health">
+                  Health: {{ account?.health }}
+                  <!-- ( {{ appState.healthMod[appState.activeRoom.id] }} ) -->
+                </div>
+                <div class="mdi mdi-weight-lifter" title="Power">
+                  Power: {{ account?.power }}
+                  <!-- ( {{ appState.powerMod[appState.activeRoom.id] }} ) -->
+                </div>
+              </div>
+            </ul>
+
+            <ul class="d-none d-md-block p-2">
+              <div class="stat-block">
+                <div class="mdi mdi-sword-cross text-danger" title="Attack">
+                  Attack: {{ account?.attack }} ( {{ account?.attackAid }} )
+                </div>
+                <div class="mdi mdi-shield-sun text-info" title="Shield">
+                  Shield: {{ account?.shield }} ( {{ account?.shieldAid }} )
+                </div>
+                <div class="mdi mdi-bottle-tonic-plus text-success" title="Heal">
+                  Heal: {{ account?.heal }} ( {{ account?.healAid }} )
+                </div>
+              </div>
+            </ul>
+
+            <button
+              class="d-flex d-md-none justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
               data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
               STATS
             </button>
@@ -103,7 +138,8 @@
               </div>
             </ul>
 
-            <button class="d-flex justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
+            <button
+              class="d-flex d-md-none justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
               data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
               Inventory
             </button>
