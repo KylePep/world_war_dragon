@@ -28,9 +28,11 @@
         <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
           <h3>Combat</h3>
           <p>After you have joined the fight and selected an area of the map ( Start with the safe zone). You can begin
-            slashing at the dragon! Just move your cursor through the center of the dragon. Slash! that's all it takes.
+            slashing at the dragon! Just move your cursor through the center of the dragon. <i class="slash">Slash!</i>
+            that's all it
+            takes.
           </p>
-          <p>After combat you can be rewarded with gold and occasionally items.</p>
+          <p>After combat you are rewarded with gold and occasionally items.</p>
           <p>Items are the key to victory against strong foes.</p>
           <p>4 Crystals show up around the enemy when you have an item, click, drag, and draw symbols to use the three
             different items!</p>
@@ -112,6 +114,14 @@ export default {
 .lore-card {
   background-color: var(--bs-body-bg);
   max-width: 1200px;
+}
+
+.slash {
+  color: #ff7300;
+}
+
+.slash:hover {
+  color: red;
 }
 
 .fight-btn {

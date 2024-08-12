@@ -1,5 +1,6 @@
 import { EventBus } from '../EventBus.js';
 import { AppState } from "../../../AppState.js";
+import { logger } from "../../../utils/Logger.js";
 
 export class Crystal {
   constructor(scene, x, y) {
@@ -12,6 +13,13 @@ export class Crystal {
     this.lines = [];
     this.isDrawing = false;
     this.lineWidth = 5;
+
+    this.neutralColor = 0xff7300
+    this.attackColor = 0xff2f00
+    this.healColor = 0x00ff06
+    this.shieldColor = 0x0073ff
+
+    this.crystalColor = this.neutralColor
 
     this.createInteractiveObjects();
   }
@@ -52,7 +60,6 @@ export class Crystal {
           .setInteractive()
           .setDepth(100);
         obj.id = pos.id; // Assign the ID to the object
-        // obj.texture.setFilter(Phaser.ScaleModes.NEAREST);
 
         // Floating tween animation
         this.scene.tweens.add({
@@ -65,12 +72,10 @@ export class Crystal {
 
         // Change color on hover
         obj.on('pointerover', () => {
-          if (!this.isDrawing) {
-            // obj.setTint(0x00ff00); // Hover color - green
-          } else {
+          if (this.isDrawing) {
             this.setInputCode(obj.id)
             obj.play('playGif')
-            obj.setTint(0x00C1FF);
+            obj.setTint(this.crystalColor);
             this.addStaticLine(obj);
           }
         });
@@ -84,14 +89,11 @@ export class Crystal {
         // Change color on click and start drawing
         obj.on('pointerdown', (pointer) => {
           if (!this.isDrawing) {
+            this.crystalColor = this.neutralColor
             this.startDrawing(obj.x, obj.y, obj);
-            obj.setTint(0x00C1FF); // Clicked color
+            obj.setTint(this.crystalColor); // Clicked color
             this.inputCode.push(obj.id)
             obj.play('playGif')
-          } else {
-            this.stopDrawing(obj);
-            obj.stop('playGif')
-            obj.setTint(0xffffff); // Reset to default color
           }
         });
 
@@ -120,7 +122,7 @@ export class Crystal {
     this.isDrawing = true;
     this.startX = x;
     this.startY = y;
-    this.currentLine = this.scene.add.line(0, 0, x, y, x, y, 0x00C1FF)
+    this.currentLine = this.scene.add.line(0, 0, x, y, x, y, this.crystalColor)
       .setOrigin(0, 0)
       .setDepth(100)
       .setLineWidth(this.lineWidth); // Set line width here
@@ -173,8 +175,8 @@ export class Crystal {
 
         // Logic for completing the action when all objects are connected can be added here
         this.scene.item.checkInputCode(this.inputCode)
+        this.updateCrystalColor(this.scene.item.checkInput(this.inputCode))
 
-        // Delay the cancelDrawing() call by 1.5 seconds (1500 milliseconds)
         setTimeout(() => {
           this.cancelDrawing();
         }, 500);
@@ -190,6 +192,25 @@ export class Crystal {
     }
   }
 
+  updateCrystalColor(newColor) {
+    if (newColor == 'heal') {
+      newColor = this.healColor
+    } else if (newColor == 'attack') {
+      newColor = this.attackColor
+    } else if (newColor == 'shield') {
+      newColor = this.shieldColor
+    } else {
+      newColor = this.neutralColor
+    }
+    this.crystalColor = newColor
+    this.lines.forEach(line => {
+      line.setStrokeStyle(this.lineWidth, this.crystalColor);
+    });
+    this.interactiveObjects.forEach(obj => {
+      obj.setTint(newColor)
+    });
+  }
+
   cancelDrawing() {
     this.isDrawing = false;
     this.lines.forEach(line => line.destroy());
@@ -197,7 +218,7 @@ export class Crystal {
     this.interactiveObjects.forEach(obj => {
       obj.setTint(0xffffff)
       obj.stop('playGif')
-    }); // Reset color
+    });
     this.inputCode = [];
   }
 

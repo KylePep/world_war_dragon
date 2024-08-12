@@ -21,10 +21,8 @@ class MessagesService {
       } else if (m.boon == 'health') {
         AppState.healthMod[`${m.roomId}`]++
       } else if (m.boon == 'power') {
-        logger.log(`${m.roomId} Was`, AppState.powerMod[`${m.roomId}`])
         AppState.powerMod[`${m.roomId}`] += .1
         AppState.powerMod[`${m.roomId}`] = parseFloat(AppState.powerMod[`${m.roomId}`].toFixed(1));
-        logger.log(`${m.roomId} Is`, AppState.powerMod[`${m.roomId}`])
       } else {
         AppState.luckMod[`${m.roomId}`]++
       }

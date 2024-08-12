@@ -19,28 +19,45 @@ export class Item {
     this.action = 'input'
   }
 
+  checkInput(inputCode) {
+    const inputCodeString = inputCode.join('');
+
+    // Convert pattern arrays to strings for easy comparison
+    const patterns = {
+      attack: this.patterns.attack.join(''),
+      attackAlt: this.patterns.attack.reverse().join(''),
+      shield: this.patterns.shield.join(''),
+      shieldAlt: this.patterns.shield.reverse().join(''),
+      heal: this.patterns.heal.join(''),
+      healAlt: this.patterns.heal.reverse().join('')
+    };
+
+    this.result = 'input'
+
+    // Check if inputCode matches any pattern
+    if (inputCodeString === patterns.attack || inputCodeString === patterns.attackAlt) {
+      this.result = 'attack';
+    } else if (inputCodeString === patterns.shield || inputCodeString === patterns.shieldAlt) {
+      this.result = 'shield';
+    } else if (inputCodeString === patterns.heal || inputCodeString === patterns.healAlt) {
+      this.result = 'heal';
+    }
+
+    if (this.result != 'input' && (AppState.account[this.result] > 0 || AppState.account[`${this.result}Aid`] > 0 || this.activeRoomId == 6)) {
+      return this.result
+    } else {
+      const selectedSound = 'fail'
+      const sound = this.scene.sound.add(selectedSound)
+      sound.play();
+      sound.volume = .5;
+      return 'input'
+    }
+
+  }
+
   checkInputCode(inputCode) {
     if (this.action == 'input') {
-      const inputCodeString = inputCode.join('');
-
-      // Convert pattern arrays to strings for easy comparison
-      const patterns = {
-        attack: this.patterns.attack.join(''),
-        attackAlt: this.patterns.attack.reverse().join(''),
-        shield: this.patterns.shield.join(''),
-        shieldAlt: this.patterns.shield.reverse().join(''),
-        heal: this.patterns.heal.join(''),
-        healAlt: this.patterns.heal.reverse().join('')
-      };
-
-      // Check if inputCode matches any pattern
-      if (inputCodeString === patterns.attack || inputCodeString === patterns.attackAlt) {
-        this.action = 'attack';
-      } else if (inputCodeString === patterns.shield || inputCodeString === patterns.shieldAlt) {
-        this.action = 'shield';
-      } else if (inputCodeString === patterns.heal || inputCodeString === patterns.healAlt) {
-        this.action = 'heal';
-      }
+      this.action = this.checkInput(inputCode)
     }
 
     logger.log('ACTION', this.action, 'CODE', this.inputCodeString, 'INPUT-CODE', inputCode);
@@ -60,6 +77,10 @@ export class Item {
         this.useItem();
 
       } else {
+        // const selectedSound = 'fail'
+        // const sound = this.scene.sound.add(selectedSound)
+        // sound.play();
+        // sound.volume = .5;
         AppState.account[this.action] = 0;
         AppState.account[`${this.action}Aid`] = 0;
         const accountData = AppState.account;
