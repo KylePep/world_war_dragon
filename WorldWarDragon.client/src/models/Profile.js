@@ -4,6 +4,8 @@ export class Profile {
     this.name = data.name
     this.picture = data.picture
 
+    this.newAccount = data.newAccount
+
     this.dragons = data.dragons
 
     this.level = data.level

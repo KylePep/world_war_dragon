@@ -14,13 +14,17 @@ class MessagesService {
     AppState.healthMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
     AppState.luckMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
     AppState.powerMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
+    logger.log('Before MODS', AppState.goldMod, AppState.healthMod, AppState.powerMod, AppState.luckMod)
     messages.forEach((m) => {
       if (m.boon == 'gold') {
         AppState.goldMod[`${m.roomId}`]++
       } else if (m.boon == 'health') {
         AppState.healthMod[`${m.roomId}`]++
       } else if (m.boon == 'power') {
-        AppState.powerMod[`${m.roomId}`] += .1
+        logger.log(`${m.roomId} Was`, AppState.powerMod[`${m.roomId}`])
+        AppState.powerMod[`${m.roomId}`]++
+        AppState.powerMod[`${m.roomId}`] = parseFloat(AppState.powerMod[`${m.roomId}`].toFixed(1));
+        logger.log(`${m.roomId} Is`, AppState.powerMod[`${m.roomId}`])
       } else {
         AppState.luckMod[`${m.roomId}`]++
       }
