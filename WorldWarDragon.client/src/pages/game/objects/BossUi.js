@@ -124,7 +124,11 @@ export class BossUi {
     // Reposition elements
     this.bottomBar.setPosition(width / 2, 0);
     this.homeButton.setPosition(10, - 40);
-    this.mapButton.setPosition(width * .15, - 40);
+    if (width < 758) {
+      this.mapButton.setPosition(width * .85, - 40);
+    } else {
+      this.mapButton.setPosition(width * .15, - 40);
+    }
     this.bossNameText.setPosition(width / 2, - 40);
     this.bossTitleText.setPosition(width / 2, - 20);
     this.healthBarBackground.setPosition(10, - 10);
