@@ -5,12 +5,12 @@ import { AREA_DRAGONS } from '../../../../../shared/constants/index.js'
 export class Dragon {
   constructor(scene, x, y) {
     this.scene = scene;
+    this.activeRoomId = AppState.activeRoom.id
     this.dragonHP = this.getRandomDragonHP();
     this.dragonHPMax = this.dragonHP
     this.bossDamage = Phaser.Math.RoundTo((.1 * this.dragonHP), 0);
 
-    this.activeRoomId = AppState.activeRoom.id
-    if (this.activeRoomId && this.activeRoomId != 5) {
+    if (this.activeRoomId && this.activeRoomId != 5 && this.activeRoomId != 6) {
       this.goldMod = AppState.goldMod[this.activeRoomId]
     } else {
       this.goldMod = 0
@@ -46,14 +46,19 @@ export class Dragon {
   }
 
   getRandomDragonHP() {
-    const minHP = 45; // 100 / 10
-    const maxHP = 100; // 1000 / 10
-    return Phaser.Math.Between(minHP, maxHP) * (1 + (AppState.activeRoom.difficulty * AppState.activeRoom.difficulty));
+    logger.log('[ActiveRoomId]', this.activeRoomId, AppState.activeRoom)
+    if (this.activeRoomId != 6) {
+      const minHP = 45; // 100 / 10
+      const maxHP = 100; // 1000 / 10
+      return Phaser.Math.Between(minHP, maxHP) * (1 + (AppState.activeRoom.difficulty * AppState.activeRoom.difficulty));
+    } else {
+      return 1000000000
+    }
   }
 
   getRandomDragonSprite() {
     const activeRoom = this.activeRoomId
-    const areaDragons = AREA_DRAGONS.find((data) => data.id = activeRoom)
+    const areaDragons = AREA_DRAGONS.find((data) => data.id == activeRoom)
     const quantityMax = areaDragons.number
     const randomIndex = Phaser.Math.Between(1, quantityMax);
     return `${activeRoom}_dragon_${randomIndex}`

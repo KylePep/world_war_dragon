@@ -125,6 +125,9 @@ export class Preloader extends Scene {
         this.load.image('5_dragon_8', 'dragon/5/dragonling8.png');
         this.load.image('5_dragon_9', 'dragon/5/dragonling9.png');
 
+        //Room 6
+        this.load.image('6_dragon_1', 'dragon/6/toyDragon.png');
+
         this.load.image('small_0001', 'battle/small_0001.png');
         this.load.image('small_0004', 'battle/small_0004.png');
         this.load.image('small_0006', 'battle/small_0006.png');

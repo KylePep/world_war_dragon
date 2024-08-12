@@ -28,7 +28,7 @@ export class PlayerUi {
     const { width, height } = this.scene.cameras.main;
 
     this.activeRoomId = AppState.activeRoom.id
-    if (this.activeRoomId == 5) {
+    if (this.activeRoomId == 5 || this.activeRoomId == 6) {
       this.goldMod = 0
       this.healthMod = 0
       this.powerMod = 0

@@ -67,6 +67,12 @@ export class Map extends Scene {
             align: 'center'
         }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.buttonAction('Center', 5)).on('pointerover', () => this.buttonOver(this.centeria)).on('pointerout', () => this.buttonOut(this.centeria));
 
+        this.training = this.add.text(0, 0, 'Training', {
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.buttonAction('Training', 6)).on('pointerover', () => this.buttonOver(this.training)).on('pointerout', () => this.buttonOut(this.training));
+
         this.boghir = this.add.text(0, 0, 'Boghir\nExtreme', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
@@ -108,6 +114,7 @@ export class Map extends Scene {
         this.rysto.setPosition(width - hMargin, vMargin);
         this.rystoStats.setPosition(width - hMargin, vMargin + 128);
         this.centeria.setPosition(width / 2, height / 2);
+        this.training.setPosition(width / 2, height * .6)
         this.boghir.setPosition(width - hMargin, height - vMargin);
         this.boghirStats.setPosition(width - hMargin, height - vMargin - 128);
         this.lendbom.setPosition(hMargin, height - vMargin);
@@ -125,6 +132,7 @@ export class Map extends Scene {
         this.toleftios.setFontSize(fontSize);
         this.rysto.setFontSize(fontSize);
         this.centeria.setFontSize(fontSize);
+        this.training.setFontSize(fontSize * .6);
         this.boghir.setFontSize(fontSize);
         this.lendbom.setFontSize(fontSize);
 

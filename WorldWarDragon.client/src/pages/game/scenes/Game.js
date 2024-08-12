@@ -34,7 +34,7 @@ export class Game extends Scene {
         });
 
         this.activeRoomId = AppState.activeRoom.id
-        if (this.activeRoomId && this.activeRoomId != 5) {
+        if (this.activeRoomId && this.activeRoomId != 5 && this.activeRoomId != 6) {
             this.playerMaxHp = AppState.account.health + AppState.healthMod[this.activeRoomId]
         } else {
             this.playerMaxHp = AppState.account.health
@@ -45,7 +45,7 @@ export class Game extends Scene {
 
         const dragonNames = DRAGON_NAMES.find((data) => data.id === this.activeRoomId);
         const dragonTitles = DRAGON_TITLES.find((data) => data.id === this.activeRoomId);
-        const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG',]
+        const backGrounds = ['beachBG', 'forestBG', 'mountainBG', 'cliffBG', 'islandBG', 'islandBG']
 
 
 
