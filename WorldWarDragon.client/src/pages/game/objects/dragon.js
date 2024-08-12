@@ -114,9 +114,10 @@ export class Dragon {
     sound.play();
     sound.volume = .25;
 
-    this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
-    this.scene.bossUi.updateBossHp(this.dragonHP)
-    // this.scene.clickText.setText(`HP: ${this.dragonHP}`)
+    if (this.activeRoomId != 6) {
+      this.dragonHP = Phaser.Math.RoundTo((this.dragonHP / 2), 0);
+      this.scene.bossUi.updateBossHp(this.dragonHP)
+    }
 
     this.checkDeath()
 

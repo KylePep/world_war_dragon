@@ -8,6 +8,7 @@ export class Item {
     this.scene = scene;
     this.x = x;
     this.y = y;
+    this.activeRoomId = AppState.activeRoom.id
 
     this.items = ['attack', 'shield', 'heal'];
     this.patterns = {
@@ -45,7 +46,9 @@ export class Item {
     logger.log('ACTION', this.action, 'CODE', this.inputCodeString, 'INPUT-CODE', inputCode);
 
     if (this.action != 'input') {
-      if (AppState.account[this.action] > 0 || AppState.account[`${this.action}Aid`] > 0) {
+      if (this.activeRoomId == 6) {
+        this.useItem();
+      } else if (AppState.account[this.action] > 0 || AppState.account[`${this.action}Aid`] > 0) {
         if (AppState.account[`${this.action}Aid`] > 0) {
           AppState.account[`${this.action}Aid`] -= 1;
         } else {
