@@ -51,7 +51,7 @@
         <div class="col-12 col-md-12 lore-content p-3">
           <h3>Community!</h3>
           <p>In world war dragon players interact in two main ways, boons and assistance.</p>
-          <p>Participating in the community will reward you with Valor, the experience used to level up in World War
+          <p>Participating in the community will reward you with experience used to level up in World War
             Dragon.</p>
           <p>Boons: A boon will effect every one fighting dragons in that area, for example purchasing a boon of health
             in Toleftios will give everyone fighting there an additional health point to face the dragon threat in that
@@ -63,12 +63,18 @@
 
       </section>
     </div>
+
+    <div v-if="account?.id" class="col-12 col-md-4 mx-auto my-5  d-flex justify-content-center">
+      <router-link :to="{ name: 'Game' }" class="btn fight-btn text-outline p-3 fs-3 w-100 fw-bold ">JOIN THE
+        FIGHT!</router-link>
+    </div>
   </section>
 </template>
 
 
 <script>
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
+import { AppState } from "../AppState.js";
 
 export default {
   setup() {
@@ -83,7 +89,9 @@ export default {
         mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
       }
     }
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   }
 }
 </script>
@@ -104,5 +112,15 @@ export default {
 .lore-card {
   background-color: var(--bs-body-bg);
   max-width: 1200px;
+}
+
+.fight-btn {
+  background-color: var(--bs-body-bg);
+  border: 2px solid white;
+  font-family: "Press Start 2P", system-ui;
+  color: #ff7300; //ff7300
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

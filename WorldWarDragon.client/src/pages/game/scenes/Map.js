@@ -11,6 +11,12 @@ export class Map extends Scene {
     create() {
         AppState.winStreak = 0
 
+        if (AppState.account.dragons < 1) {
+            AppState.account.dragons += 1
+            this.buttonAction('training', 6)
+            this.changeScene()
+        }
+
         // Create and play the background music
         this.backgroundMusic = this.sound.add('DragonKingDungeon', {
             volume: 0.5, // Adjust the volume
