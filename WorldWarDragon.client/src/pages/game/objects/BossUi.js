@@ -1,5 +1,6 @@
 // BossUi
 import { EventBus } from '../EventBus.js';
+import { Scene } from 'phaser';
 
 export class BossUi {
   constructor(scene, bossName, bossTitle, bossHp, maxHp) {
@@ -38,24 +39,44 @@ export class BossUi {
 
     this.bossUiContainer.addAt(bottomBarBorder, 0);
 
-    // Add retreat button
-    this.retreatButton = this.scene.add.text(10, - 40, 'RETREAT...', {
+    // Add home button
+    this.homeButton = this.scene.add.text(10, - 40, 'HOME', {
       fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
       stroke: '#000000', strokeThickness: 8,
       align: 'left'
     }).setOrigin(0, 1).setDepth(400).setInteractive();
-    this.retreatButton.on('pointerdown', () => {
+    this.homeButton.on('pointerdown', () => {
       EventBus.emit('navigate-home');
     });
-    this.retreatButton.on('pointerover', () => {
-      this.retreatButton.setColor('gray')
+    this.homeButton.on('pointerover', () => {
+      this.homeButton.setColor('gray')
       this.scene.input.setDefaultCursor('pointer');
     })
-    this.retreatButton.on('pointerout', () => {
-      this.retreatButton.setColor('white')
+    this.homeButton.on('pointerout', () => {
+      this.homeButton.setColor('white')
       this.scene.input.setDefaultCursor('default');
     })
-    this.bossUiContainer.add(this.retreatButton);
+    this.bossUiContainer.add(this.homeButton);
+
+    // Add retreat button
+    this.mapButton = this.scene.add.text(10, - 40, 'MAP', {
+      fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left'
+    }).setOrigin(0, 1).setDepth(400).setInteractive();
+    this.mapButton.on('pointerdown', () => {
+      this.scene.sound.stopAll()
+      this.scene.scene.start('Map');
+    });
+    this.mapButton.on('pointerover', () => {
+      this.mapButton.setColor('gray')
+      this.scene.input.setDefaultCursor('pointer');
+    })
+    this.mapButton.on('pointerout', () => {
+      this.mapButton.setColor('white')
+      this.scene.input.setDefaultCursor('default');
+    })
+    this.bossUiContainer.add(this.mapButton);
 
     // Add boss name text
     this.bossNameText = this.scene.add.text(width / 2, - 40, this.bossName, {
@@ -88,7 +109,8 @@ export class BossUi {
     const fontSize = width < 768 ? '12px' : '16px';
     const specialFontSize = width < 768 ? '16px' : '20px';
 
-    this.retreatButton.setFontSize(fontSize);
+    this.homeButton.setFontSize(fontSize);
+    this.mapButton.setFontSize(fontSize);
     this.bossNameText.setFontSize(specialFontSize);
     this.bossTitleText.setFontSize(fontSize);
 
@@ -101,7 +123,8 @@ export class BossUi {
 
     // Reposition elements
     this.bottomBar.setPosition(width / 2, 0);
-    this.retreatButton.setPosition(10, - 40);
+    this.homeButton.setPosition(10, - 40);
+    this.mapButton.setPosition(width * .15, - 40);
     this.bossNameText.setPosition(width / 2, - 40);
     this.bossTitleText.setPosition(width / 2, - 20);
     this.healthBarBackground.setPosition(10, - 10);

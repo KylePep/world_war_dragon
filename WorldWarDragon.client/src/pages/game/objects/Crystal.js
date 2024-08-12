@@ -27,7 +27,7 @@ export class Crystal {
   createInteractiveObjects() {
     const { width, height } = this.scene.cameras.main;
     const items = (AppState.account.attack + AppState.account.attackAid + AppState.account.shield + AppState.account.shieldAid + AppState.account.heal + AppState.account.healAid)
-    if (items > 0) {
+    if (items > 0 || AppState.activeRoom.id == 6) {
       // Define margins based on screen size
       const smallScreenMargin = width * 0.125;
       const largeScreenMargin = width * 0.25;
