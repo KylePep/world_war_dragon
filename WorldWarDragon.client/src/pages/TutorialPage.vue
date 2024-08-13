@@ -25,7 +25,7 @@
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
+        <div class="order-2 order-md-1 col-12 col-md-6 lore-content p-3">
           <h3>Combat</h3>
           <p>After you have joined the fight and selected an area of the map ( Start with the safe zone). You can begin
             slashing at the dragon! Just move your cursor through the center of the dragon. <i class="slash">Slash!</i>
@@ -38,8 +38,8 @@
             different items!</p>
         </div>
 
-        <div class="order-1 order-md-2 col-12 col-md-6 px-0">
-          <!-- <img class="img-fluid rounded-4" src="/assets/veteran.jpeg" alt=""> -->
+        <div class="order-1 order-md-2 col-12 col-md-6 px-0 d-flex justify-content-center">
+          <video controls preload="auto" src="/assets/video/ItemDemo.mp4" class="" style="width: 90%;"></video>
         </div>
       </section>
     </div>

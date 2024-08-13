@@ -48,7 +48,8 @@
           <p>
             8/13/24 - New tutorial level created, Fight the training dragon and use items for free. <br>
             - New Game Modes, single and multi. The game behaves like normal on single mode. Multi mode, fight
-            as many dragons in a row as you can. <br> - Latest Boon created is displayed on home page.
+            as many dragons in a row as you can. <br> - Latest Boon created is displayed on home page. <br> -New item
+            demo video
           </p>
           <p>
             8/10/24 - Reworked screen effect system, and drawing system. Effects are more easily called and drawings now
