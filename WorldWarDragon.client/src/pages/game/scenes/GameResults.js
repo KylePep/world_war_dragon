@@ -49,7 +49,7 @@ export class GameResults extends Scene {
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        this.rewards = this.add.text(centerX, centerY, `+${AppState.gold} Gold | +${AppState.valor} Valor \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`, {
+        this.rewards = this.add.text(centerX, centerY, `+${AppState.gold} Gold | +${AppState.valor} EXP \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`, {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
@@ -182,7 +182,7 @@ export class GameResults extends Scene {
         }
 
 
-        this.rewards.setText(`+${AppState.gold} Gold | +${AppState.valor} Valor \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`);
+        this.rewards.setText(`+${AppState.gold} Gold | +${AppState.valor} EXP \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`);
     }
 
     async updateAccount() {

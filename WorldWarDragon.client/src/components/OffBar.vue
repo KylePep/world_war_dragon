@@ -114,7 +114,7 @@
             </ul>
 
             <button
-              class="d-flex d-md-none justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
+              class="fs-5 mb-3 d-flex d-md-none justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
               data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
               STATS
             </button>
@@ -139,7 +139,7 @@
             </ul>
 
             <button
-              class="d-flex d-md-none justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
+              class="fs-5 mb-3 d-flex d-md-none justify-content-between align-items-center btn btn-dark dropdown-toggle mb-2"
               data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
               Inventory
             </button>

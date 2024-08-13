@@ -46,16 +46,21 @@
         <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
           <h3>Change log</h3>
           <p>
+            8/13/24 - New tutorial level created, Fight the training dragon and use items for free. <br>
+            - New Game Modes, single and multi. The game behaves like normal on single mode. Multi mode, fight
+            as many dragons in a row as you can. <br> - Latest Boon created is displayed on home page.
+          </p>
+          <p>
+            8/10/24 - Reworked screen effect system, and drawing system. Effects are more easily called and drawings now
+            have a delay and do not abruptly end after an input.
+          </p>
+          <p>
             8/9/24 - New account system, When a new account is made the recruit name and image are automatically
             assigned.<br>
             Created Road Map and change log page <br>
             Created Tutorial Page, new players are automatically directed to after sign up. <br>
             Dragons defeated is tracked <br>
             Level up indicator added
-          </p>
-          <p>
-            8/10/24 - Reworked screen effect system, and drawing system. Effects are more easily called and drawings now
-            have a delay and do not abruptly end after an input.
           </p>
         </div>
 

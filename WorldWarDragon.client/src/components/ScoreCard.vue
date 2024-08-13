@@ -1,9 +1,10 @@
 <template>
-  <!-- <section class="row mt-3 justify-content-center text-light"> -->
+
   <section class="row character-card  mt-3 text-center text-V text-outline-bg border border-1 border-outline rounded ">
     <div class="col-4 col-md-3 fs-1 text-outline text-start rounded" :style="{ backgroundImage: `url(${bgIcon})` }"
-      style="background-position: center; background-size: cover;">{{ index + 1 }}</div>
-    <div class="col-4 col-md-4 d-flex flex-column flex-md-column justify-content-around fs-1 overflow-x-hidden">
+      style="background-position: 50% 10%; background-size: cover;">{{ index + 1 }}</div>
+    <div
+      class="col-5 col-md-4 offset-0 offset-md-1 d-flex flex-column flex-md-column justify-content-around fs-1 overflow-x-hidden">
       <div v-if="scoreProp.creator.name.length > 6" :title="scoreProp.creator.name">
         <div class="marquee d-md-none">
           {{ scoreProp.creator.name }}
@@ -16,28 +17,27 @@
         {{ scoreProp.creator.name }}
       </div>
 
-      <div class="fs-4 d-flex justify-content-center">
-        <p class=" my-0 me-3 " title="Level">
-          <span class="d-none d-md-inline ">Level:</span>
-          {{ Math.round(scoreProp.creator.level) }}
+      <div class="fs-5 d-flex justify-content-center">
+        <p class=" my-0 me-3 d-flex flex-column flex-md-row" title="Level">
+        <div class="pe-1">Level </div>
+        {{ Math.round(scoreProp.creator.level) }}
         </p>
-        <p class="my-0" title="Dragons">
-          <span class="d-none d-md-inline ">Dragons:</span>
-          {{ Math.round(scoreProp.creator.dragons) }}
+        <p class="my-0 d-flex flex-column flex-md-row" title="Dragons">
+        <div class="pe-1">Dragons </div>
+        {{ Math.round(scoreProp.creator.dragons) }}
         </p>
       </div>
 
     </div>
-    <div class="col-4 col-md-4 fs-2 d-flex flex-column flex-md-column justify-content-center">
-      <p class="my-0 ">
+    <div class="col-3 col-md-4 fs-2 d-flex flex-column  align-items-center text-center">
+      <p class="my-0 fs-1">
         Damage
       </p>
-      <p class="my-0 ps-3">
+      <p class="my-0">
         {{ Math.round(scoreProp.dmg) }}
       </p>
     </div>
   </section>
-  <!-- </section> -->
 
 </template>
 
@@ -75,11 +75,17 @@ export default {
 
 <style lang="scss" scoped>
 .character-card {
-  width: 70vw;
+  width: 90vw;
   // height: 120px;
   padding: 8px;
   font-weight: bold;
   background-color: var(--bs-background);
+}
+
+@media screen and (min-width: 576px) {
+  .character-card {
+    width: 70vw;
+  }
 }
 
 .card-icon {
