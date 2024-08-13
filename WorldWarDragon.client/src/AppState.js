@@ -24,6 +24,7 @@ export const AppState = reactive({
   health: 0,
   power: 0,
   activeRoom: '',
+  mode: 'single',
 
   goldMod: { 1: 0, 2: 0, 3: 0, 4: 0 },
   healthMod: { 1: 0, 2: 0, 3: 0, 4: 0 },

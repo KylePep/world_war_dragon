@@ -104,7 +104,12 @@ export class Dragon {
       this.scene.events.off('dragon:attackItem')
       this.scene.playerHp = this.scene.playerMaxHp
 
-      this.scene.leaveRoom()
+      if (AppState.mode == 'single') {
+        this.scene.leaveRoom()
+      } else {
+        this.scene.scene.start('Game');
+      }
+
     }
   }
 

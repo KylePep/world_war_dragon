@@ -73,6 +73,7 @@ export class Crystal {
         // Change color on hover
         obj.on('pointerover', () => {
           if (this.isDrawing) {
+
             this.setInputCode(obj.id)
             obj.play('playGif')
             obj.setTint(this.crystalColor);
@@ -115,7 +116,7 @@ export class Crystal {
   }
 
   startDrawing(x, y, obj) {
-    if (this.lines.length >= 4) {
+    if (this.inputCode.length >= 4) {
       this.stopDrawing(obj);
       return;
     }
@@ -187,7 +188,7 @@ export class Crystal {
   }
 
   setInputCode(objId) {
-    if (this.inputCode[this.inputCode.length - 1] != objId) {
+    if (!this.inputCode.includes(objId)) {
       this.inputCode.push(objId)
     }
   }

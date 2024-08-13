@@ -14,7 +14,6 @@ class MessagesService {
     AppState.healthMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
     AppState.luckMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
     AppState.powerMod = { 1: 0, 2: 0, 3: 0, 4: 0 }
-    logger.log('Before MODS', AppState.goldMod, AppState.healthMod, AppState.powerMod, AppState.luckMod)
     messages.forEach((m) => {
       if (m.boon == 'gold') {
         AppState.goldMod[`${m.roomId}`]++
@@ -27,7 +26,6 @@ class MessagesService {
         AppState.luckMod[`${m.roomId}`]++
       }
     })
-    logger.log('MODS', AppState.goldMod, AppState.healthMod, AppState.powerMod, AppState.luckMod)
   }
 
   async getLatestMessage() {

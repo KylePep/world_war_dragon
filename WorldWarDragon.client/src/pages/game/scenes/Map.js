@@ -25,6 +25,8 @@ export class Map extends Scene {
 
         this.backgroundMusic.play();
 
+        this.mode = AppState.mode;
+
 
         // Your existing code to setup the game objects, etc.
 
@@ -66,6 +68,12 @@ export class Map extends Scene {
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(1, 0)
+
+        this.modeButton = this.add.text(0, 0, `Mode: ${this.mode}`, {
+            fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.changeMode()).on('pointerover', () => this.buttonOver(this.modeButton)).on('pointerout', () => this.buttonOut(this.modeButton));
 
         this.centeria = this.add.text(0, 0, 'Centeria\nSafe', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
@@ -119,6 +127,7 @@ export class Map extends Scene {
         this.toleftiosStats.setPosition(hMargin, vMargin + 128);
         this.rysto.setPosition(width - hMargin, vMargin);
         this.rystoStats.setPosition(width - hMargin, vMargin + 128);
+        this.modeButton.setPosition(width / 2, 32);
         this.centeria.setPosition(width / 2, height / 2);
         this.training.setPosition(width / 2, height * .6)
         this.boghir.setPosition(width - hMargin, height - vMargin);
@@ -137,6 +146,7 @@ export class Map extends Scene {
         const fontSize = this.getFontSize();
         this.toleftios.setFontSize(fontSize);
         this.rysto.setFontSize(fontSize);
+        this.modeButton.setFontSize(fontSize * .6);
         this.centeria.setFontSize(fontSize);
         this.training.setFontSize(fontSize * .6);
         this.boghir.setFontSize(fontSize);
@@ -152,12 +162,22 @@ export class Map extends Scene {
         return baseFontSize * scaleFactor;
     }
 
+    changeMode() {
+        if (AppState.mode == 'single') {
+            AppState.mode = 'multi'
+        } else {
+            AppState.mode = 'single'
+        }
+        this.mode = AppState.mode;
+        this.modeButton.setText(`Mode: ${this.mode}`)
+    }
+
     buttonAction(buttonName, roomId) {
         AppState.activeRoom = MAP_DATA.find((m) => m.id == roomId);
         this.changeScene()
     }
     buttonOver(button) {
-        button.setColor('gray');
+        button.setColor('#ff7300');
         this.input.setDefaultCursor('pointer');
     }
     buttonOut(button) {

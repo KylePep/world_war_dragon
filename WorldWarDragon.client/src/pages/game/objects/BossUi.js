@@ -1,4 +1,5 @@
 // BossUi
+import { AppState } from "../../../AppState.js";
 import { EventBus } from '../EventBus.js';
 import { Scene } from 'phaser';
 
@@ -58,7 +59,7 @@ export class BossUi {
     })
     this.bossUiContainer.add(this.homeButton);
 
-    // Add retreat button
+    // Add Map button
     this.mapButton = this.scene.add.text(10, - 40, 'MAP', {
       fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
       stroke: '#000000', strokeThickness: 8,
@@ -77,6 +78,27 @@ export class BossUi {
       this.scene.input.setDefaultCursor('default');
     })
     this.bossUiContainer.add(this.mapButton);
+
+    if (AppState.mode == 'multi' && AppState.activeRoom.id != 6) {   // Add Finish button
+      this.finishButton = this.scene.add.text(10, - 40, 'Finish', {
+        fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
+        stroke: '#000000', strokeThickness: 8,
+        align: 'left'
+      }).setOrigin(1, 1).setDepth(400).setInteractive();
+      this.finishButton.on('pointerdown', () => {
+        this.scene.sound.stopAll()
+        this.scene.leaveRoom();
+      });
+      this.finishButton.on('pointerover', () => {
+        this.finishButton.setColor('gray')
+        this.scene.input.setDefaultCursor('pointer');
+      })
+      this.finishButton.on('pointerout', () => {
+        this.finishButton.setColor('white')
+        this.scene.input.setDefaultCursor('default');
+      })
+      this.bossUiContainer.add(this.finishButton);
+    }
 
     // Add boss name text
     this.bossNameText = this.scene.add.text(width / 2, - 40, this.bossName, {
@@ -106,11 +128,14 @@ export class BossUi {
   setScaleToFitWindow() {
     const { width, height } = this.scene.cameras.main;
 
-    const fontSize = width < 768 ? '12px' : '16px';
+    const fontSize = width < 768 ? '10px' : '16px';
     const specialFontSize = width < 768 ? '16px' : '20px';
 
     this.homeButton.setFontSize(fontSize);
     this.mapButton.setFontSize(fontSize);
+    if (AppState.mode == 'multi' && AppState.activeRoom.id != 6) {
+      this.finishButton.setFontSize(fontSize);
+    }
     this.bossNameText.setFontSize(specialFontSize);
     this.bossTitleText.setFontSize(fontSize);
 
@@ -124,15 +149,27 @@ export class BossUi {
     // Reposition elements
     this.bottomBar.setPosition(width / 2, 0);
     this.homeButton.setPosition(10, - 40);
-    if (width < 758) {
-      this.mapButton.setPosition(width * .85, - 40);
-    } else {
-      this.mapButton.setPosition(width * .15, - 40);
-    }
+    this.mapButton.setPosition(width * .15, - 40);
+
     this.bossNameText.setPosition(width / 2, - 40);
     this.bossTitleText.setPosition(width / 2, - 20);
     this.healthBarBackground.setPosition(10, - 10);
     this.healthBar.setPosition(10, - 10);
+    if (AppState.mode == 'multi' && AppState.activeRoom.id != 6) {
+      this.finishButton.setPosition(width, - 40);
+    }
+
+    // if (width < 758) {
+
+    // } else {
+    //   if (AppState.mode == 'multi') {
+    //     this.finishButton.setPosition(width, - 40);
+    //   } else {
+
+    //   }
+    // }
+
+
   }
 
   updateBossHp(newHp) {

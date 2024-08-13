@@ -17,6 +17,8 @@ export class PlayerUi {
     this.powerMod = 0
     this.luckMod = 0
 
+    this.mode = AppState.mode
+
 
 
     this.createUI();
@@ -98,6 +100,8 @@ export class PlayerUi {
     this.uiContainer.add(this.healthBarBackground);
     this.uiContainer.add(this.healthBar);
 
+
+    //Stats
     this.stats = this.scene.add.text(0, 72, `HP: ${this.playerHp} | ${this.maxHp - this.healthMod}(${this.healthMod}) PWR: ${AppState.account.power} (${Phaser.Math.RoundTo(this.powerMod, -1)
       })`, {
       fontFamily: '"Press Start 2P"', fontSize: '10px',
@@ -106,6 +110,15 @@ export class PlayerUi {
       fill: '#ffffff',
     }).setOrigin(0, 1);
     this.uiContainer.add(this.stats);
+
+    //MODE
+    this.mode = this.scene.add.text(width, 72, `${AppState.winStreak} | ${this.mode}`, {
+      fontFamily: '"Press Start 2P"', fontSize: '10px',
+      stroke: '#000000', strokeThickness: 8,
+      align: 'left',
+      fill: '#ffffff',
+    }).setOrigin(1, 1);
+    this.uiContainer.add(this.mode);
 
   }
 
@@ -133,6 +146,7 @@ export class PlayerUi {
     this.blueNumberSlot.setPosition(width, 10);
     this.healthBarBackground.setPosition(10, 40);
     this.healthBar.setPosition(10, 40);
+    this.mode.setPosition(width, 72)
   }
 
   updatePlayerHp(newHp) {
