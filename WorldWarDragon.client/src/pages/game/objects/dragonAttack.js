@@ -95,7 +95,15 @@ export class DragonAttack {
       this.scene.events.off('dragon:out')
       this.scene.events.off('dragon:attackItem')
       this.scene.playerHp = this.scene.playerMaxHp
-      this.scene.scene.start('GameOver');
+      if (AppState.mode == 'single') {
+        this.scene.scene.start('GameOver');
+      } else {
+        if (AppState.winStreak > 0) {
+          this.scene.scene.start('GameResults')
+        } else {
+          this.scene.scene.start('GameOver');
+        }
+      }
     }
   }
 

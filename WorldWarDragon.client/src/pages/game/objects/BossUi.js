@@ -67,6 +67,7 @@ export class BossUi {
     }).setOrigin(0, 1).setDepth(400).setInteractive();
     this.mapButton.on('pointerdown', () => {
       this.scene.sound.stopAll()
+      this.scene.dragon.destroyEventListeners()
       this.scene.scene.start('Map');
     });
     this.mapButton.on('pointerover', () => {
@@ -87,6 +88,7 @@ export class BossUi {
       }).setOrigin(1, 1).setDepth(400).setInteractive();
       this.finishButton.on('pointerdown', () => {
         this.scene.sound.stopAll()
+        this.scene.dragon.destroyEventListeners()
         this.scene.leaveRoom();
       });
       this.finishButton.on('pointerover', () => {

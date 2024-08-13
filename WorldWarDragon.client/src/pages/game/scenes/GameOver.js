@@ -13,6 +13,7 @@ export class GameOver extends Scene {
         this.keptGold = Phaser.Math.RoundTo((AppState.account.gold * .9), 0)
         this.lostGoldAmount = AppState.account.gold -= this.keptGold
         this.loseGold(this.keptGold)
+        this.resetGame()
 
         // Create and play the background music
         this.backgroundMusic = this.sound.add('gameOverBGM', {
@@ -115,6 +116,12 @@ export class GameOver extends Scene {
         AppState.account.gold = keptGold
         const accountData = AppState.account
         accountService.editAccount(accountData)
+    }
+
+    resetGame() {
+        AppState.gold = 0;
+        AppState.valor = 0;
+        AppState.bossDamage = 0;
     }
 
     setFontToFitWindow() {

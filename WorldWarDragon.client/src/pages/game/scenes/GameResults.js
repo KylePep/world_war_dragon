@@ -127,6 +127,7 @@ export class GameResults extends Scene {
 
         this.adjustTextSize();
         this.updateAccount();
+        this.resetGame();
         EventBus.emit('current-scene-ready', this);
     }
 
@@ -201,12 +202,18 @@ export class GameResults extends Scene {
                 attack: AppState.account.attack + this.rewardItems.attack,
                 shield: AppState.account.shield + this.rewardItems.shield,
                 heal: AppState.account.heal + this.rewardItems.heal,
-                dragons: AppState.account.dragons + 1
+                dragons: AppState.account.dragons
             };
             await accountService.editAccount(accountData);
         } catch (error) {
             Pop.error(error.message, '[UPDATE ACCOUNT - GAME RESULT]');
         }
+    }
+
+    resetGame() {
+        AppState.gold = 0;
+        AppState.valor = 0;
+        AppState.bossDamage = 0;
     }
 
     async updateBossHP() {

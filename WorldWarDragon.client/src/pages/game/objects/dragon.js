@@ -87,21 +87,25 @@ export class Dragon {
     this.scene.events.on('dragon:out', this.onPointerOut, this);
     this.scene.events.on('dragon:attackItem', this.onAttackItem, this);
   }
+  destroyEventListeners() {
+    this.scene.events.off('dragon:hit')
+    this.scene.events.off('dragon:over')
+    this.scene.events.off('dragon:out')
+    this.scene.events.off('dragon:attackItem')
+  }
 
   checkDeath() {
     if (this.dragonHP <= 0) {
 
-      AppState.bossDamage = this.bossDamage
+      AppState.bossDamage += this.bossDamage
       AppState.winStreak++
+      AppState.account.dragons += 1
 
-      AppState.gold = Phaser.Math.RoundTo(this.gold + (this.gold * (AppState.winStreak * .025)), 0)
-      AppState.valor = Phaser.Math.RoundTo(this.valor + (this.valor * (AppState.winStreak * .025)), 0)
+      AppState.gold += Phaser.Math.RoundTo(this.gold + (this.gold * (AppState.winStreak * .025)), 0)
+      AppState.valor += Phaser.Math.RoundTo(this.valor + (this.valor * (AppState.winStreak * .025)), 0)
 
 
-      this.scene.events.off('dragon:hit')
-      this.scene.events.off('dragon:over')
-      this.scene.events.off('dragon:out')
-      this.scene.events.off('dragon:attackItem')
+      this.destroyEventListeners()
       this.scene.playerHp = this.scene.playerMaxHp
 
       if (AppState.mode == 'single') {

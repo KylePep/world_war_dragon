@@ -73,7 +73,7 @@ export class Map extends Scene {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setInteractive().on('pointerdown', () => this.changeMode()).on('pointerover', () => this.buttonOver(this.modeButton)).on('pointerout', () => this.buttonOut(this.modeButton));
+        }).setOrigin(0.5, 1).setInteractive().on('pointerdown', () => this.changeMode()).on('pointerover', () => this.buttonOver(this.modeButton)).on('pointerout', () => this.buttonOut(this.modeButton));
 
         this.centeria = this.add.text(0, 0, 'Centeria\nSafe', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
@@ -127,7 +127,7 @@ export class Map extends Scene {
         this.toleftiosStats.setPosition(hMargin, vMargin + 128);
         this.rysto.setPosition(width - hMargin, vMargin);
         this.rystoStats.setPosition(width - hMargin, vMargin + 128);
-        this.modeButton.setPosition(width / 2, 32);
+        this.modeButton.setPosition(width / 2, height * .975);
         this.centeria.setPosition(width / 2, height / 2);
         this.training.setPosition(width / 2, height * .6)
         this.boghir.setPosition(width - hMargin, height - vMargin);
