@@ -39,7 +39,18 @@ export class Game extends Scene {
         } else {
             this.playerMaxHp = AppState.account.health
         }
-        this.playerHp = this.playerMaxHp
+        if (AppState.mode != 'multi') {
+            this.playerHp = this.playerMaxHp
+            AppState.health = this.playerHp
+        } else {
+            if (AppState.winStreak > 0) {
+                logger.log('[HEALTH]', AppState.health)
+                this.playerHp = AppState.health
+            } else {
+                this.playerHp = this.playerMaxHp
+                AppState.health = this.playerHp
+            }
+        }
 
         this.shield = 0;
 
@@ -107,10 +118,19 @@ export class Game extends Scene {
     leaveRoom() {
         this.sound.stopAll()
         this.scene.start('GameResults')
+        this.playerHp = this.playerMaxHp
+        AppState.health = this.playerHp;
     }
 
     changeScene() {
         this.scene.start('GameOver');
+        this.playerHp = this.playerMaxHp
+    }
+
+    restartGame() {
+        logger.log('[RESTART GAME]', AppState.health, this.playerHp)
+        AppState.health = this.playerHp;
+        this.scene.start('Game')
     }
 
     update() {

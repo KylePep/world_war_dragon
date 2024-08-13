@@ -25,6 +25,7 @@ export const AppState = reactive({
 
   health: 0,
   power: 0,
+
   activeRoom: '',
   mode: 'single',
 

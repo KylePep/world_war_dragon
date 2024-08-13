@@ -42,13 +42,14 @@ export class Crystal {
 
       const FRAME_COUNT = 5;
       const FRAME_RATE = 6;
-
-      this.scene.anims.create({
-        key: 'playGif',
-        frames: this.scene.anims.generateFrameNumbers('animatedCrystal', { start: 0, end: FRAME_COUNT - 1 }),
-        frameRate: FRAME_RATE,
-        repeat: -1 // Loop the animation
-      });
+      if (!this.scene.anims.exists('playGif')) {
+        this.scene.anims.create({
+          key: 'playGif',
+          frames: this.scene.anims.generateFrameNumbers('animatedCrystal', { start: 0, end: FRAME_COUNT - 1 }),
+          frameRate: FRAME_RATE,
+          repeat: -1 // Loop the animation
+        });
+      }
 
       // Floating tween parameters
       const FLOAT_DISTANCE = 3; // Distance in pixels for floating

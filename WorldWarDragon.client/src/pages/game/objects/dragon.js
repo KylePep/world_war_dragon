@@ -106,12 +106,11 @@ export class Dragon {
 
 
       this.destroyEventListeners()
-      this.scene.playerHp = this.scene.playerMaxHp
 
       if (AppState.mode == 'single') {
         this.scene.leaveRoom()
       } else {
-        this.scene.scene.start('Game');
+        this.scene.restartGame();
       }
 
     }

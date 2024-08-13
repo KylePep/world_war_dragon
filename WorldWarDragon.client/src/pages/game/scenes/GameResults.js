@@ -59,7 +59,7 @@ export class GameResults extends Scene {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100).setInteractive();
+        }).setOrigin(0.5).setDepth(100).setInteractive().on('pointerover', () => this.buttonOver(this.fight)).on('pointerout', () => this.buttonOut(this.fight));
 
         this.fight.on('pointerdown', () => {
             this.sound.stopAll()
@@ -70,72 +70,47 @@ export class GameResults extends Scene {
             });
 
             this.backgroundMusic.play();
-
-            this.scene.start('Game');
-        });
-
-        this.fight.on('pointerover', () => {
-            this.fight.setColor('red');
-            this.input.setDefaultCursor('pointer');
-        });
-
-        this.fight.on('pointerout', () => {
-            this.fight.setColor('#ffffff');
-            this.input.setDefaultCursor('default');
+            this.scene.start('Game')
         });
 
         this.map = this.add.text(centerX, centerY + 200, 'Map', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100).setInteractive();
+        }).setOrigin(0.5).setDepth(100).setInteractive().on('pointerover', () => this.buttonOver(this.map)).on('pointerout', () => this.buttonOut(this.map));
 
         this.map.on('pointerdown', () => {
             this.sound.stopAll()
             this.scene.start('Map');
         });
 
-        this.map.on('pointerover', () => {
-            this.map.setColor('blue');
-            this.input.setDefaultCursor('pointer');
-        });
-
-        this.map.on('pointerout', () => {
-            this.map.setColor('#ffffff');
-            this.input.setDefaultCursor('default');
-        });
-
         this.return = this.add.text(centerX, centerY + 300, 'RETREAT...', {
             fontFamily: '"Press Start 2P"', fontSize: 32, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100).setInteractive();
+        }).setOrigin(0.5).setDepth(100).setInteractive().on('pointerover', () => this.buttonOver(this.return)).on('pointerout', () => this.buttonOut(this.return));
 
         this.return.on('pointerdown', () => {
             EventBus.emit('navigate-home');
         });
 
-        this.return.on('pointerover', () => {
-            this.return.setColor('gray');
-            this.input.setDefaultCursor('pointer');
-        });
-
-        this.return.on('pointerout', () => {
-            this.return.setColor('white');
-            this.input.setDefaultCursor('default');
-        });
-
-        this.adjustTextSize();
+        this.resize();
         this.updateAccount();
         this.resetGame();
         EventBus.emit('current-scene-ready', this);
     }
 
-    resize(gameSize, baseSize, displaySize, resolution) {
-        const width = gameSize.width;
-        const height = gameSize.height;
+    buttonOver(button) {
+        button.setColor('#ff7300');
+        this.input.setDefaultCursor('pointer');
+    }
+    buttonOut(button) {
+        button.setColor('white');
+        this.input.setDefaultCursor('default');
+    }
 
-        this.cameras.resize(width, height);
+    resize(gameSize, baseSize, displaySize, resolution) {
+        const { width, height } = this.cameras.main;
 
         this.background.setDisplaySize(width, height);
 
@@ -144,9 +119,10 @@ export class GameResults extends Scene {
         this.title.setPosition(centerX, centerY - 200);
         this.bossHp.setPosition(centerX, centerY - 100);
         this.rewards.setPosition(centerX, centerY);
-        this.fight.setPosition(centerX, centerY + 100);
-        this.map.setPosition(centerX, centerY + 250);
-        this.return.setPosition(centerX, centerY + 400);
+        this.fight.setPosition(centerX, height * .60);
+        this.map.setPosition(centerX, height * .70);
+        this.return.setPosition(centerX, height * .80);
+
 
         this.adjustTextSize();
     }
@@ -164,7 +140,9 @@ export class GameResults extends Scene {
         this.title.setStyle({ fontSize: newFontSize });
         this.bossHp.setStyle({ fontSize: newFontSize });
         this.rewards.setStyle({ fontSize: newFontSize });
-        this.fight.setStyle({ fontSize: newFontSize });
+        if (AppState.mode != 'multi') {
+            this.fight.setStyle({ fontSize: newFontSize });
+        }
         this.map.setStyle({ fontSize: newFontSize });
         this.return.setStyle({ fontSize: newFontSize });
     }
@@ -176,6 +154,7 @@ export class GameResults extends Scene {
     lootTable() {
         const difficulty = AppState.activeRoom.difficulty;
         const baseChance = difficulty / 100;
+
         if (this.activeRoomId && this.activeRoomId != 5) {
             this.luckMod = AppState.luckMod[this.activeRoomId]
         } else {
@@ -184,11 +163,24 @@ export class GameResults extends Scene {
         const changeLuckMod = baseChance + (this.luckMod) * .1
         const items = ['attack', 'shield', 'heal'];
 
-        items.forEach(item => {
-            if (Math.random() < changeLuckMod) {
-                this.rewardItems[item]++;
+        if (AppState.mode != 'multi') {
+            items.forEach(item => {
+                if (Math.random() < changeLuckMod) {
+                    this.rewardItems[item]++;
+                }
+            });
+        } else {
+            for (let i = 0; i < AppState.winStreak; i++) {
+                items.forEach(item => {
+                    if (Math.random() < changeLuckMod) {
+                        this.rewardItems[item]++;
+                    }
+                });
+
             }
-        });
+
+        }
+
 
         this.rewards.setText(`+${AppState.gold} Gold | +${AppState.valor} Valor \n Attack: ${this.rewardItems.attack} | Shield: ${this.rewardItems.shield} | Heal: ${this.rewardItems.heal}`);
     }
@@ -214,6 +206,9 @@ export class GameResults extends Scene {
         AppState.gold = 0;
         AppState.valor = 0;
         AppState.bossDamage = 0;
+        if (AppState.mode == 'multi') {
+            AppState.winStreak = 0
+        }
     }
 
     async updateBossHP() {
