@@ -30,7 +30,7 @@ export class DragonAttack {
     const barWidth = width / 2
     this.barColor = 0x8e22cf
 
-    this.attackContainer = this.scene.add.container(this.dragonX, this.dragonY + height * .22)
+    this.attackContainer = this.scene.add.container(this.dragonX, this.dragonY)
 
     this.barBackground = this.scene.add.rectangle(0, 0, barWidth, 10, 0x000000).setOrigin(0.5, 1);
 

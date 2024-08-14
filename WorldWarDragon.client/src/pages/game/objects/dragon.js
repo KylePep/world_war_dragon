@@ -9,7 +9,7 @@ export class Dragon {
     this.activeRoomId = AppState.activeRoom.id
     this.dragonHP = this.getRandomDragonHP();
     this.dragonHPMax = this.dragonHP
-    this.dragonAnimState = 'entrance'
+    this.dragonAnimState = 'entrance' //entrance idle exiting exit
     this.bossDamage = Phaser.Math.RoundTo((.1 * this.dragonHP), 0);
 
     if (this.activeRoomId && this.activeRoomId != 5 && this.activeRoomId != 6) {
@@ -21,8 +21,9 @@ export class Dragon {
     this.gold = Phaser.Math.RoundTo((this.bossDamage + this.goldMod * this.modifier), 0)
     this.valor = Phaser.Math.RoundTo((this.bossDamage * 0.1), 0)
 
-    this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 0.5)
+    this.dragon = this.scene.add.sprite(x, y, this.getRandomDragonSprite()).setOrigin(0.5, 1)
     this.setScaleToFitWindow(0);
+    this.setPositionToFitWindow();
     this.scene.scale.on('resize', this.setScaleToFitWindow, this)
 
     this.originalX = this.dragon.x;
@@ -47,7 +48,18 @@ export class Dragon {
     // const scale = Math.min(scaleX, scaleY) * 0.5 + modifier;
     this.dragon.setScale(scale)
   }
+  setPositionToFitWindow() {
+    const { width, height } = this.scene.cameras.main
+    this.dragon.setPosition(width / 2, height / 2 + (this.dragon.displayHeight / 2))
+  }
 
+  setOriginCoordinates() {
+    const { width, height } = this.scene.cameras.main
+    this.originalX = width / 2
+    this.originalY = height / 2
+    this.dragon.setPosition(width / 2, height / 2)
+    this.dragon.setOrigin(0.5, 0.5)
+  }
   getRandomDragonHP() {
     logger.log('[ActiveRoomId]', this.activeRoomId, AppState.activeRoom)
     if (this.activeRoomId != 6) {
@@ -74,7 +86,6 @@ export class Dragon {
 
   addInteractions() {
 
-
     this.dragon.on('pointerover', () => {
       this.onPointerOver()
     });
@@ -99,22 +110,32 @@ export class Dragon {
 
   checkDeath() {
     if (this.dragonHP <= 0) {
+      this.dragonHp = 0
 
-      AppState.bossDamage += this.bossDamage
-      AppState.winStreak++
-      AppState.account.dragons += 1
-
-      AppState.gold += Phaser.Math.RoundTo(this.gold + (this.gold * (AppState.winStreak * .025)), 0)
-      AppState.valor += Phaser.Math.RoundTo(this.valor + (this.valor * (AppState.winStreak * .025)), 0)
-
-
-      this.destroyEventListeners()
-
-      if (AppState.mode == 'single') {
-        this.scene.leaveRoom()
-      } else {
-        this.scene.restartGame();
+      if (this.dragonAnimState != 'exiting' && this.dragonAnimState != 'exit') {
+        this.dragonAnimState = 'exiting'
+        this.dragonAnim.exitAnimation()
       }
+
+
+      if (this.dragonAnimState == 'exit') {
+        AppState.bossDamage += this.bossDamage
+        AppState.winStreak++
+        AppState.account.dragons += 1
+
+        AppState.gold += Phaser.Math.RoundTo(this.gold + (this.gold * (AppState.winStreak * .025)), 0)
+        AppState.valor += Phaser.Math.RoundTo(this.valor + (this.valor * (AppState.winStreak * .025)), 0)
+
+
+        this.destroyEventListeners()
+
+        if (AppState.mode == 'single') {
+          this.scene.leaveRoom()
+        } else {
+          this.scene.restartGame();
+        }
+      }
+
 
     }
   }
@@ -166,38 +187,51 @@ export class Dragon {
 
     this.checkDeath()
 
-    this.scene.tweens.add({
+    if (this.dragonAnimState == 'idle') {
+      if (!this.shakeTween || !this.shakeTween.isPlaying()) {
 
-      // Shake effect
-      targets: this.dragon,
-      duration: 100, // Duration of the shake in milliseconds
-      ease: 'Power1',
-      x: this.dragon.x + Phaser.Math.RND.between(-16, 16), // Random X offset
-      y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
-      angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
-      yoyo: true, // Yoyo back to original position
-      repeat: 0,
-      onComplete: () => {
-        this.dragon.x = this.originalX;
-        this.dragon.y = this.originalY;
-        this.dragon.angle = this.originalAngle;
+        this.shakeTween = this.scene.tweens.add({
+
+          // Shake effect
+          targets: this.dragon,
+          duration: 100, // Duration of the shake in milliseconds
+          ease: 'Power1',
+          x: this.dragon.x + Phaser.Math.RND.between(-16, 16), // Random X offset
+          y: this.dragon.y + Phaser.Math.RND.between(-16, 16), // Random Y offset
+          angle: this.dragon.angle + Phaser.Math.RND.between(-16, 16),
+          yoyo: true, // Yoyo back to original position
+          repeat: 0,
+          onComplete: () => {
+            this.dragon.x = this.originalX;
+            this.dragon.y = this.originalY;
+            this.dragon.angle = this.originalAngle;
+          }
+        });
+
       }
-    });
+    } else if (this.dragonAnimState == 'exiting') {
+      this.shakeTween.stop(0)
+      this.setOriginCoordinates()
+    }
   }
 
   setupDragonAnim() {
-    this.dragonAnim = new DragonAnim(this.dragon, this.dragonAnimState, this.scene)
+    this.dragonAnim = new DragonAnim(this, this.scene)
+  }
+
+  updateDragonAnimState(newState) {
+    this.dragonAnimState = newState
   }
 
   onPointerOver() {
-    this.setScaleToFitWindow(.01)
-    this.dragon.y -= 8;
+    // this.setScaleToFitWindow(.01)
+    // this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }
 
   onPointerOut() {
-    this.setScaleToFitWindow(0)
-    this.dragon.y = this.originalY;
+    // this.setScaleToFitWindow(0)
+    // this.dragon.y = this.originalY;
     this.scene.input.setDefaultCursor('default');
   }
 

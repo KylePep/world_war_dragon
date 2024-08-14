@@ -1,9 +1,10 @@
+import { logger } from "../../../utils/Logger.js";
 import { EventBus } from '../EventBus.js';
 
 export class DragonAnim {
-  constructor(dragon, animState, scene) {
-    this.dragon = dragon;
-    this.animState = animState;
+  constructor(dragon, scene) {
+    this.dragonObj = dragon;
+    this.dragon = dragon.dragon;
     this.scene = scene;
     this.scale = this.setScaleToFitWindow(0)
 
@@ -11,19 +12,51 @@ export class DragonAnim {
   }
 
   setupAnimation() {
-    if (this.animState == 'entrance') {
-      this.dragon.setScale(0);
-      this.scene.tweens.add({
-        targets: this.dragon,
-        scaleX: this.scale, // Target scale for x-axis
-        scaleY: this.scale, // Target scale for y-axis
-        duration: 1000, // Duration of the scaling animation in milliseconds
-        ease: 'Power1',
-        onComplete: () => {
-          this.animState = 'idle';
-        }
-      });
-    }
+    this.entranceAnimation()
+  }
+
+  entranceAnimation() {
+    this.dragon.setScale(0);
+    this.scene.tweens.add({
+      targets: this.dragon,
+      scaleX: (this.scale * 1.5), // Target scale for x-axis
+      scaleY: (this.scale * 1.2), // Target scale for y-axis
+      duration: 500, // Duration of the scaling animation in milliseconds
+      ease: 'Power1',
+      // yoyo: true,
+      onComplete: () => {
+        this.scene.tweens.add({
+          targets: this.dragon,
+          scaleX: (this.scale), // Target scale for x-axis
+          scaleY: (this.scale), // Target scale for y-axis
+          duration: 500, // Duration of the scaling animation in milliseconds
+          ease: 'Power1',
+          // yoyo: true,
+          onComplete: () => {
+            this.dragonObj.updateDragonAnimState('idle');
+          }
+        });
+      }
+    });
+
+  }
+
+  exitAnimation() {
+    const { width, height } = this.scene.cameras.main
+    // this.dragon.setScale(.5);
+    // this.dragonObj.setOriginCoordinates()
+    this.scene.tweens.add({
+      targets: this.dragon,
+      scaleX: 0, // Target scale for x-axis
+      scaleY: 0, // Target scale for y-axis
+      angle: 180,
+      duration: 1000, // Duration of the scaling animation in milliseconds
+      ease: 'Power1',
+      onComplete: () => {
+        this.dragonObj.updateDragonAnimState('exit');
+        this.dragonObj.checkDeath()
+      }
+    });
   }
 
   setScaleToFitWindow(modifier) {
