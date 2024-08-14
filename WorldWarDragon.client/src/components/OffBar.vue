@@ -68,7 +68,7 @@
           <router-link @click="closeNavbar()" :to="{ name: 'Home' }"
             class=" game-title text-2p text-outline  selectable fw-semibold" id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
-          <button @click="closeNavbar()"
+          <button v-if="account?.id" @click="closeNavbar()"
             class="position-relative mdi mdi-script-text text-light text-outline btn btn-secondary px-2 py-1"
             data-bs-toggle="modal" data-bs-target="#dialogueModal">
             <NotificationAvailable :notificationProp="'dialogue'" />

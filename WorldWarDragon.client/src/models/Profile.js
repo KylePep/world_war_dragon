@@ -5,6 +5,7 @@ export class Profile {
     this.picture = data.picture
 
     this.newAccount = data.newAccount
+    this.dialogueSeen = data.dialogueSeen
 
     this.dragons = data.dragons
 

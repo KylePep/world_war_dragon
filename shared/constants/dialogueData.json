@@ -1,37 +1,37 @@
 {
   "DIALOGUE_DATA": [
   {
-    "id": 1,
+    "id": 0,
     "levelRequirement": 0,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": {"name": "Veteran", "img": "/assets/veteran.jpeg"}
   },
   {
-    "id": 2,
+    "id": 1,
     "levelRequirement": 1,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": {"name": "Princess", "img": "/assets/princess3.jpeg"}
   },
   {
-    "id": 3,
+    "id": 2,
     "levelRequirement": 3,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": {"name": "Veteran", "img": "/assets/veteran.jpeg"}
   },
   {
-    "id": 4,
+    "id": 3,
     "levelRequirement": 5,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": {"name": "Veteran", "img": "/assets/veteran.jpeg"}
   },
   {
-    "id": 5,
+    "id": 4,
     "levelRequirement": 7,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": {"name": "Veteran", "img": "/assets/veteran.jpeg"}
   },
   {
-    "id": 6,
+    "id": 5,
     "levelRequirement": 8,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": {"name": "Veteran", "img": "/assets/veteran.jpeg"}

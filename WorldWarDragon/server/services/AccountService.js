@@ -42,6 +42,7 @@ function sanitizeBody(body) {
     name: body.name,
     picture: body.picture,
     newAccount: body.newAccount,
+    dialogueSeen: body.dialogueSeen,
     dragons: body.dragons,
     level: body.level,
     valor: body.valor,

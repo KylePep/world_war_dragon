@@ -9,6 +9,7 @@ export const AccountSchema = new Schema(
     picture: { type: String },
     // NOTE If you wish to add additional properties do so here
     newAccount: { type: String, default: 'true' },
+    dialogueSeen: { type: Number, default: 0 },
     dragons: { type: Number, default: 0 },
     level: { type: Number, default: 0 },
     valor: { type: Number, default: 0 },
