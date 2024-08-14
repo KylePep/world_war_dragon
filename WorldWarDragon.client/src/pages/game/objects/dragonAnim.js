@@ -17,6 +17,14 @@ export class DragonAnim {
 
   entranceAnimation() {
     this.dragon.setScale(0);
+
+    const randomRate = Phaser.Math.FloatBetween(0.8, 1.2);
+    const selectedSound = 'dragonEntrance'
+    const sound = this.scene.sound.add(selectedSound)
+    sound.play();
+    sound.volume = .2;
+    sound.rate = randomRate
+
     this.scene.tweens.add({
       targets: this.dragon,
       scaleX: (this.scale * 1.5), // Target scale for x-axis
@@ -42,9 +50,14 @@ export class DragonAnim {
   }
 
   exitAnimation() {
-    const { width, height } = this.scene.cameras.main
-    // this.dragon.setScale(.5);
-    // this.dragonObj.setOriginCoordinates()
+
+    const randomRate = Phaser.Math.FloatBetween(1.5, 1.8);
+    const selectedSound = 'dragonAttack_1'
+    const sound = this.scene.sound.add(selectedSound)
+    sound.play();
+    sound.volume = .2;
+    sound.rate = randomRate
+
     this.scene.tweens.add({
       targets: this.dragon,
       scaleX: 0, // Target scale for x-axis

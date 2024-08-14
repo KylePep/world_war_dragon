@@ -37,6 +37,7 @@ export class Preloader extends Scene {
         this.load.audio('dragonAttack_3', 'sound/mnstr8.wav');
         this.load.audio('dragonAttack_4', 'sound/mnstr13.wav');
         this.load.audio('dragonAttack_5', 'sound/mnstr14.wav');
+        this.load.audio('dragonEntrance', 'sound/dragonEntrance.mp3');
 
         this.load.audio('fail', 'sound/fail.wav');
         this.load.audio('swish_2', 'sound/swish_2.wav');

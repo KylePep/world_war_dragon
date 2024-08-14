@@ -66,10 +66,12 @@ export class DragonAttack {
 
       } else {
 
+        const randomRate = Phaser.Math.FloatBetween(0.8, 1.2);
         const selectedSound = this.getRandomSound()
         const sound = this.scene.sound.add(selectedSound)
         sound.play();
         sound.volume = 0.5;
+        sound.rate = randomRate
 
         this.scene.playerHp -= 10 * AppState.activeRoom.difficulty
         this.scene.playerUi.updatePlayerHp(this.scene.playerHp)
