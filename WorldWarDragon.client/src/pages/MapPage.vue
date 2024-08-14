@@ -61,7 +61,7 @@
 
   <section v-else class="row d-flex justify-content-center text-2p text-outline text-center">
     <div class="col-12">
-      <button @click="setActiveRoom(0)" class=" btn room-container text-outline-bg ">TO
+      <button @click="setActiveRoom(0)" class=" btn room-container text-outline-bg text-light">TO
         MAP</button>
     </div>
 

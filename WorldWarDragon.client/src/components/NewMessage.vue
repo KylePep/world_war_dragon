@@ -2,35 +2,46 @@
   <div v-if="account?.id" class="container">
 
     <form @submit.prevent="createMessage()" class="row form-container text-outline-bg p-3 ">
-      <div>Your Gold: {{ gold }}</div>
+      <div class="mb-3">Your Gold: {{ gold }}</div>
+      <div class="mb-3">Receive {{
+        Math.abs(messageProp.cost / 2) }} EXP per boon </div>
       <div class="col-12 pe-3 d-flex flex-column flex-md-row justify-content-around align-items-center">
-        <div class="form-check d-flex justify-content-center">
-          <input v-model="editable.boon" value="gold" class="form-check-input" type="radio" name="boon" id="boon1"
-            required>
-          <label class="form-check-label ps-3" for="boon1">
-            Gold
-          </label>
+        <div class="row">
+
+          <div class="col-6 form-check d-flex justify-content-center">
+            <input v-model="editable.boon" value="gold" class="form-check-input" type="radio" name="boon" id="boon1"
+              required>
+            <label class="form-check-label ps-3" for="boon1">
+              Gold
+            </label>
+          </div>
+
+          <div class="col-6 form-check d-flex justify-content-center">
+            <input v-model="editable.boon" value="health" class="form-check-input" type="radio" name="boon" id="boon2">
+            <label class="form-check-label ps-3" for="boon2">
+              Health
+            </label>
+          </div>
+
+          <div class="col-6 form-check d-flex justify-content-center">
+            <input v-model="editable.boon" value="luck" class="form-check-input" type="radio" name="boon" id="boon3">
+            <label class="form-check-label ps-3" for="boon3">
+              Luck
+            </label>
+          </div>
+
+          <div class="col-6 form-check d-flex justify-content-center">
+            <input v-model="editable.boon" value="power" class="form-check-input" type="radio" name="boon" id="boon4">
+            <label class="form-check-label ps-3" for="boon4">
+              Power
+            </label>
+          </div>
+
         </div>
-        <div class="form-check d-flex justify-content-center">
-          <input v-model="editable.boon" value="health" class="form-check-input" type="radio" name="boon" id="boon2">
-          <label class="form-check-label ps-3" for="boon2">
-            Health
-          </label>
-        </div>
-        <div class="form-check d-flex justify-content-center">
-          <input v-model="editable.boon" value="luck" class="form-check-input" type="radio" name="boon" id="boon3">
-          <label class="form-check-label ps-3" for="boon3">
-            Luck
-          </label>
-        </div>
-        <div class="form-check d-flex justify-content-center">
-          <input v-model="editable.boon" value="power" class="form-check-input" type="radio" name="boon" id="boon4">
-          <label class="form-check-label ps-3" for="boon4">
-            Power
-          </label>
-        </div>
+
       </div>
-      <div class="col-12">
+
+      <div class="col-12 my-3">
         <select class="form-select" required name="category" id="category" v-model="editable.body">
           <option value="For Honor!" required>For Honor!</option>
           <option value="For Glory!" required>For Glory!</option>
@@ -42,9 +53,8 @@
       </div>
 
       <div class="col-12">
-        <button v-if="gold > messageProp.cost" type="submit" class="btn btn-success"> Create Boon, Get {{
-          Math.abs(messageProp.cost / 2) }} EXP <br>
-          Cost: {{ messageProp.cost }} gold <br> </button>
+        <button v-if="gold > messageProp.cost" type="submit" class="btn btn-secondary text-light text-outline"> Create
+          Boon</button>
         <div v-else class="btn btn-dark text-outline">Not enough Gold <br> Gold: {{ messageProp.cost }}
         </div>
       </div>

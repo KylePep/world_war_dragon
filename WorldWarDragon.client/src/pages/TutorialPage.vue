@@ -38,8 +38,11 @@
             different items!</p>
         </div>
 
-        <div class="order-1 order-md-2 col-12 col-md-6 px-0 d-flex justify-content-center">
-          <video controls preload="auto" src="/assets/video/ItemDemo.mp4" class="" style="width: 90%;"></video>
+        <div
+          class="order-1 order-md-2 col-12 col-md-6 px-0 d-flex flex-column align-items-center justify-content-center">
+          <div class="text-center w-100">ITEM DEMO</div>
+          <video controls preload="auto" src="/assets/video/ItemDemo.mp4" class="border border-secondary border-4"
+            style="width: 90%;"></video>
         </div>
       </section>
     </div>

@@ -168,6 +168,6 @@ export default {
 }
 
 .boss-bar {
-  background-color: #ff1900;
+  background-color: #c51010;
 }
 </style>

@@ -11,8 +11,8 @@
 
     <div class="col-11 mx-auto ">
       <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
-      <div class="p-2 fs-6 room-container ">
-        <p class="mb-0">{{ activeRoom.name }} Total Boons</p>
+      <div class="p-2 fs-6 room-container my-3">
+        <p class="mb-0">{{ activeRoom.name }} Total Boons:</p>
         <span>
           Gold: {{ AppState.goldMod[activeRoom.id] }}
         </span>
@@ -26,15 +26,16 @@
           Power: {{ AppState.powerMod[activeRoom.id] }}
         </span>
       </div>
-      <div class="message-container border border-2 border-light rounded">
+
+      <div class="message-container border border-4 p-2 border-light rounded">
         <div v-for="message in messages" :key="message.id"
-          class="room-container text-outline-bg px-3 d-flex justify-content-between align-items-center">
-          <div>
+          class="room-container text-outline-bg px-3 d-flex justify-content-between align-items-center mb-3">
+          <div class="text-secondary">
             <i :class="message.boon == 'power' ? 'mdi mdi-weight-lifter' : 'd-none'"></i>
             <i :class="message.boon == 'luck' ? 'mdi mdi-clover' : 'd-none'"></i>
             <i :class="message.boon == 'health' ? 'mdi mdi-heart' : 'd-none'"></i>
             <i :class="message.boon == 'gold' ? 'mdi mdi-circle-multiple' : 'd-none'"></i>
-            <div class="d-none d-md-inline ps-3">
+            <div class="d-none d-md-inline text-light ps-3">
               {{ message.boon }}
             </div>
           </div>
@@ -123,4 +124,8 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+section {
+  margin-bottom: 10vh;
+}
+</style>
