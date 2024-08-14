@@ -23,7 +23,7 @@
     </div>
     <div @click="setActiveRoom(1)" class="col-6 map-section">
       Toleftios
-      <section class="row ">
+      <section class="row mx-0 mx-md-2">
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[1] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[1] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[1] }}</i>
@@ -32,7 +32,7 @@
     </div>
     <div @click="setActiveRoom(2)" class="col-6 map-section">
       Rysto
-      <section class="row">
+      <section class="row mx-0 mx-md-2">
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[2] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[2] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[2] }}</i>
@@ -41,7 +41,7 @@
     </div>
     <div @click="setActiveRoom(3)" class="col-6 map-section">
       Lendbom
-      <section class="row">
+      <section class="row mx-0 mx-md-2">
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[3] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[3] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[3] }}</i>
@@ -50,7 +50,7 @@
     </div>
     <div @click="setActiveRoom(4)" class="col-6 map-section">
       Boghir
-      <section class="row">
+      <section class="row mx-0 mx-md-2">
         <i class="col-12 col-md-6 mdi mdi-circle-multiple">: {{ AppState.goldMod[4] }}</i>
         <i class="col-12 col-md-6 mdi mdi-heart">: {{ AppState.healthMod[4] }}</i>
         <i class="col-12 col-md-6 mdi mdi-clover">: {{ AppState.luckMod[4] }}</i>
@@ -86,9 +86,6 @@ import { MAP_DATA } from '../../../shared/constants/index.js'
 import Pop from "../utils/Pop.js";
 import { assistancesService } from "../services/AssistancesService.js";
 import { messagesService } from "../services/MessagesService.js";
-import { logger } from "../utils/Logger.js";
-import NewMessage from "../components/NewMessage.vue";
-import NewAssistance from "../components/NewAssistance.vue";
 
 
 export default {
@@ -196,7 +193,13 @@ export default {
   align-items: center;
 
   >section {
+    font-size: .75rem;
     margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.423);
+    border-radius: 4px;
+    border: 2px solid white;
+    padding: 4px 0px;
+    text-align: start;
   }
 }
 

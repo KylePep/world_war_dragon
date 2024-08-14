@@ -10,43 +10,37 @@
           <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
         </div>
       </div>
-      <!-- <DamageActiveboss /> -->
     </div>
+
     <NewBoss />
+
     <div class="col-12 bg-dark p-2">
-      <p>A list of all bosses</p>
-      <div v-for="boss in bosses" :key="boss.id">
-        boss: {{ boss.name }} | {{ boss.hp }} <button @click="setBossActivity(boss.id)"
-          class="btn btn-secondary">activate: {{ boss.active }}</button>
+      <p class="my-2">A list of all bosses</p>
+      <div v-for="boss in bosses" :key="boss.id" class="d-flex justify-content-between">
+        <div>{{ boss.name }} | {{ boss.hp }}</div>
+        <button @click="setBossActivity(boss.id)" class="btn btn-secondary">activate: {{ boss.active }}</button>
       </div>
     </div>
-    <!-- <div class="col-12 bg-dark p-2">
-      <p class="fs-1">For testing creating boons</p>
-      <NewMessage :messageProp="{ cost: 100 * 0 }" />
-    </div> -->
 
     <div class="col-12">
       <div class=" rounded">
         MESSAGES
-        <div v-for="message in messages" :key="message.id" class="bg-dark mb-2">
-          {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
+        <div v-for="message in messages" :key="message.id" class="d-flex justify-content-between bg-dark mb-2">
+          <div>{{ message.body }} Room: {{ message.roomId }}</div>
+          <div>Creator: {{ message.creator.name }}</div>
+
           <button class="btn btn-dark text-danger" @click="deleteMessage(message.id)">delete</button>
         </div>
       </div>
     </div>
 
-    <!-- <div class="col-12 bg-dark p-2">
-      <p class="fs-1">For testing creating assistance</p>
-      <NewAssistance />
-    </div> -->
-
-
     <div class="col-12">
       <div class=" rounded">
         ASSISTANCES
-        <div v-for="assistance in assistances" :key="assistance.id" class="bg-dark mb-2">
-          {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}<button
-            class="btn btn-dark text-danger" @click="deleteAssistance(assistance.id)">delete</button>
+        <div v-for="assistance in assistances" :key="assistance.id" class="d-flex justify-content-between bg-dark mb-2">
+          <div>{{ assistance.body }}</div>
+          <div>Creator: {{ assistance.creator.name }}</div>
+          <button class="btn btn-dark text-danger" @click="deleteAssistance(assistance.id)">delete</button>
         </div>
       </div>
     </div>
@@ -65,12 +59,10 @@ import { computed, onMounted, watchEffect } from "vue";
 import { bossService } from "../services/BossService.js";
 import { logger } from "../utils/Logger.js";
 import { bossDamageService } from "../services/BossDamageService.js";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
-
-    const route = useRoute();
     const router = useRouter();
 
     onMounted(() => {
@@ -202,12 +194,10 @@ section {
 }
 
 .boss-dragon-img {
-  font-family: "Metal Mania", system-ui;
   font-weight: 400;
   font-style: normal;
-  width: 40%;
+  width: 100%;
   height: 40vh;
-  max-width: 512px;
 
   >div {
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.593) 40%);
