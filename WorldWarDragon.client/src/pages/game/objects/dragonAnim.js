@@ -51,11 +51,11 @@ export class DragonAnim {
 
   exitAnimation() {
 
-    const randomRate = Phaser.Math.FloatBetween(1.5, 1.8);
-    const selectedSound = 'dragonAttack_1'
+    const randomRate = Phaser.Math.FloatBetween(0.8, 1.2);
+    const selectedSound = 'dragonExit'
     const sound = this.scene.sound.add(selectedSound)
     sound.play();
-    sound.volume = .2;
+    sound.volume = .75;
     sound.rate = randomRate
 
     this.scene.tweens.add({
