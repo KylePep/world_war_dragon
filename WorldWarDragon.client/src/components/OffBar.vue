@@ -68,6 +68,8 @@
           <router-link @click="closeNavbar()" :to="{ name: 'Home' }"
             class=" game-title text-2p text-outline  selectable fw-semibold" id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
+          <button class="mdi mdi-script-text text-light text-outline btn btn-secondary px-2 py-1" data-bs-toggle="modal"
+            data-bs-target="#dialogueModal"></button>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 

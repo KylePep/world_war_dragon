@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
 import OffBar from './components/OffBar.vue'
+import DialogueModal from "./components/DialogueModal.vue";
 
 </script>
 
@@ -11,6 +12,9 @@ import OffBar from './components/OffBar.vue'
     <main class="container-fluid">
         <RouterView />
     </main>
+
+    <DialogueModal />
+
 </template>
 
 <style lang="scss">

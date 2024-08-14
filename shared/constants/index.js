@@ -1,4 +1,5 @@
 import * as data from './data.json'
+import * as dialogueData from './dialogueData.json'
 export const {
   DATA_ITEMS,
   MAP_DATA,
@@ -7,3 +8,7 @@ export const {
   AREA_DRAGONS,
   CHARACTER_ICONS_DATA
 } = data
+
+export const {
+  DIALOGUE_DATA
+} = dialogueData
