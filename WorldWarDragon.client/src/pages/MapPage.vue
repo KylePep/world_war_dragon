@@ -61,7 +61,7 @@
 
   <section v-else class="row d-flex justify-content-center text-2p text-outline text-center">
     <div class="col-12">
-      <button @click="setActiveRoom(0)" class=" btn room-container text-outline-bg text-light">TO
+      <button @click="setActiveRoom(0)" class=" btn-to-map room-container text-outline">TO
         MAP</button>
     </div>
 
@@ -195,7 +195,7 @@ export default {
   >section {
     font-size: .75rem;
     margin-top: 1rem;
-    background-color: rgba(0, 0, 0, 0.423);
+    background-color: var(--bs-background);
     border-radius: 4px;
     border: 2px solid white;
     padding: 4px 0px;
@@ -204,7 +204,8 @@ export default {
 }
 
 .map-section:hover {
-  text-shadow: 3px 3px 5px black;
+  // text-shadow: 3px 3px 5px black;
+  color: var(--bs-secondary);
   background: radial-gradient(circle, rgba(250, 248, 233, 0.248) 0%, rgba(248, 246, 225, 0.083) 17%, rgba(255, 255, 255, 0) 55%, rgba(58, 64, 73, 0) 100%);
 }
 
@@ -213,9 +214,18 @@ export default {
 }
 
 .room-container {
-  background-color: var(--bs-body-bg);
+  background-color: var(--bs-background);
   border: solid 1px var(--bs-outline);
   border-radius: 4px;
+}
+
+.btn-to-map {
+  background-color: var(--bs-dark);
+  padding: 8px 16px;
+}
+
+.btn-to-map:hover {
+  color: var(--bs-secondary);
 }
 
 .message-container {

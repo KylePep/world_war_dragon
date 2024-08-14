@@ -2,7 +2,7 @@
   <div v-if="account?.id" class="container-fluid ">
 
     <form @submit.prevent="createMessage()" class="row form-container text-outline-bg p-3 ">
-      <div class="mb-3">Your Gold: {{ gold }}</div>
+      <div class="mb-3">Cost: {{ messageProp.cost }}, Your Gold: {{ gold }}</div>
       <div class="mb-3">Receive {{
         Math.abs(messageProp.cost / 2) }} EXP per boon </div>
       <div class="col-12 pe-3 d-flex flex-column flex-md-row justify-content-around align-items-center">
@@ -53,10 +53,20 @@
       </div>
 
       <div class="col-12">
-        <button v-if="gold > messageProp.cost" type="submit" class="btn btn-secondary text-light text-outline"> Create
+
+        <button v-if="gold > messageProp.cost && editable.body && editable.boon" type="submit"
+          class="btn btn-secondary text-light text-outline"> Create
           Boon</button>
-        <div v-else class="btn btn-dark text-outline">Not enough Gold <br> Gold: {{ messageProp.cost }}
+
+        <div v-if="(!editable.body || !editable.boon) && account.gold >= messageProp.cost"
+          class="btn btn-dark text-outline">Make a selection
         </div>
+
+        <div v-if="account.gold < messageProp.cost" class="btn btn-danger text-light text-outline">Not enough Gold <br>
+          Cost: {{
+            messageProp.cost }}
+        </div>
+
       </div>
 
     </form>
@@ -105,7 +115,7 @@ export default {
 
 <style lang="scss" scoped>
 .form-container {
-  background-color: var(--bs-body-bg);
+  background-color: var(--bs-background);
   border: solid 2px var(--bs-outline);
   border-radius: 4px;
 }

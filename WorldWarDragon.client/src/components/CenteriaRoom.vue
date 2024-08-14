@@ -33,7 +33,7 @@
 
         <div class="col-6 pe-0 ps-1 mt-3 ">
           <div v-for="assistance in uniqueClaimedAssistances" :key="assistance.id"
-            class="room-container px-3 text-danger d-flex justify-content-between align-items-center mb-2">
+            class="room-container background-bg px-3 text-danger d-flex justify-content-between align-items-center mb-2">
             <i :class="assistance.body == 'attack' ? 'mdi mdi-sword-cross' : 'd-none'"></i>
             <i :class="assistance.body == 'shield' ? 'mdi mdi-shield-sun' : 'd-none'"></i>
             <i :class="assistance.body == 'heal' ? 'mdi mdi-bottle-tonic-plus' : 'd-none'"></i>

@@ -90,7 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .form-container {
-  background-color: var(--bs-body-bg);
+  background-color: var(--bs-background);
   border: solid 2px var(--bs-outline);
   border-radius: 4px;
 }

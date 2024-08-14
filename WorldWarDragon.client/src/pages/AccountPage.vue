@@ -10,8 +10,8 @@
     <div class="col-11 col-md-8 mx-auto p-4 character-container ">
       <section v-if="editMode == true" class="row fs-3 text-center">
         <div class="col-12 text-2p">EDIT MODE</div>
-        <div v-for="icon, index in characterIcons" :key="index" @click="selectPicture(index)" class="player-icon col-6"
-          :class="[editable.picture == index ? 'selected' : '']">
+        <div v-for="icon, index in characterIcons" :key="index" @click="selectPicture(index)"
+          class="player-icon col-6 col-md-4" :class="[editable.picture == index ? 'selected' : '']">
           <img :src="icon" :alt="`player`">
         </div>
         <div class="col-12">
@@ -45,15 +45,17 @@
           <div v-else>
             <button class="btn btn-dark text-danger border-1 border-light"
               @click="handleEditing('cancel')">CANCEL</button>
-            <button class="btn btn-dark text-success border-1 border-light" @click="handleEditing()">SUBMIT</button>
+            <button class="btn btn-dark text-secondary border-1 border-light" @click="handleEditing()">SUBMIT</button>
           </div>
         </div>
       </section>
       <section v-if="availableValor >= levelUpRequirement - valorSpend" class="row text-outline mt-3">
         <div class="col-12 ">
-          <div v-if="levelMode == false" class="row justify-content-center">
-            <button @click="handleLeveling()" class="btn btn-dark text-success border-1 border-light">+ LEVEL UP | COST:
-              {{ levelUpRequirement }}</button>
+          <div v-if="levelMode == false" class="row d-flex justify-content-center">
+            <button @click="handleLeveling()" class="col-6 btn btn-dark text-secondary border-1 border-light">+ LEVEL UP
+              |
+              COST:
+              {{ levelUpRequirement }} EXP</button>
           </div>
           <div class="row justify-content-around" v-else>
             <div @click="increaseStat(0)" class="col-6 col-md-2 btn btn-dark text-primary border-1 border-light">+ {{
@@ -65,10 +67,10 @@
             }}
               Power</div>
             <div
-              class="col-md-3 bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-info text-center">
+              class="col-md-3 bg-dark px-3 pt-1 fw-semibold rounded border border-1 border-light text-light text-center">
               Cost: {{ levelUpRequirement }} | {{ valorSpend }}
             </div>
-            <div @click="handleLeveling()" class="col-md-2 btn btn-dark text-success border-1 border-light ">SUBMIT
+            <div @click="handleLeveling()" class="col-md-2 btn btn-dark text-secondary border-1 border-light ">SUBMIT
             </div>
             <div @click="handleLeveling('cancel'), increaseStat(-1)"
               class="col-md-2 btn btn-dark text-danger border-1 border-light ">CANCEL</div>
@@ -252,23 +254,25 @@ export default {
 
 <style lang="scss" scoped>
 .character-container {
-  background-color: var(--bs-body-bg);
+  background-color: var(--bs-background);
   border: solid 4px var(--bs-outline);
   border-radius: 8px;
 }
 
-.selected {
-  >img {
-    border: 1px solid white;
-  }
-}
-
 .player-icon {
   >img {
+    padding: 4px;
     width: auto;
     max-width: 100%;
     height: auto;
     max-height: 20vh;
+  }
+}
+
+.selected {
+  >img {
+    border: 4px solid white;
+    padding: 0px;
   }
 }
 </style>
