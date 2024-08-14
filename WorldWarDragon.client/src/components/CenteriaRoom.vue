@@ -1,30 +1,54 @@
 <template>
-  <h2 class="text-light my-4">Assistance</h2>
-  <p class="text-center text-2p">Offer items in exchange for experience or claim them to prepare for battle</p>
-  <NewAssistance />
-  <div class="d-flex">
-    <div>
-      <div v-for="assistance in uniqueUnclaimedAssistances" :key="assistance.id"
-        class="room-container px-3 d-flex align-items-center justify-content-between text-success py-1">
-        {{ assistance.body }}
-        {{ assistance?.creator?.name }}
-        <button v-if="account?.id && assistance.creatorId != account?.id && assistance
-          .claim == false" class="selectable btn py-0" @click="
-            claimAssistance(assistance.id)">
-          <i class="mdi mdi-download"></i>
-          Claim</button>
-      </div>
+  <section class="row mt-3">
+
+    <div class="col-11 col-md-8 col-lg-7 mx-auto">
+      <h2 class="text-light my-4">Assistance</h2>
+      <p class="text-center text-2p">Offer items in exchange for experience or claim them to prepare for battle</p>
     </div>
-    <div class="ms-3">
-      <div v-for="assistance in uniqueClaimedAssistances" :key="assistance.id"
-        class="room-container px-3 text-danger d-flex justify-content-between align-items-center">
-        {{ assistance.body }}
-        {{ assistance?.creator?.name }}
+
+    <div class="col-11 col-md-8 col-lg-7 mx-auto">
+      <div class="row">
+
+        <NewAssistance />
+
+        <div class="col-6 pe-1 ps-0 mt-3">
+          <div v-for="assistance in uniqueUnclaimedAssistances" :key="assistance.id"
+            class="room-container px-3 d-flex align-items-center justify-content-between text-light py-1 mb-2">
+            <i :class="assistance.body == 'attack' ? 'mdi mdi-sword-cross' : 'd-none'"></i>
+            <i :class="assistance.body == 'shield' ? 'mdi mdi-shield-sun' : 'd-none'"></i>
+            <i :class="assistance.body == 'heal' ? 'mdi mdi-bottle-tonic-plus' : 'd-none'"></i>
+            <div>{{ assistance.body }}</div>
+            <div> {{ assistance?.creator?.name }}</div>
+
+            <button v-if="account?.id && assistance.creatorId != account?.id && assistance
+              .claim == false"
+              class="selectable d-flex btn justify-content-between align-items-center text-outline text-secondary py-0"
+              @click="
+                claimAssistance(assistance.id)">
+              <i class="mdi mdi-download"></i>
+              <div class="d-none d-lg-block ps-3">ClAIM</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-6 pe-0 ps-1 mt-3 ">
+          <div v-for="assistance in uniqueClaimedAssistances" :key="assistance.id"
+            class="room-container px-3 text-danger d-flex justify-content-between align-items-center mb-2">
+            <i :class="assistance.body == 'attack' ? 'mdi mdi-sword-cross' : 'd-none'"></i>
+            <i :class="assistance.body == 'shield' ? 'mdi mdi-shield-sun' : 'd-none'"></i>
+            <i :class="assistance.body == 'heal' ? 'mdi mdi-bottle-tonic-plus' : 'd-none'"></i>
+            <div>{{ assistance.body }}</div>
+            <div> {{ assistance?.creator?.name }}</div>
+          </div>
+
+        </div>
+
       </div>
+
 
     </div>
 
-  </div>
+  </section>
 </template>
 
 

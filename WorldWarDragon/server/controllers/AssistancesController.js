@@ -50,7 +50,8 @@ export class AssistancesController extends BaseController {
     try {
       const assistanceId = req.params.assistanceId
       const userId = req.userInfo.id
-      const assistance = await assistancesService.removeAssistanceById(assistanceId, userId)
+      const isAdmin = req.userInfo.role.includes('admin')
+      const assistance = await assistancesService.removeAssistanceById(assistanceId, userId, isAdmin)
       return res.send(assistance)
     } catch (error) {
       next(error);

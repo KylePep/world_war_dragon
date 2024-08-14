@@ -1,7 +1,7 @@
 <template>
-  <section class="row mt-3">
+  <section class="row mt-5">
 
-    <div class="col-10 mx-auto boons text-outline text-light">
+    <div class="col-11 col-md-8 col-lg-7 mx-auto boons text-outline text-light">
       <h2 class="mb-4">BOONS</h2>
       <p class="text-center text-2p fs-6">Purchase a boon to increase the stats of everyone fighting in
         {{ activeRoom.name }} and gain EXP </p>
@@ -9,7 +9,7 @@
     </div>
 
 
-    <div class="col-11 mx-auto ">
+    <div class="col-11 col-md-8 col-lg-6 mx-auto">
       <NewMessage :messageProp="{ cost: 100 * activeRoom.difficulty }" />
       <div class="p-2 fs-6 room-container my-3">
         <p class="mb-0">{{ activeRoom.name }} Total Boons:</p>
@@ -27,10 +27,10 @@
         </span>
       </div>
 
-      <div class="message-container border border-4 p-2 border-light rounded">
+      <div class="message-container border border-2 p-2 border-light rounded">
         <div v-for="message in messages" :key="message.id"
-          class="room-container text-outline-bg px-3 d-flex justify-content-between align-items-center mb-3">
-          <div class="text-secondary">
+          class="room-container text-outline-bg px-3 py-1 d-flex justify-content-between align-items-center mb-3">
+          <div class="text-secondary d-flex">
             <i :class="message.boon == 'power' ? 'mdi mdi-weight-lifter' : 'd-none'"></i>
             <i :class="message.boon == 'luck' ? 'mdi mdi-clover' : 'd-none'"></i>
             <i :class="message.boon == 'health' ? 'mdi mdi-heart' : 'd-none'"></i>

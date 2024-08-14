@@ -1,5 +1,5 @@
 <template>
-  <div v-if="account?.id" class="container">
+  <div v-if="account?.id" class="container-fluid ">
 
     <form @submit.prevent="createMessage()" class="row form-container text-outline-bg p-3 ">
       <div class="mb-3">Your Gold: {{ gold }}</div>

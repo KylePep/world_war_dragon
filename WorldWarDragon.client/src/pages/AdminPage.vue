@@ -1,5 +1,5 @@
 <template>
-  <section class="row g-3 px-5 pt-5 mx-5">
+  <section class="row text-outline text-2p  g-3 px-5 pt-5 mx-5">
 
     <div class="col-12 bg-dark p-2">
       <div
@@ -10,39 +10,43 @@
           <h2>{{ activeBoss.hp - activeBoss.damages }}</h2>
         </div>
       </div>
-      <DamageActiveboss />
-      <NewBoss />
+      <!-- <DamageActiveboss /> -->
+    </div>
+    <NewBoss />
+    <div class="col-12 bg-dark p-2">
       <p>A list of all bosses</p>
       <div v-for="boss in bosses" :key="boss.id">
         boss: {{ boss.name }} | {{ boss.hp }} <button @click="setBossActivity(boss.id)"
           class="btn btn-secondary">activate: {{ boss.active }}</button>
       </div>
     </div>
-    <div class="col-12 bg-dark p-2">
+    <!-- <div class="col-12 bg-dark p-2">
       <p class="fs-1">For testing creating boons</p>
       <NewMessage :messageProp="{ cost: 100 * 0 }" />
-    </div>
+    </div> -->
 
     <div class="col-12">
-      <div class="bg-light text-dark rounded">
-        <div v-for="message in messages" :key="message.id">
-          Message: {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
-          <button class="btn btn-danger" @click="deleteMessage(message.id)">delete</button>
+      <div class=" rounded">
+        MESSAGES
+        <div v-for="message in messages" :key="message.id" class="bg-dark mb-2">
+          {{ message.body }} Room: {{ message.roomId }} Name: {{ message.creator.name }}
+          <button class="btn btn-dark text-danger" @click="deleteMessage(message.id)">delete</button>
         </div>
       </div>
     </div>
 
-    <div class="col-12 bg-dark p-2">
+    <!-- <div class="col-12 bg-dark p-2">
       <p class="fs-1">For testing creating assistance</p>
       <NewAssistance />
-    </div>
+    </div> -->
 
 
     <div class="col-12">
-      <div class="bg-light text-dark rounded">
-        <div v-for="assistance in assistances" :key="assistance.id">
-          Assistance: {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}<button
-            class="btn btn-danger" @click="deleteAssistance(assistance.id)">delete</button>
+      <div class=" rounded">
+        ASSISTANCES
+        <div v-for="assistance in assistances" :key="assistance.id" class="bg-dark mb-2">
+          {{ assistance.body }} Room: {{ assistance.roomId }} Name: {{ assistance.creator.name }}<button
+            class="btn btn-dark text-danger" @click="deleteAssistance(assistance.id)">delete</button>
         </div>
       </div>
     </div>
@@ -78,7 +82,7 @@ export default {
       if (!activeUserId) {
         return
       }
-      const activeUser = AppState.user
+      const activeUser = AppState.identity
       logger.log('USER', activeUser, 'ROLE', activeUser.role)
 
       if (activeUser.role.length == 0 || !activeUser.role.includes('admin')) {
@@ -88,13 +92,13 @@ export default {
 
 
     watchEffect(() => {
-      checkAdmin(AppState.user.id)
+      checkAdmin(AppState.identity.id)
     })
 
     const setBgImg = () => {
       const mainElement = document.querySelector('main');
       if (mainElement) {
-        let bgImg = '/assets/bg_1.png';
+        let bgImg = '/assets/dragonCave2.jpeg';
         mainElement.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.90) 100%), url(${bgImg})`;
       }
     }
@@ -191,6 +195,10 @@ export default {
 p {
   padding: 0;
   margin: 0;
+}
+
+section {
+  font-size: .75rem;
 }
 
 .boss-dragon-img {

@@ -30,12 +30,12 @@ class AssistancesService {
     const newAssistance = (await dbContext.Assistance.create(assistanceData)).populate('creator', 'name picture')
     return newAssistance
   }
-  async removeAssistanceById(assistanceId, userId) {
+  async removeAssistanceById(assistanceId, userId, isAdmin) {
     const assistance = await dbContext.Assistance.findById(assistanceId)
     if (!assistance) {
       throw new BadRequest(`Assistance with ID${assistanceId} does not exist`)
     }
-    if (assistance.creatorId != userId) {
+    if (assistance.creatorId != userId && !isAdmin) {
       throw new Forbidden('You can not delete an assistance you do not own')
     }
     await assistance.remove()
