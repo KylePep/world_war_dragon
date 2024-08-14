@@ -99,7 +99,7 @@
               </div>
             </ul>
 
-            <ul class="d-none d-md-block p-2">
+            <ul class="d-none d-md-block p-2 mb-3">
               <div class="stat-block">
                 <div class="mdi mdi-sword-cross text-danger" title="Attack">
                   Attack: {{ account?.attack }} ( {{ account?.attackAid }} )

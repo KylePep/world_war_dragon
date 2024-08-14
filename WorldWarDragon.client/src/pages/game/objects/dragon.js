@@ -1,6 +1,7 @@
 import { logger } from "../../../utils/Logger.js";
 import { AppState } from "../../../AppState.js";
 import { AREA_DRAGONS } from '../../../../../shared/constants/index.js'
+import { DragonAnim } from "./dragonAnim.js";
 
 export class Dragon {
   constructor(scene, x, y) {
@@ -8,6 +9,7 @@ export class Dragon {
     this.activeRoomId = AppState.activeRoom.id
     this.dragonHP = this.getRandomDragonHP();
     this.dragonHPMax = this.dragonHP
+    this.dragonAnimState = 'entrance'
     this.bossDamage = Phaser.Math.RoundTo((.1 * this.dragonHP), 0);
 
     if (this.activeRoomId && this.activeRoomId != 5 && this.activeRoomId != 6) {
@@ -29,6 +31,7 @@ export class Dragon {
 
     this.dragon.setInteractive()
     this.addInteractions()
+    this.setupDragonAnim()
     this.setupEventListeners();
   }
 
@@ -180,6 +183,10 @@ export class Dragon {
         this.dragon.angle = this.originalAngle;
       }
     });
+  }
+
+  setupDragonAnim() {
+    this.dragonAnim = new DragonAnim(this.dragon, this.dragonAnimState, this.scene)
   }
 
   onPointerOver() {
