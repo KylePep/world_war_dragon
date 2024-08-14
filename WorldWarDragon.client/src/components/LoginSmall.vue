@@ -9,7 +9,7 @@
 
       <div v-if="account?.picture || identity?.picture" class="position-relative">
         <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="rounded " />
-        <LevelUpAvailable />
+        <NotificationAvailable :notificationProp="'all'" />
       </div>
 
     </div>
@@ -20,7 +20,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from '../AppState'
-import LevelUpAvailable from './LevelUpAvailable.vue'
+import NotificationAvailable from './NotificationAvailable.vue'
 import { AuthService } from '../services/AuthService'
 export default {
   setup() {

@@ -25,8 +25,12 @@
         </div>
 
         <div class="modal-footer d-flex justify-content-between">
-          <button @click="handlePagination(-1)" type="button" class="btn btn-secondary">Previous</button>
-          <button @click="handlePagination(1)" type="button" class="btn btn-secondary">Next</button>
+          <button v-if="pagination > 0" @click="handlePagination(-1)" type="button"
+            class="btn btn-secondary">Previous</button>
+          <button v-else class="btn btn-dark">Previous</button>
+          <button v-if="pagination < dialogue.length - 1" @click="handlePagination(1)" type="button"
+            class="btn btn-secondary">Next</button>
+          <button v-else class="btn btn-dark">Next</button>
         </div>
 
       </div>
@@ -48,8 +52,10 @@ export default {
       dialogue: computed(() => DIALOGUE_DATA),
 
       handlePagination(direction) {
-        logger.log('here')
-        pagination.value += direction;
+        const newValue = pagination.value + direction;
+        if (newValue >= 0 && newValue <= this.dialogue.length - 1) {
+          pagination.value = newValue;
+        }
       }
     }
   }

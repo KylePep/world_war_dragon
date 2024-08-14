@@ -40,7 +40,7 @@
     "id": 6,
     "levelRequirement": 10,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
-    "speaker": {"name": "Veteran", "img": "/assets/veteran.jpeg"}
+    "speaker": {"name": "Veteran", "img": "/assets/princess3.jpeg"}
   }
 ]
 }

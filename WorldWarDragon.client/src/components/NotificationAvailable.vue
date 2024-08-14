@@ -1,8 +1,21 @@
 <template>
 
-  <div v-if="account?.id && availableValor >= levelUpRequirement">
-    <i class="mdi mdi-alert-circle alert p-0"></i>
+  <div v-if="account?.id">
+
+    <div v-if="notificationPurpose == 'level' && availableValor >= levelUpRequirement">
+      <i class="mdi mdi-alert-circle alert p-0"></i>
+    </div>
+
+    <div v-if="notificationPurpose == 'dialogue'">
+      <i class="mdi mdi-alert-circle alert p-0"></i>
+    </div>
+
+    <div v-if="notificationPurpose == 'all' && (availableValor >= levelUpRequirement)">
+      <i class="mdi mdi-alert-circle alert p-0"></i>
+    </div>
+
   </div>
+
 </template>
 
 
@@ -11,8 +24,12 @@ import { computed } from 'vue'
 import { AppState } from '../AppState'
 
 export default {
+  props: {
+    notificationProp: { type: String }
+  },
 
-  setup() {
+  setup(props) {
+    const notificationPurpose = computed(() => props.notificationProp)
     const account = computed(() => AppState.account)
     const availableValor = computed(() => {
       const valor = account.value.valor || 0;
@@ -25,6 +42,7 @@ export default {
       return Math.round(((level) * 2 + 1) * 100);
     });
     return {
+      notificationPurpose,
       account,
       availableValor,
       levelUpRequirement

@@ -3,7 +3,7 @@
     <div class="container-fluid px-0 disable-click">
 
       <section class="can-click text-2p text-outline-bg row w-100 mt-0  mt-0">
-        <div class="col-4 d-flex  ps-3 py-2">
+        <div class="col-4 d-flex  ps-3 py-2 position-relative">
           <LoginSmall />
           <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Home' }"
             :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
@@ -68,8 +68,11 @@
           <router-link @click="closeNavbar()" :to="{ name: 'Home' }"
             class=" game-title text-2p text-outline  selectable fw-semibold" id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
-          <button class="mdi mdi-script-text text-light text-outline btn btn-secondary px-2 py-1" data-bs-toggle="modal"
-            data-bs-target="#dialogueModal"></button>
+          <button @click="closeNavbar()"
+            class="position-relative mdi mdi-script-text text-light text-outline btn btn-secondary px-2 py-1"
+            data-bs-toggle="modal" data-bs-target="#dialogueModal">
+            <NotificationAvailable :notificationProp="'dialogue'" />
+          </button>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
@@ -177,7 +180,7 @@
               <router-link class="btn text-light selectable text-uppercase" @click="closeNavbar()"
                 :to="{ name: 'Account' }">
                 Character
-                <LevelUpAvailable />
+                <NotificationAvailable :notificationProp="'level'" />
               </router-link>
             </li>
 
@@ -226,7 +229,7 @@ import { computed, onMounted, ref, watchEffect } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import LoginSmall from './LoginSmall.vue';
-import LevelUpAvailable from './LevelUpAvailable.vue'
+import NotificationAvailable from './NotificationAvailable.vue'
 import { AppState } from "../AppState.js";
 import { useRoute } from "vue-router";
 import { Offcanvas } from "bootstrap";
