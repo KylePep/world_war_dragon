@@ -176,18 +176,19 @@ export class Dragon {
     });
   }
   onDragonHit() {
-    const selectedSound = this.getRandomDragonSound()
-    const sound = this.scene.sound.add(selectedSound)
-    sound.play();
-    sound.volume = 0.2;
-
-    this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
-
-    this.scene.bossUi.updateBossHp(this.dragonHP)
-
-    this.checkDeath()
 
     if (this.dragonAnimState == 'idle') {
+
+      this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
+
+      this.scene.bossUi.updateBossHp(this.dragonHP)
+
+      this.checkDeath()
+
+      const selectedSound = this.getRandomDragonSound()
+      const sound = this.scene.sound.add(selectedSound)
+      sound.play();
+      sound.volume = 0.2;
       if (!this.shakeTween || !this.shakeTween.isPlaying()) {
 
         this.shakeTween = this.scene.tweens.add({
@@ -224,14 +225,10 @@ export class Dragon {
   }
 
   onPointerOver() {
-    // this.setScaleToFitWindow(.01)
-    // this.dragon.y -= 8;
     this.scene.input.setDefaultCursor('pointer');
   }
 
   onPointerOut() {
-    // this.setScaleToFitWindow(0)
-    // this.dragon.y = this.originalY;
     this.scene.input.setDefaultCursor('default');
   }
 

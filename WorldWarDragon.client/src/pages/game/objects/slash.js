@@ -60,11 +60,13 @@ export class Slash {
     });
 
     this.interactiveSlash.on('pointerout', (pointer) => {
-      this.displaySlash.setTexture(this.getRandomSlash());
-      this.setScaleToFitWindow(0);
-      this.displaySlash.setAngle(Phaser.Math.RND.between(0, 180));
-      this.displaySlash.setAlpha(1); // Make the sprite visible
-      this.fadeOutSprite(); // Start the fade-out animation
+      if (this.scene.dragon.dragonAnimState != 'entrance' && this.scene.dragon.dragonAnimState != 'exiting') {
+        this.displaySlash.setTexture(this.getRandomSlash());
+        this.setScaleToFitWindow(0);
+        this.displaySlash.setAngle(Phaser.Math.RND.between(0, 180));
+        this.displaySlash.setAlpha(1); // Make the sprite visible
+        this.fadeOutSprite(); // Start the fade-out animation
+      }
 
       this.scene.events.emit('dragon:out', pointer);
 
