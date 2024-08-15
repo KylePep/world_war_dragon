@@ -53,7 +53,6 @@ import { logger } from "../utils/Logger.js";
 import { AppState } from "../AppState.js";
 import { Modal } from "bootstrap";
 import { accountService } from "../services/AccountService.js";
-import { Identity } from "@bcwdev/auth0provider-client";
 export default {
   setup() {
     const account = computed(() => AppState.account)

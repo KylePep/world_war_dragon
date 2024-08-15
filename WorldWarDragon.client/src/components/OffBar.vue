@@ -233,6 +233,8 @@ import NotificationAvailable from './NotificationAvailable.vue'
 import { AppState } from "../AppState.js";
 import { useRoute } from "vue-router";
 import { Offcanvas } from "bootstrap";
+import Pop from "../utils/Pop.js";
+import { accountService } from "../services/AccountService.js";
 
 const theme = ref(loadState('theme') || 'light')
 const route = useRoute()
@@ -242,18 +244,28 @@ onMounted(() => {
 })
 
 
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}
+// function toggleTheme() {
+//   theme.value = theme.value == 'light' ? 'dark' : 'light'
+//   document.documentElement.setAttribute('data-bs-theme', theme.value)
+//   saveState('theme', theme.value)
+// }
 
 function closeNavbar() {
   Offcanvas.getOrCreateInstance('#offcanvasNavbar').hide()
 }
+
+async function updateDialogueSeen() {
+  try {
+    await accountService.editAccount({ dialogueSeen: AppState.account.dialogueSeen })
+  } catch (error) {
+    Pop.error(error.message, '[]')
+  }
+}
+
 function checkDialogue() {
   if (AppState.account.dialogueSeen == 0) {
     AppState.account.dialogueSeen = 1;
+    updateDialogueSeen()
   }
 }
 

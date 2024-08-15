@@ -7,14 +7,13 @@
 
     <div v-if="notificationPurpose == 'dialogue' && dialogueSeen.id < dialogue.id">
       <i class="mdi mdi-alert-circle alert p-0"></i>
-      {{ dialogueSeen.id }} < {{ dialogue.id }} </div>
-
-        <div
-          v-if="notificationPurpose == 'all' && (availableValor >= levelUpRequirement || dialogueSeen.id < dialogue.id)">
-          <i class="mdi mdi-alert-circle alert p-0"></i>
-        </div>
-
     </div>
+
+    <div v-if="notificationPurpose == 'all' && (availableValor >= levelUpRequirement || dialogueSeen.id < dialogue.id)">
+      <i class="mdi mdi-alert-circle alert p-0"></i>
+    </div>
+
+  </div>
 
 </template>
 
