@@ -42,6 +42,7 @@ class AccountService {
 
   async editAccount(accountData) {
     const res = await api.put(`/account`, accountData)
+    logger.log('account', res.data)
     const account = new Account(res.data)
     AppState.account = account
     if (account.picture.length < 2) {

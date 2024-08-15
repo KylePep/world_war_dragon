@@ -68,7 +68,7 @@
           <router-link @click="closeNavbar()" :to="{ name: 'Home' }"
             class=" game-title text-2p text-outline  selectable fw-semibold" id="offcanvasNavbarLabel  ">World War
             Dragon</router-link>
-          <button v-if="account?.id" @click="closeNavbar()"
+          <button v-if="account?.id" @click="closeNavbar(), checkDialogue()"
             class="position-relative mdi mdi-script-text text-light text-outline btn btn-secondary px-2 py-1"
             data-bs-toggle="modal" data-bs-target="#dialogueModal">
             <NotificationAvailable :notificationProp="'dialogue'" />
@@ -250,6 +250,11 @@ function toggleTheme() {
 
 function closeNavbar() {
   Offcanvas.getOrCreateInstance('#offcanvasNavbar').hide()
+}
+function checkDialogue() {
+  if (AppState.account.dialogueSeen == 0) {
+    AppState.account.dialogueSeen = 1;
+  }
 }
 
 const account = computed(() => AppState.account)
