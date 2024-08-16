@@ -18,22 +18,24 @@
 
               <div v-if="account?.id" class="col-6 ">
                 <img class="img-fluid rounded" :src="speaker.img" alt="">
-                <div @click="handleReveal()" class=" btn btn-secondary continue"
-                  v-if="page.reveal < dialogue[page.pagination].messages.length">
-                  Continue
-                </div>
-                <div v-else class="disabled btn btn-dark" e>
-                  Continue
-                </div>
+
+
               </div>
 
-              <div id="messageContainer" v-if="account?.id"
-                class="col-6 bg-dark position-relative messages p-2 pb-0 border border-light">
+              <div id="messageContainer" v-if="account?.id" class="col-6 bg-dark position-relative messages p-2 pb-0">
                 <div v-for="message, index in dialogue[page.pagination].messages" :key="index">
                   <div v-if="page.reveal >= index" class="message">
                     {{ message }}
                   </div>
                 </div>
+              </div>
+              <div @click="handleReveal()" class="offset-6 col-6 btn btn-secondary continue"
+                v-if="account?.id && page.reveal < dialogue[page.pagination].messages.length - 1">
+                Continue
+              </div>
+
+              <div v-else class="offset-6 col-6 disabled btn btn-dark continue">
+                Continue
               </div>
             </div>
 

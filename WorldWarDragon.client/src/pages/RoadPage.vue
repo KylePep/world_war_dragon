@@ -46,6 +46,11 @@
         <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
           <h3>Change log</h3>
           <p>
+            8/16/24 - New story system, As you level, new dialogues will become available. <br> New approach to
+            animations, dragons animate on entry and exit. <br>Fixed animation bug where dragons would wander away with
+            constant attack.
+          </p>
+          <p>
             8/13/24 - New tutorial level created, Fight the training dragon and use items for free. <br>
             - New Game Modes, single and multi. The game behaves like normal on single mode. Multi mode, fight
             as many dragons in a row as you can. <br> - Latest Boon created is displayed on home page. <br> -New item

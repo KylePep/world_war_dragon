@@ -23,6 +23,7 @@ onMounted(() => {
 
     });
 
+    EventBus.off('navigate-home');
     EventBus.on('navigate-home', () => {
         logger.log('go Home')
         router.push('/');
