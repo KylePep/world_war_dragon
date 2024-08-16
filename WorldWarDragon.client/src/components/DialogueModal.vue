@@ -18,18 +18,21 @@
 
               <div v-if="account?.id" class="col-6 ">
                 <img class="img-fluid rounded" :src="speaker.img" alt="">
+                <div @click="handleReveal()" class=" btn btn-secondary continue"
+                  v-if="page.reveal < dialogue[page.pagination].messages.length">
+                  Continue
+                </div>
+                <div v-else class="disabled btn btn-dark" e>
+                  Continue
+                </div>
               </div>
 
-              <div v-if="account?.id" class="col-6 bg-dark position-relative messages p-2 pb-5 ">
+              <div id="messageContainer" v-if="account?.id"
+                class="col-6 bg-dark position-relative messages p-2 pb-0 border border-light">
                 <div v-for="message, index in dialogue[page.pagination].messages" :key="index">
                   <div v-if="page.reveal >= index" class="message">
                     {{ message }}
                   </div>
-                  <div @click="handleReveal()" class="position-absolute bottom-0 end-0 btn btn-secondary continue"
-                    v-else-if="page.reveal >= index - 1">
-                    Continue
-                  </div>
-                  <div v-else></div>
                 </div>
               </div>
             </div>
@@ -99,6 +102,13 @@ export default {
       },
       handleReveal() {
         page.value.reveal++
+        const element = document.getElementById('messageContainer')
+        if (element) {
+          const isScrollable = element.scrollHeight > element.clientHeight;
+          if (isScrollable) {
+            element.scrollTop = element.scrollHeight; // Scroll to the bottom
+          }
+        }
       },
 
       async updateDialogueSeen() {
