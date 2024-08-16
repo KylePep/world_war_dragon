@@ -16,6 +16,7 @@ export class DragonAnim {
   }
 
   entranceAnimation() {
+
     this.dragon.setScale(0);
 
     const randomRate = Phaser.Math.FloatBetween(0.8, 1.2);
@@ -50,6 +51,12 @@ export class DragonAnim {
   }
 
   exitAnimation() {
+    const { width, height } = this.scene.cameras.main
+
+    this.copyDragon = this.scene.add.sprite(width / 2, height / 2, this.dragon.texture.key).setOrigin(0.5, 0.5)
+
+    this.dragon.setAlpha(0)
+
 
     const randomRate = Phaser.Math.FloatBetween(0.8, 1.2);
     const selectedSound = 'dragonExit'
@@ -59,7 +66,7 @@ export class DragonAnim {
     sound.rate = randomRate
 
     this.scene.tweens.add({
-      targets: this.dragon,
+      targets: this.copyDragon,
       scaleX: 0, // Target scale for x-axis
       scaleY: 0, // Target scale for y-axis
       angle: 180,

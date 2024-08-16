@@ -113,6 +113,7 @@ export class Dragon {
       this.dragonHp = 0
 
       if (this.dragonAnimState != 'exiting' && this.dragonAnimState != 'exit') {
+        // this.setOriginCoordinates()
         this.dragonAnimState = 'exiting'
         this.dragonAnim.exitAnimation()
       }
@@ -212,7 +213,6 @@ export class Dragon {
       }
     } else if (this.dragonAnimState == 'exiting') {
       this.shakeTween.stop(0)
-      this.setOriginCoordinates()
     }
   }
 
