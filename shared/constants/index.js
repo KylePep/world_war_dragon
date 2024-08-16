@@ -10,5 +10,6 @@ export const {
 } = data
 
 export const {
-  DIALOGUE_DATA
+  DIALOGUE_DATA,
+  SPEAKER_DATA
 } = dialogueData
