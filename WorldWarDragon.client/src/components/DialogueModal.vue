@@ -16,17 +16,19 @@
 
             <div class="row message-container">
 
-              <div v-if="account?.id" class="col-6 ">
-                <img class="img-fluid rounded" :src="speaker.img" alt="">
-
-
+              <div v-if="account?.id" class="col-6 img-container">
+                <transition name="fade">
+                  <img :key="speaker.img" class="img-fluid rounded" :src="speaker.img" alt="">
+                </transition>
               </div>
 
               <div id="messageContainer" v-if="account?.id" class="col-6 bg-dark position-relative messages p-2 pb-0">
                 <div v-for="message, index in dialogue[page.pagination].messages" :key="index">
-                  <div v-if="page.reveal >= index" class="message">
-                    {{ message }}
-                  </div>
+                  <transition>
+                    <div v-if="page.reveal >= index" class="message">
+                      {{ message }}
+                    </div>
+                  </transition>
                 </div>
               </div>
               <div @click="handleReveal()" class="offset-6 col-6 btn btn-secondary continue"
@@ -137,6 +139,32 @@ export default {
 
 
 <style lang="scss" scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  position: absolute;
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.img-container>img {
+  height: 30vh;
+  width: auto;
+}
+
 .message-container {
   // height: 20vh;
 }

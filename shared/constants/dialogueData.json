@@ -59,7 +59,7 @@
   {
     "id": 6,
     "levelRequirement": 8,
-    "messages": ["Welcome Recruit","Get ready to fight dragons!"],
+    "messages": ["Get ready to fight dragons!","Welcome Recruit"],
     "speaker": "veteran"
   },
   {
@@ -77,7 +77,7 @@
   {
     "id": 9,
     "levelRequirement": 20,
-    "messages": ["Welcome Recruit","Get ready to fight dragons!"],
+    "messages": ["Get ready to fight dragons!","Welcome Recruit"],
     "speaker": "veteran"
   },
   {
