@@ -26,15 +26,15 @@
             Character details
           </h2>
           <div class="player-icon">
-            <img :src="account.picture" alt="">
+            <img :src="account?.picture" alt="">
           </div>
           <div class="text-uppercase fw-bold fs-3">
-            {{ account.name }}
+            {{ account?.name }}
           </div>
           <div class="text-uppercase fw-bold fs-4">
-            Level: {{ account.level }}
+            Level: {{ account?.level }}
           </div>
-          <div class="fs-5">{{ account.email }} </div>
+          <div class="fs-5">{{ account?.email }} </div>
         </div>
       </section>
       <section class="row">
@@ -85,45 +85,9 @@
         </div>
       </section>
 
-      <section class="row mt-3">
-        <div class="col-12 col-md-6 fs-5 text-center">
-          <div class="fs-4 text-2p fw-bold">
-            STATS
-          </div>
-          <div class="mdi mdi-crown">
-            Dragons Defeated: {{ account.dragons || 0 }}
-          </div>
-          <div class="mdi mdi-circle-multiple">
-            Gold: {{ account.gold || 0 }}
-          </div>
-          <div class="mdi mdi-medal">
-            Valor (Career Exp) : {{ account.valor || 0 }}
-          </div>
-          <div class="mdi mdi-medal">
-            EXP: {{ availableValor - valorSpend }}
-          </div>
-          <div class="mdi mdi-heart">
-            Health: {{ account.health || 0 }}
-          </div>
-          <div class="mdi mdi-weight-lifter">
-            Power: {{ account.power || 0 }}
-          </div>
-        </div>
-        <div class="col-12 col-md-6 fs-5 text-center">
-          <div class="fs-4 text-2p fw-bold">
-            INVENTORY
-          </div>
-          <div class="mdi mdi-sword-cross">
-            Attack: {{ account.attack }}
-          </div>
-          <div class="mdi mdi-shield-sun">
-            shield: {{ account.shield }}
-          </div>
-          <div class="mdi mdi-bottle-tonic-plus">
-            heal: {{ account.heal }}
-          </div>
-        </div>
-      </section>
+
+      <accountStats :statProp="{ valorSpend: valorSpend }" />
+
 
       <div>
 
@@ -177,10 +141,14 @@ export default {
       levelNew,
       account: computed(() => AppState.account),
       characterIcons: computed(() => CHARACTER_ICONS_DATA),
-      availableValor: computed(() => AppState.account.valor - AppState.account.valorSpent),
+      availableValor: computed(() => {
+        if (AppState.account?.valor) {
+          return AppState.account.valor - AppState.account.valorSpent
+        } else return 0
+      }),
       levelModifier: computed(() => (AppState.account.level + levelNew) * 2 + 1),
       levelBase: 100,
-      levelUpRequirement: computed(() => Math.round(((AppState.account.level + levelNew.value) * 2 + 1) * 100)),
+      levelUpRequirement: computed(() => Math.round(((AppState.account?.level + levelNew.value) * 2 + 1) * 100)),
       levelUp,
       valorSpend,
 
