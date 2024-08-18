@@ -26,8 +26,16 @@
                 <div v-for="message, index in dialogue[page.pagination].messages" :key="index">
                   <transition>
                     <div v-if="page.reveal >= index" class="message pb-2">
-                      <span class="text-capitalize">{{ message.split(':')[0].substring(1) }}:</span>
-                      {{ message.split(':')[1] }}
+                      <div v-if="message.includes('%')">
+                        <span v-if="!message.split(':')[0].includes('!') && !message.split(':')[0].includes('&')"
+                          class="name text-uppercase">{{
+                            message.split(':')[0].substring(1) }}:</span>
+                        {{ message.split(':')[1] }}
+                      </div>
+                      <div v-else>
+                        {{ message }}
+                      </div>
+
                     </div>
                   </transition>
                 </div>
@@ -119,8 +127,13 @@ export default {
           return SPEAKER_DATA.find((s) => s.nickName == DIALOGUE_DATA[page.value.pagination].speaker)
         } else {
           const currentMessage = DIALOGUE_DATA[page.value.pagination].messages[page.value.reveal]
-          const match = currentMessage.match(/%(.*?):/)
-          return SPEAKER_DATA.find((s) => s.nickName == match[1])
+          const match = currentMessage.match(/%[!&]*([^!&:]+):/)
+          logger.log(match)
+          if (match == null) {
+            return SPEAKER_DATA.find((s) => s.nickName == DIALOGUE_DATA[page.value.pagination].speaker)
+          } else {
+            return SPEAKER_DATA.find((s) => s.nickName == match[1])
+          }
         }
       }),
 
@@ -244,6 +257,10 @@ export default {
 
 .message {
   font-size: 0.5rem;
+}
+
+.name {
+  font-size: 0.6rem;
 }
 
 .continue {
