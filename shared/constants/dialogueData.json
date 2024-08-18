@@ -59,13 +59,13 @@
   {
     "id": 6,
     "levelRequirement": 8,
-    "messages": ["Get ready to fight dragons!","Welcome Recruit"],
+    "messages": [" Get ready to fight dragons!","Welcome Recruit"],
     "speaker": "veteran"
   },
   {
     "id": 7,
     "levelRequirement": 10,
-    "messages": ["Welcome Recruit","Get ready to fight dragons!"],
+    "messages": ["%princess: Welcome Recruit","%veteran: Get ready to fight dragons!"],
     "speaker": "princess"
   },
   {

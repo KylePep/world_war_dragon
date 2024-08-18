@@ -14,9 +14,9 @@
         <div class="modal-body">
           <div class="container-fluid">
 
-            <div class="row message-container">
+            <div class="row message-container px-0">
 
-              <div v-if="account?.id" class="col-6 img-container">
+              <div v-if="account?.id" class="col-6 p-0 img-container">
                 <transition name="fade">
                   <img :key="speaker.img" class="img-fluid rounded" :src="speaker.img" alt="">
                 </transition>
@@ -25,34 +25,59 @@
               <div id="messageContainer" v-if="account?.id" class="col-6 bg-dark position-relative messages p-2 pb-0">
                 <div v-for="message, index in dialogue[page.pagination].messages" :key="index">
                   <transition>
-                    <div v-if="page.reveal >= index" class="message">
-                      {{ message }}
+                    <div v-if="page.reveal >= index" class="message pb-2">
+                      <span class="text-capitalize">{{ message.split(':')[0].substring(1) }}:</span>
+                      {{ message.split(':')[1] }}
                     </div>
                   </transition>
                 </div>
               </div>
-              <div @click="handleReveal()" class="offset-6 col-6 btn btn-secondary continue"
-                v-if="account?.id && page.reveal < dialogue[page.pagination].messages.length - 1">
-                Continue
+
+              <div class="button-container offset-8 col-4  px-0">
+                <transition name="fade">
+                  <div @click="handleReveal()" class=" btn btn-secondary continue "
+                    v-if="account?.id && page.reveal < dialogue[page.pagination].messages.length - 1">
+                    Continue
+                  </div>
+
+                  <div v-else class=" disabled btn btn-dark continue ">
+                    Continue
+                  </div>
+                </transition>
+              </div>
+            </div>
+
+            <div class="row px-0 py-3 d-flex justify-content-between btn-pagination align-items-center">
+
+              <div class="button-container col-4 px-0">
+                <transition name="slide-up">
+                  <button v-if="page.pagination > 1" @click="handlePagination(-1)" type="button"
+                    class="btn btn-secondary btn-pagination">Previous</button>
+
+                  <button v-else class="btn btn-dark disabled btn-pagination">Previous</button>
+
+                </transition>
               </div>
 
-              <div v-else class="offset-6 col-6 disabled btn btn-dark continue">
-                Continue
+              <div class="col-4 text-center">CHAPTER: {{ page.pagination }}</div>
+
+              <div class="button-container col-4 px-0">
+                <transition name="slide-up">
+
+                  <button v-if="page.pagination < dialogue.length - 1" @click="handlePagination(1)" type="button"
+                    class="btn btn-secondary btn-pagination">Next</button>
+
+                  <button v-else class="btn btn-dark disabled btn-pagination">Next</button>
+
+                </transition>
               </div>
             </div>
 
           </div>
+
         </div>
 
-        <div class="p-3 d-flex justify-content-between btn-pagination align-items-center">
-          <button v-if="page.pagination > 1" @click="handlePagination(-1)" type="button"
-            class="btn btn-secondary">Previous</button>
-          <button v-else class="btn btn-dark disabled btn-pagination">Previous</button>
-          <div>CHAPTER: {{ page.pagination }}</div>
-          <button v-if="page.pagination < dialogue.length - 1" @click="handlePagination(1)" type="button"
-            class="btn btn-secondary">Next</button>
-          <button v-else class="btn btn-dark disabled btn-pagination">Next</button>
-        </div>
+
 
       </div>
     </div>
@@ -90,7 +115,13 @@ export default {
           .filter(d => d.levelRequirement <= AppState.account?.level)
       }),
       speaker: computed(() => {
-        return SPEAKER_DATA.find((s) => s.nickName == DIALOGUE_DATA[page.value.pagination].speaker)
+        if (page.value.reveal == 0) {
+          return SPEAKER_DATA.find((s) => s.nickName == DIALOGUE_DATA[page.value.pagination].speaker)
+        } else {
+          const currentMessage = DIALOGUE_DATA[page.value.pagination].messages[page.value.reveal]
+          const match = currentMessage.match(/%(.*?):/)
+          return SPEAKER_DATA.find((s) => s.nickName == match[1])
+        }
       }),
 
       handlePagination(direction) {
@@ -160,13 +191,50 @@ export default {
   opacity: 0;
 }
 
+.button-container {
+  display: inline-block;
+  position: relative;
+  height: 1rem;
+
+  >button {
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.25s ease-in-out;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.25s ease-in-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 .img-container>img {
   height: 30vh;
   width: auto;
-}
-
-.message-container {
-  // height: 20vh;
 }
 
 .messages {
@@ -180,6 +248,7 @@ export default {
 
 .continue {
   font-size: 0.6rem;
+  width: 100%;
 }
 
 .btn-pagination {
