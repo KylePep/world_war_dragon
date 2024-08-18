@@ -16,6 +16,7 @@
       <div v-else>
         {{ scoreProp.creator.name }}
       </div>
+      <div class="fs-6">-{{ scoreProp.creator.title }}-</div>
 
       <div class="fs-5 d-flex justify-content-center">
         <p class=" my-0 me-3 d-flex flex-column flex-md-row" title="Level">

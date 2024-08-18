@@ -8,7 +8,6 @@
 
   <section class="row text-V text-outline-bg">
     <div class="col-11 col-md-8 mx-auto p-4 character-container ">
-      {{ editable.title }}
       <section v-if="editMode == true" class="row fs-3 text-center">
         <div class="col-12 text-2p">EDIT MODE</div>
         <div v-for="icon, index in characterIcons" :key="index" @click="selectPicture(index)"
@@ -31,6 +30,8 @@
           <div class="col-9 col-md-4 d-flex">
             <select class="form-select" required name="category" id="category" v-model="editable.title">
               <option value="Recruit" required>Recruit</option>
+              <option value="Scale Initiate" required>Scale Initiate</option>
+              <option value="Scale Seeker" required>Scale Seeker</option>
             </select>
           </div>
         </section>
@@ -51,7 +52,7 @@
           <div class="text-uppercase fw-bold fs-4">
             Level: {{ account?.level }}
           </div>
-          <div class="fs-5">{{ account?.email }} </div>
+          <div class="fs-5 text-break">{{ account?.email }} </div>
         </div>
       </section>
       <section class="row">

@@ -7,7 +7,7 @@
       <div class=" my-2 my-lg-0 d-flex flex-column justify-content-center align-items-center">
         <div class="d-flex flex-column">
           <div class="py-2 pe-3 text text-uppercase fw-semibold">
-            {{ account?.name }} Level: {{ account?.level }}
+            {{ account?.name }} : {{ account?.title }} <br> Level: {{ account?.level }}
           </div>
         </div>
         <router-link :to="{ name: 'Account' }" class=" border-0 selectable no-select">
