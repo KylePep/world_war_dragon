@@ -8,16 +8,33 @@
 
   <section class="row text-V text-outline-bg">
     <div class="col-11 col-md-8 mx-auto p-4 character-container ">
+      {{ editable.title }}
       <section v-if="editMode == true" class="row fs-3 text-center">
         <div class="col-12 text-2p">EDIT MODE</div>
         <div v-for="icon, index in characterIcons" :key="index" @click="selectPicture(index)"
           class="player-icon col-6 col-md-4" :class="[editable.picture == index ? 'selected' : '']">
           <img :src="icon" :alt="`player`">
         </div>
-        <div class="col-12">
-          <input v-model="editable.name" class="form-control" type="text" name="name" id="name" placeholder="Name..."
-            minlength="3" maxlength="12" required>
-        </div>
+        <section class="row">
+          <div class="col-3 col-md-2 d-flex">
+            <span>NAME:</span>
+          </div>
+          <div class="col-9 col-md-4 d-flex">
+            <input v-model="editable.name" class="form-control" type="text" name="name" id="name" placeholder="Name..."
+              minlength="3" maxlength="12" required>
+          </div>
+
+
+          <div class="col-3 col-md-2 d-flex">
+            <span class="">TITLE:</span>
+          </div>
+          <div class="col-9 col-md-4 d-flex">
+            <select class="form-select" required name="category" id="category" v-model="editable.title">
+              <option value="Recruit" required>Recruit</option>
+            </select>
+          </div>
+        </section>
+
 
       </section>
       <section v-else class="row mb-4">
@@ -29,7 +46,7 @@
             <img :src="account?.picture" alt="">
           </div>
           <div class="text-uppercase fw-bold fs-3">
-            {{ account?.name }}
+            {{ account?.name }} : {{ account?.title }}
           </div>
           <div class="text-uppercase fw-bold fs-4">
             Level: {{ account?.level }}
@@ -88,6 +105,9 @@
 
       <accountStats :statProp="{ valorSpend: valorSpend }" />
 
+      <div v-if="account?.id">
+        <accountUnlocks />
+      </div>
 
       <div>
 
