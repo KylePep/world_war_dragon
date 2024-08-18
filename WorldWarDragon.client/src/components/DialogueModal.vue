@@ -18,7 +18,7 @@
 
               <div v-if="account?.id" class="col-6 p-0 img-container">
                 <transition name="fade">
-                  <img :key="speaker.img" class="img-fluid rounded" :src="speaker.img" alt="">
+                  <img :key="speaker.img" class=" rounded" :src="speaker.img" alt="">
                 </transition>
               </div>
 
@@ -109,8 +109,14 @@ export default {
 
     watchEffect(() => {
       if (account.value && account.value.dialogueSeen !== undefined) {
-        page.value.pagination = account.value.dialogueSeen;
-        dialogueSeen.value = account.value.dialogueSeen;
+        const dSeen = DIALOGUE_DATA.find((d) => d.id == account.value.dialogueSeen)
+        if (!dSeen) {
+          page.value.pagination = 1;
+          dialogueSeen.value = 1;
+        } else {
+          page.value.pagination = account.value.dialogueSeen;
+          dialogueSeen.value = account.value.dialogueSeen;
+        }
       }
     });
     return {
@@ -245,9 +251,13 @@ export default {
   transform: translateY(30px);
 }
 
-.img-container>img {
-  height: 30vh;
-  width: auto;
+.img-container {
+  position: relative;
+
+  >img {
+    height: auto;
+    width: 100%;
+  }
 }
 
 .messages {

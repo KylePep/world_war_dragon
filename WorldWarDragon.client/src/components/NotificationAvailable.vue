@@ -50,7 +50,11 @@ export default {
         .slice(-1)[0];
     })
     const dialogueSeen = computed(() => {
-      return DIALOGUE_DATA.find((d) => d.id == account.value.dialogueSeen)
+      const dSeen = DIALOGUE_DATA.find((d) => d.id == account.value.dialogueSeen)
+      if (!dSeen) {
+        return 0
+      } else
+        return DIALOGUE_DATA.find((d) => d.id == account.value.dialogueSeen)
     })
 
     return {

@@ -34,6 +34,26 @@
   {
     "id": 1,
     "levelRequirement": 0,
+    "messages": ["%veteran: Welcome Recruit","%&veteran: I appreciate the effort it takes to have made it this far.", "%!portal: A portal has opened of the world of Centeria releasing a multitude of dragons.", "%&veteran: Let's get to fighting some dragons!"],
+    "speaker": "veteran"
+    },
+  {
+      "id": 2,
+      "levelRequirement": 1,
+      "messages": ["%princess: My dearest subject, thank you for your continued support in the fight against the dragons!", "%&princess: Go forward as a part of my royal dragon fighting army!"],
+      "speaker": "princess"
+  }
+],
+  "WIP_DIALOGUE_DATA": [
+  {
+    "id": 0,
+    "levelRequirement": 0,
+    "messages": ["! excludes the name because it is a nonspeaking source & excludes the name because it is the same speaking source"],
+    "speaker": "test"
+  },
+  {
+    "id": 1,
+    "levelRequirement": 0,
     "messages": ["Welcome Recruit","Get ready to fight dragons!"],
     "speaker": "princess"
   },
@@ -70,7 +90,7 @@
   {
     "id": 7,
     "levelRequirement": 10,
-    "messages": ["%princess: Welcome Recruit","%&princess: Get ready to fight dragons!"],
+    "messages": ["%princess: Welcome Recruit","%!portal: Get ready to fight dragons!"],
     "speaker": "princess"
   },
   {
