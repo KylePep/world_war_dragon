@@ -21,8 +21,8 @@
             :class="[route.name == 'Account' ? 'nav-btn-off' : 'nav-btn']">Character</router-link>
           <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Score' }"
             :class="[route.name == 'Score' ? 'nav-btn-off' : 'nav-btn']">Hall</router-link>
-          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'About' }"
-            :class="[route.name == 'About' ? 'nav-btn-off' : 'nav-btn']">Lore</router-link>
+          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Lore' }"
+            :class="[route.name == 'Lore' ? 'nav-btn-off' : 'nav-btn']">Lore</router-link>
           <router-link class="d-block d-md-none" v-if="route.name != 'Game'" :to="{ name: 'Home' }"
             :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
         </div>
@@ -201,6 +201,13 @@
 
             <li class="">
               <router-link @click="closeNavbar()" :to="{ name: 'About' }"
+                class="btn text-light selectable text-uppercase">
+                About
+              </router-link>
+            </li>
+
+            <li class="">
+              <router-link @click="closeNavbar()" :to="{ name: 'Lore' }"
                 class="btn text-light selectable text-uppercase">
                 Lore
               </router-link>

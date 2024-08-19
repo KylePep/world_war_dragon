@@ -4,14 +4,20 @@
   ],
 
   "CHARACTER_TITLES_DATA":{
-    "0": "Recruit", 
-    "1": "Scale Initiate", 
-    "2": "Scale Seeker", 
-    "4": "Four",  
-    "6": "Six", 
-    "8": "Eight", 
-    "10": "Ten", 
-    "12": "Twelve"
+  "0": "Scaler",
+  "1": "Scale Initiate",
+  "2": "Scale Seeker",
+  "4": "Firebrand",
+  "7": "Flame Warden",
+  "10": "Dragon Acolyte",
+  "15": "Wyrm Slayer",
+  "20": "Drake Tamer",
+  "30": "Wyvern Knight",
+  "40": "Dragonlord",
+  "50": "Scalebane",
+  "65": "Flame Herald",
+  "80": "Elder Slayer",
+  "100": "Dragonmaster"
   },
   "CHARACTER_ICONS_DATA":{
     "1": "/assets/player/player1.jpeg", 

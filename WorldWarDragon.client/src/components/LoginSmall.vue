@@ -8,7 +8,8 @@
       data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
 
       <div v-if="account?.picture || identity?.picture" class="position-relative">
-        <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="rounded " />
+        <img :src="account?.picture || identity?.picture" alt="account photo" height="40"
+          class="rounded border border-1 border-light" />
         <NotificationAvailable :notificationProp="'all'" />
       </div>
 

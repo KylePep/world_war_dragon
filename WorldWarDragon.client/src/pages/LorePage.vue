@@ -2,14 +2,14 @@
   <section class="row g-3 mx-5 text-V text-outline-bg">
 
     <div class="col-12 text-2p text-outline fs-1 fw-bold text-center ">
-      About World War Dragon
+      The World is at war with DRAGONS
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <!-- <div class="col-12 col-md-6 px-0">
+        <div class="col-12 col-md-6 px-0">
           <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt="">
-        </div> -->
+        </div>
         <div class="col-12 col-md-6 lore-content p-3 pb-0">
           <h3>In the sky a mighty dragon appeared</h3>
           <p>With a blink of an eye, from the gaping portal, descended an enormous dragon.
@@ -23,7 +23,7 @@
         </div>
       </section>
     </div>
-    <!-- 
+
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
         <div class="order-2 order-md-1 col-12 col-md-6 lore-content p-3">
@@ -51,7 +51,7 @@
         </div>
 
       </section>
-    </div> -->
+    </div>
   </section>
 </template>
 
