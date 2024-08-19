@@ -29,9 +29,7 @@
           </div>
           <div class="col-9 col-md-4 d-flex">
             <select class="form-select" required name="category" id="category" v-model="editable.title">
-              <option value="Recruit" required>Recruit</option>
-              <option value="Scale Initiate" required>Scale Initiate</option>
-              <option value="Scale Seeker" required>Scale Seeker</option>
+              <option v-for="title in characterTitles" :value="title" required>{{ title }}</option>
             </select>
           </div>
         </section>
@@ -106,9 +104,9 @@
 
       <accountStats :statProp="{ valorSpend: valorSpend }" />
 
-      <div v-if="account?.id">
+      <!-- <div v-if="account?.id">
         <accountUnlocks />
-      </div>
+      </div> -->
 
       <div>
 
@@ -121,7 +119,7 @@
 <script>
 import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
-import { CHARACTER_ICONS_DATA } from '../../../shared/constants/index.js'
+import { CHARACTER_ICONS_DATA, CHARACTER_TITLES_DATA } from '../../../shared/constants/index.js'
 import { computed, onMounted, ref, watchEffect } from "vue";
 import { accountService } from "../services/AccountService.js";
 import { logger } from "../utils/Logger.js";
@@ -162,6 +160,12 @@ export default {
       levelNew,
       account: computed(() => AppState.account),
       characterIcons: computed(() => CHARACTER_ICONS_DATA),
+      characterTitles: computed(() => {
+        const accountLevel = AppState.account?.level ?? 0;
+        return Object.entries(CHARACTER_TITLES_DATA)
+          .filter(([key]) => Number(key) <= accountLevel)
+          .map(([key, title]) => title);
+      }),
       availableValor: computed(() => {
         if (AppState.account?.valor) {
           return AppState.account.valor - AppState.account.valorSpent

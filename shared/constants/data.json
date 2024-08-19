@@ -2,6 +2,17 @@
   "DATA_ITEMS": [
     {}
   ],
+
+  "CHARACTER_TITLES_DATA":{
+    "0": "Recruit", 
+    "1": "Scale Initiate", 
+    "2": "Scale Seeker", 
+    "4": "Four",  
+    "6": "Six", 
+    "8": "Eight", 
+    "10": "Ten", 
+    "12": "Twelve"
+  },
   "CHARACTER_ICONS_DATA":{
     "1": "/assets/player/player1.jpeg", 
     "2": "/assets/player/player2.jpeg", 
