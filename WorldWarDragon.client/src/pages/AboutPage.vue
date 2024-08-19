@@ -11,47 +11,60 @@
           <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt="">
         </div> -->
         <div class="col-12 col-md-6 lore-content p-3 pb-0">
-          <h3>In the sky a mighty dragon appeared</h3>
-          <p>With a blink of an eye, from the gaping portal, descended an enormous dragon.
+          <h3>WWD began as an entry in CodeWorks 2024 Summer Hackathon</h3>
+          <p>
+            It took second place in the hackathon, it had a LOT less polish and features at the time.
           </p>
           <p>
-            In it's wake countless
-            smaller
-            dragons fell to the earth.
+            I've continued to work on it because, well because I really enjoyed it. It's a fairly in depth fullstack
+            application and has been an excellent training ground for some more of my unique niche bits of code. With a
+            brand new project I might be able to start a little cleaner or try a new technology but with WWD I've
+            learned things about Vue MongoDb and Phaser along the way that just scraping the surface doesn't get you.
           </p>
-
-        </div>
-      </section>
-    </div>
-    <!-- 
-    <div class="col-12 d-flex flex-column align-items-center">
-      <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="order-2 order-md-1 col-12 col-md-6 lore-content p-3">
-          <h3>It is your duty to defeat these dragons and drive back the Immense dragon.</h3>
-          <p>You can not do this alone. You must rely and come to the aid of every warrior and citizen of centeria.
-          </p>
-          <p>Through everyone's combined might, the dragon will be repelled!</p>
         </div>
 
-        <div class="order-1 order-md-2 col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/veteran.jpeg" alt="">
-        </div>
       </section>
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="col-12 col-md-6 px-0">
-          <img class="img-fluid rounded-4" src="/assets/princess3.jpeg" alt="">
-        </div>
-
-        <div class="col-12 col-md-6 lore-content p-3">
-          <h3>Under the authority of the young princess of Centeria.</h3>
-          <p>March forth into the unknown territories and defeat any dragon unlucky enough to cross your path.</p>
+        <div class="col-12 col-md-6 lore-content p-3 pb-0">
+          <h3>AI and WWD</h3>
+          <p>
+            You might have noticed that there is a lot of AI art in this application, That's absolutely correct. I have
+            come to prefer Microsoft's AI art generator. It's quick easy and has given me somewhat consistent results.
+          </p>
+          <p>
+            I wanted to use AI art because I wanted this to be a showcase of how well I can assemble things. From Vue to
+            Phaser and MongoDb, I have created something unique. If I had stuck to creating the art by hand or
+            collecting it from random places on the internet this project could not have made it as far as it has.
+          </p>
         </div>
 
       </section>
-    </div> -->
+    </div>
+
+    <div class="col-12 d-flex flex-column align-items-center">
+      <section class="row lore-card border border-2 border-light rounded-4 ">
+        <div class="col-12 col-md-6 lore-content p-3 pb-0">
+          <h3>WW-WWD-D?</h3>
+          <p>
+            What will World War Dragons Do? I think it is beginning to reach the end of it's dev cycle for now. Unless I
+            think of a new feature I want to tackle.
+          </p>
+          <p>
+            Besides that I want to make this more accessible. Odds are you waited what seems like 5 minutes for Render
+            to serve this up to you and I'd like to fix that.
+          </p>
+          <p>
+            Either way I have made somewhat of a platform here and it makes me wonder if I can use it to help some
+            others out. I'm hoping to have someone do some writing on tne dialogue for WWD, They could put that on a
+            resume and become a writer one day. That'd be pretty cool.
+          </p>
+        </div>
+
+      </section>
+    </div>
   </section>
 </template>
 
