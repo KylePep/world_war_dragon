@@ -67,7 +67,11 @@
                 </transition>
               </div>
 
-              <div class="col-4 text-center">CHAPTER: {{ page.pagination }}</div>
+              <div class="col-4 text-center btn-chapter">
+                <div>
+                  CHAPTER: {{ page.pagination }}
+                </div>
+              </div>
 
               <div class="button-container col-4 px-0">
                 <transition name="slide-up">
@@ -155,7 +159,9 @@ export default {
         }
       },
       handleReveal() {
-        page.value.reveal++
+        if (page.value.reveal + 1 < this.dialogue[page.value.pagination].messages.length) {
+          page.value.reveal++
+        }
         const element = document.getElementById('messageContainer')
         if (element) {
           const isScrollable = element.scrollHeight > element.clientHeight;
@@ -253,9 +259,10 @@ export default {
 
 .img-container {
   position: relative;
+  height: 33vh;
 
   >img {
-    height: auto;
+    height: 33vh;
     width: 100%;
   }
 }
@@ -280,5 +287,13 @@ export default {
 
 .btn-pagination {
   font-size: 0.6rem;
+}
+
+.btn-chapter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
 }
 </style>
