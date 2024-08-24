@@ -12,7 +12,7 @@ const route = useRoute()
     </header>
     <main class="container-fluid">
         <RouterView />
-        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score'">
+        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'">
             <KylePepButton />
         </div>
     </main>
