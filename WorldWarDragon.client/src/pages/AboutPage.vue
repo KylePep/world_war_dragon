@@ -6,6 +6,33 @@
     </div>
 
     <div class="col-12 d-flex flex-column align-items-center">
+      <section class="row lore-card w-100 border border-2 border-light rounded-4 ">
+        <div class="col-6 mx-auto lore-content p-3 pb-0 fs-3">
+          <h3 class="text-center fs-1">CREDITS</h3>
+
+          <div class="d-flex justify-content-between">
+            <p>
+              Lead Developer:
+            </p>
+            <p>
+              Kyle Peppersack
+            </p>
+          </div>
+
+          <div class=" d-flex justify-content-between">
+            <p>
+              Lead Narrative Designer:
+            </p>
+            <p>
+              Kam
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
         <!-- <div class="col-12 col-md-6 px-0">
           <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt="">
@@ -55,11 +82,6 @@
           <p>
             Besides that I want to make this more accessible. Odds are you waited what seems like 5 minutes for Render
             to serve this up to you and I'd like to fix that.
-          </p>
-          <p>
-            Either way I have made somewhat of a platform here and it makes me wonder if I can use it to help some
-            others out. I'm hoping to have someone do some writing on tne dialogue for WWD, They could put that on a
-            resume and become a writer one day. That'd be pretty cool.
           </p>
         </div>
 

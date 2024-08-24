@@ -12,7 +12,8 @@ const route = useRoute()
     </header>
     <main class="container-fluid">
         <RouterView />
-        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'">
+        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'"
+            class="my-5">
             <KylePepButton />
         </div>
     </main>
