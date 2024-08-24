@@ -10,7 +10,7 @@
         <!-- <div class="col-12 col-md-6 px-0">
           <img class="img-fluid rounded-4" src="/assets/dragonPortal.jpeg" alt="">
         </div> -->
-        <div class="col-12 col-md-6 lore-content p-3 pb-0">
+        <div class="col-12 col-md-12 lore-content p-3 pb-0">
           <h3>WWD began as an entry in CodeWorks 2024 Summer Hackathon</h3>
           <p>
             It took second place in the hackathon, it had a LOT less polish and features at the time.
@@ -28,7 +28,7 @@
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="col-12 col-md-6 lore-content p-3 pb-0">
+        <div class="col-12 col-md-12 lore-content p-3 pb-0">
           <h3>AI and WWD</h3>
           <p>
             You might have noticed that there is a lot of AI art in this application, That's absolutely correct. I have
@@ -46,7 +46,7 @@
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
-        <div class="col-12 col-md-6 lore-content p-3 pb-0">
+        <div class="col-12 col-md-12 lore-content p-3 pb-0">
           <h3>WW-WWD-D?</h3>
           <p>
             What will World War Dragons Do? I think it is beginning to reach the end of it's dev cycle for now. Unless I
