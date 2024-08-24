@@ -1,8 +1,9 @@
 <script setup>
+import KylePepButton from "./components/KylePepButton.vue";
 import { RouterView, useRoute } from 'vue-router'
 import OffBar from './components/OffBar.vue'
 import DialogueModal from "./components/DialogueModal.vue";
-
+const route = useRoute()
 </script>
 
 <template>
@@ -11,7 +12,12 @@ import DialogueModal from "./components/DialogueModal.vue";
     </header>
     <main class="container-fluid">
         <RouterView />
+        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score'">
+            <KylePepButton />
+        </div>
     </main>
+    <footer>
+    </footer>
 
     <DialogueModal />
 
@@ -34,6 +40,7 @@ main {
     background-attachment: fixed;
     user-select: none;
     color: var(--bs-text);
+    padding-bottom: 5rem;
 }
 
 header {
