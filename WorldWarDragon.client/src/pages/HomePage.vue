@@ -51,18 +51,22 @@
       <div class="col-6 col-md-2 order-2 order-md-1 offset-0 offset-md-2 d-flex justify-content-center ">
         <router-link :to="{ name: 'Map' }" class="btn fight-btn text-outline w-100 p-3 fw-bold">MAP</router-link>
       </div>
-      <transition name="slide-up">
-        <div v-if="account?.id" class="col-12 col-md-4 order-1 order-md-2 d-flex justify-content-center ">
+
+
+      <div class="col-12 col-md-4 order-1 order-md-2">
+
+        <div v-if="account?.id" class="d-flex justify-content-center ">
           <router-link :to="{ name: 'Game' }" class="btn fight-btn text-outline p-3 fs-3 w-100 fw-bold ">JOIN THE
             FIGHT!</router-link>
         </div>
-        <div v-else class="col-12 col-md-4 order-1 order-md-2 d-flex justify-content-center ">
 
+        <div v-else class="d-flex justify-content-center ">
           <div class="btn fight-btn text-outline p-3 fs-1 w-100 fw-bold" @click="login" v-if="!identity">
             Login
           </div>
         </div>
-      </transition>
+
+      </div>
 
       <div class="col-6 col-md-2 order-3 d-flex justify-content-center ">
         <router-link :to="{ name: 'Score' }" class="btn fight-btn text-outline p-3 w-100 fw-bold">HALL OF
@@ -145,7 +149,7 @@ export default {
 
 .slide-up-enter-active,
 .slide-up-leave-active {
-  transition: all 0.25s ease-out;
+  transition: all 0.25s ease-in-out;
 }
 
 .slide-up-enter-from {
@@ -155,7 +159,7 @@ export default {
 
 .slide-up-leave-to {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(30px);
 }
 
 .fight-btn {
