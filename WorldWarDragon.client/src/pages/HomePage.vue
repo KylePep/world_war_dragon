@@ -53,18 +53,17 @@
       </div>
 
 
-      <div class="col-12 col-md-4 order-1 order-md-2">
+      <div class="col-12 col-md-4 order-1 order-md-2  button-container">
 
-        <div v-if="account?.id" class="d-flex justify-content-center ">
-          <router-link :to="{ name: 'Game' }" class="btn fight-btn text-outline p-3 fs-3 w-100 fw-bold ">JOIN THE
-            FIGHT!</router-link>
-        </div>
-
-        <div v-else class="d-flex justify-content-center ">
-          <div class="btn fight-btn text-outline p-3 fs-1 w-100 fw-bold" @click="login" v-if="!identity">
+        <transition name="slide-up">
+          <div v-if="!identity" class="btn fight-btn text-outline p-3 fs-1 w-100 fw-bold" @click="login">
             Login
           </div>
-        </div>
+          <div v-else class="d-flex justify-content-center ">
+            <router-link :to="{ name: 'Game' }" class="btn fight-btn text-outline p-3 fs-3 w-100 fw-bold ">JOIN THE
+              FIGHT!</router-link>
+          </div>
+        </transition>
 
       </div>
 
@@ -89,6 +88,7 @@ import { messagesService } from "../services/MessagesService.js";
 
 export default {
   setup() {
+
 
     async function getLatestMessage() {
       try {
@@ -134,7 +134,13 @@ export default {
 
 <style lang="scss" scoped>
 .full-page {
-  height: 100vh;
+  height: 96vh;
+}
+
+@media screen and (min-width: 576px) {
+  .full-page {
+    height: 100vh;
+  }
 }
 
 .hero-title {
@@ -160,6 +166,18 @@ export default {
 .slide-up-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+
+.button-container {
+  display: flex;
+  position: relative;
+  height: 100%;
+
+  >div {
+    position: absolute;
+    width: 99%;
+    height: 100%;
+  }
 }
 
 .fight-btn {

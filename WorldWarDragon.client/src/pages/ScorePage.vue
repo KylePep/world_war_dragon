@@ -19,7 +19,6 @@ import Pop from "../utils/Pop.js";
 import { bossDamageService } from "../services/BossDamageService.js";
 import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
-import { CHARACTER_ICONS_DATA } from '../../../shared/constants/index.js'
 
 export default {
   setup() {

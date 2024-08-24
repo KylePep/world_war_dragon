@@ -2,23 +2,19 @@
 
 
 <template>
-  <p class="mb-2 text-light text-2p text-center">
-    This website was developed by
-  </p>
-  <div class="text-box d-flex justify-content-center">
-    <a href="https://www.kylepep.dev" target="_blank" class="text-2p btn btn-white">Kyle
-      Peppersack</a>
-  </div>
+  <section class="py-5">
+    <p class="mb-2 text-light text-2p text-center">
+      This website was developed by
+    </p>
+    <div class="text-box d-flex justify-content-center">
+      <a href="https://www.kylepep.dev" target="_blank" class="text-2p btn btn-white">Kyle
+        Peppersack</a>
+    </div>
+  </section>
 </template>
 
 
 <style lang="scss" scoped>
-.kyle-pep {
-  color: var(--bs-light);
-  background-color: #5c6068;
-  border: 3px solid #dc5f00;
-}
-
 .btn:link,
 .btn:visited {
   text-transform: uppercase;

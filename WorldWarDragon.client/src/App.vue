@@ -1,9 +1,11 @@
 <script setup>
-import KylePepButton from "./components/KylePepButton.vue";
 import { RouterView, useRoute } from 'vue-router'
 import OffBar from './components/OffBar.vue'
 import DialogueModal from "./components/DialogueModal.vue";
+import KylePepButton from "./components/KylePepButton.vue";
+
 const route = useRoute()
+
 </script>
 
 <template>
@@ -12,8 +14,7 @@ const route = useRoute()
     </header>
     <main class="container-fluid">
         <RouterView />
-        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'"
-            class="my-5">
+        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'">
             <KylePepButton />
         </div>
     </main>
