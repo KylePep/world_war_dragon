@@ -9,7 +9,9 @@ export class Map extends Scene {
     }
 
     create() {
+        this.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
         this.cameras.main.fadeIn(500, 0, 0, 0)
+
         AppState.winStreak = 0
 
         if (AppState.account.dragons < 1) {
@@ -27,10 +29,6 @@ export class Map extends Scene {
         this.backgroundMusic.play();
 
         this.mode = AppState.mode;
-        this.input.setDefaultCursor('url(/assets/star.png), pointer')
-
-
-        // Your existing code to setup the game objects, etc.
 
         this.cameras.main.setBackgroundColor(0xff4500);
 
@@ -39,7 +37,6 @@ export class Map extends Scene {
             .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
 
         this.createButtons();
-        this.scale.on('resize', this.resize, this);
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -184,13 +181,11 @@ export class Map extends Scene {
     }
     buttonOver(button) {
         button.setColor('#ff7300');
-        // this.input.setDefaultCursor('pointer');
-        this.input.setDefaultCursor('url(/assets/star.png), pointer')
+        this.input.setDefaultCursor('url(/assets/ui/cursor2.png), pointer')
     }
     buttonOut(button) {
         button.setColor('white');
-        // this.input.setDefaultCursor('default');
-        this.input.setDefaultCursor('url(/assets/star.png), pointer')
+        this.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
     }
     changeScene() {
         this.scene.start('Game');

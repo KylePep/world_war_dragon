@@ -25,6 +25,7 @@ export class Game extends Scene {
     }
 
     create() {
+        this.input.setDefaultCursor('url(/assets/ui/cursor3.png), auto')
 
         this.cameras.main.fadeIn(250, 0, 0, 0)
 

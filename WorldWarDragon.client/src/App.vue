@@ -14,7 +14,8 @@ const route = useRoute()
     </header>
     <main class="container-fluid">
         <RouterView />
-        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'">
+        <div v-if="route.name != 'Account' && route.name != 'Map' && route.name != 'Score' && route.name != 'Game'"
+            class="p-bottom">
             <KylePepButton />
         </div>
     </main>
@@ -40,7 +41,6 @@ main {
     background-attachment: fixed;
     user-select: none;
     color: var(--bs-text);
-    padding-bottom: 5rem;
 }
 
 header {
@@ -57,6 +57,10 @@ section:first-child {
 
 :root {
     --main-height: calc(100vh - 31px - 64px);
+}
+
+.p-bottom {
+    padding-bottom: 5rem;
 }
 
 .text-2p {

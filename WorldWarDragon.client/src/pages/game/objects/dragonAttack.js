@@ -98,7 +98,7 @@ export class DragonAttack {
       this.scene.events.off('dragon:attackItem')
       this.scene.playerHp = this.scene.playerMaxHp
 
-      this.scene.cameras.main.fadeOut(1000, 0, 0, 0);
+      this.scene.cameras.main.fadeOut(1000, 255, 0, 0);
 
       this.scene.time.delayedCall(1000, () => {
         if (AppState.mode == 'single') {

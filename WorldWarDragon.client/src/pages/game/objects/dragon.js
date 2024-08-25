@@ -225,11 +225,11 @@ export class Dragon {
   }
 
   onPointerOver() {
-    this.scene.input.setDefaultCursor('pointer');
+    this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), pointer')
   }
 
   onPointerOut() {
-    this.scene.input.setDefaultCursor('default');
+    this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
   }
 
 

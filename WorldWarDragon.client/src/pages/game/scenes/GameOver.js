@@ -58,12 +58,12 @@ export class GameOver extends Scene {
 
         this.fight.on('pointerover', () => {
             this.fight.setColor('red');
-            this.input.setDefaultCursor('pointer');
+            this.input.setDefaultCursor('url(/assets/ui/cursor2.png), pointer')
         });
 
         this.fight.on('pointerout', () => {
             this.fight.setColor('#ffffff');
-            this.input.setDefaultCursor('default');
+            this.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
         });
 
         this.return = this.add.text(centerX, centerY + 200, 'RETREAT...', {
@@ -78,12 +78,12 @@ export class GameOver extends Scene {
 
         this.return.on('pointerover', () => {
             this.return.setColor('gray');
-            this.input.setDefaultCursor('pointer');
+            this.input.setDefaultCursor('url(/assets/ui/cursor2.png), pointer')
         });
 
         this.return.on('pointerout', () => {
             this.return.setColor('white');
-            this.input.setDefaultCursor('default');
+            this.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
         });
 
         this.scale.on('resize', this.resize, this);

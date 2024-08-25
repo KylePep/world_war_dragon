@@ -29,6 +29,15 @@ export class BossUi {
 
     // Create the bottom bar
     this.bottomBar = this.scene.add.rectangle(width / 2, 0, barWidth, barHeight, 0x000000).setOrigin(0.5, 1)
+    this.bottomBar.setInteractive();
+
+    this.bottomBar.on('pointerover', () => {
+      this.scene.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
+    });
+
+    this.bottomBar.on('pointerout', () => {
+      this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), auto')
+    });
     this.bossUiContainer.add(this.bottomBar);
 
     // Create a Graphics object for the border
@@ -45,18 +54,9 @@ export class BossUi {
       fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
       stroke: '#000000', strokeThickness: 8,
       align: 'left'
-    }).setOrigin(0, 1).setDepth(400).setInteractive();
-    this.homeButton.on('pointerdown', () => {
+    }).setOrigin(0, 1).setDepth(400).setInteractive().on('pointerdown', () => {
       EventBus.emit('navigate-home');
-    });
-    this.homeButton.on('pointerover', () => {
-      this.homeButton.setColor('gray')
-      this.scene.input.setDefaultCursor('pointer');
-    })
-    this.homeButton.on('pointerout', () => {
-      this.homeButton.setColor('white')
-      this.scene.input.setDefaultCursor('default');
-    })
+    }).on('pointerover', () => this.buttonOver(this.homeButton)).on('pointerout', () => this.buttonOut(this.homeButton));
     this.bossUiContainer.add(this.homeButton);
 
     // Add Map button
@@ -64,20 +64,11 @@ export class BossUi {
       fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
       stroke: '#000000', strokeThickness: 8,
       align: 'left'
-    }).setOrigin(0, 1).setDepth(400).setInteractive();
-    this.mapButton.on('pointerdown', () => {
+    }).setOrigin(0, 1).setDepth(400).setInteractive().on('pointerdown', () => {
       this.scene.sound.stopAll()
       this.scene.dragon.destroyEventListeners()
       this.scene.scene.start('Map');
-    });
-    this.mapButton.on('pointerover', () => {
-      this.mapButton.setColor('gray')
-      this.scene.input.setDefaultCursor('pointer');
-    })
-    this.mapButton.on('pointerout', () => {
-      this.mapButton.setColor('white')
-      this.scene.input.setDefaultCursor('default');
-    })
+    }).on('pointerover', () => this.buttonOver(this.mapButton)).on('pointerout', () => this.buttonOut(this.mapButton));
     this.bossUiContainer.add(this.mapButton);
 
     if (AppState.mode == 'multi' && AppState.activeRoom.id != 6) {   // Add Finish button
@@ -85,20 +76,11 @@ export class BossUi {
         fontFamily: '"Press Start 2P"', fontSize: '16px', color: 'white',
         stroke: '#000000', strokeThickness: 8,
         align: 'left'
-      }).setOrigin(1, 1).setDepth(400).setInteractive();
-      this.finishButton.on('pointerdown', () => {
+      }).setOrigin(1, 1).setDepth(400).setInteractive().on('pointerdown', () => {
         this.scene.sound.stopAll()
         this.scene.dragon.destroyEventListeners()
         this.scene.leaveRoom();
-      });
-      this.finishButton.on('pointerover', () => {
-        this.finishButton.setColor('gray')
-        this.scene.input.setDefaultCursor('pointer');
-      })
-      this.finishButton.on('pointerout', () => {
-        this.finishButton.setColor('white')
-        this.scene.input.setDefaultCursor('default');
-      })
+      }).on('pointerover', () => this.buttonOver(this.finishButton)).on('pointerout', () => this.buttonOut(this.finishButton));
       this.bossUiContainer.add(this.finishButton);
     }
 
@@ -160,18 +142,15 @@ export class BossUi {
     if (AppState.mode == 'multi' && AppState.activeRoom.id != 6) {
       this.finishButton.setPosition(width, - 40);
     }
+  }
 
-    // if (width < 758) {
-
-    // } else {
-    //   if (AppState.mode == 'multi') {
-    //     this.finishButton.setPosition(width, - 40);
-    //   } else {
-
-    //   }
-    // }
-
-
+  buttonOver(button) {
+    button.setColor('#ff7300');
+    this.scene.input.setDefaultCursor('url(/assets/ui/cursor2.png), pointer')
+  }
+  buttonOut(button) {
+    button.setColor('white');
+    this.scene.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
   }
 
   updateBossHp(newHp) {

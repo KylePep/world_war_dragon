@@ -103,11 +103,11 @@ export class GameResults extends Scene {
 
     buttonOver(button) {
         button.setColor('#ff7300');
-        this.input.setDefaultCursor('pointer');
+        this.input.setDefaultCursor('url(/assets/ui/cursor2.png), pointer')
     }
     buttonOut(button) {
         button.setColor('white');
-        this.input.setDefaultCursor('default');
+        this.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
     }
 
     resize(gameSize, baseSize, displaySize, resolution) {

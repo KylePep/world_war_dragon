@@ -1,31 +1,35 @@
 <template>
-  <nav class="navbar  fixed-top pt-0">
+  <nav class="navbar fixed-top pt-0 disable-click">
     <div class="container-fluid px-0 disable-click">
 
-      <section class="can-click text-2p text-outline-bg row w-100 mt-0  mt-0">
-        <div class="col-4 d-flex  ps-3 py-2 position-relative">
+      <section v-if="route.name != 'Game'" class="can-click text-2p text-outline-bg row w-100 mt-0">
+        <div class="col-4 d-flex ps-3 py-2 position-relative">
           <LoginSmall />
-          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Home' }"
+          <router-link class="d-none d-md-block" :to="{ name: 'Home' }"
             :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
-          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Map' }"
+          <router-link class="d-none d-md-block" :to="{ name: 'Map' }"
             :class="[route.name == 'Map' ? 'nav-btn-off' : 'nav-btn']">Map</router-link>
         </div>
+
         <div class="col-4 d-flex justify-content-center position-relative">
-          <div v-if="route.name != 'Game'" class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center">
             <BossDragon />
           </div>
         </div>
         <div class="col-4 d-flex justify-content-end pe-0 py-2">
 
-          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Account' }"
+          <router-link class="d-none d-md-block" :to="{ name: 'Account' }"
             :class="[route.name == 'Account' ? 'nav-btn-off' : 'nav-btn']">Character</router-link>
-          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Score' }"
+          <router-link class="d-none d-md-block" :to="{ name: 'Score' }"
             :class="[route.name == 'Score' ? 'nav-btn-off' : 'nav-btn']">Hall</router-link>
-          <router-link class="d-none d-md-block" v-if="route.name != 'Game'" :to="{ name: 'Lore' }"
+          <router-link class="d-none d-md-block" :to="{ name: 'Lore' }"
             :class="[route.name == 'Lore' ? 'nav-btn-off' : 'nav-btn']">Lore</router-link>
-          <router-link class="d-block d-md-none" v-if="route.name != 'Game'" :to="{ name: 'Home' }"
+          <router-link class="d-block d-md-none" :to="{ name: 'Home' }"
             :class="[route.name == 'Home' ? 'nav-btn-off' : 'nav-btn']">Home</router-link>
         </div>
+      </section>
+      <section v-else class="can-click mt-0">
+        <LoginSmall />
       </section>
 
       <section v-if="account?.id && route.name != 'Game'"
@@ -249,6 +253,7 @@ import { useRoute } from "vue-router";
 import { Offcanvas } from "bootstrap";
 import Pop from "../utils/Pop.js";
 import { accountService } from "../services/AccountService.js";
+import BossDragon from "./BossDragon.vue";
 
 const theme = ref(loadState('theme') || 'light')
 const route = useRoute()
@@ -256,13 +261,6 @@ const route = useRoute()
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
 })
-
-
-// function toggleTheme() {
-//   theme.value = theme.value == 'light' ? 'dark' : 'light'
-//   document.documentElement.setAttribute('data-bs-theme', theme.value)
-//   saveState('theme', theme.value)
-// }
 
 function closeNavbar() {
   Offcanvas.getOrCreateInstance('#offcanvasNavbar').hide()
@@ -335,17 +333,11 @@ li {
 }
 
 .game-title {
-  // font-family: "Metal Mania", system-ui;
   font-weight: 400;
   font-size: 16px;
   font-style: normal;
 
   color: #ff7300;
-
-  // border: 2px solid white;
-  // border-radius: 8px;
-
-  // text-shadow: 4px 4px 4px black;
 }
 
 .text-shadow {

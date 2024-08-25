@@ -73,6 +73,7 @@ export class Crystal {
 
         // Change color on hover
         obj.on('pointerover', () => {
+          this.scene.input.setDefaultCursor('url(/assets/ui/cursor4.png) 16 16, pointer')
           if (this.isDrawing) {
 
             this.setInputCode(obj.id)
@@ -83,6 +84,7 @@ export class Crystal {
         });
 
         obj.on('pointerout', () => {
+          this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
           if (!this.isDrawing && this.inputCode.length == 0) {
             obj.setTint(0xffffff); // Default color
           }

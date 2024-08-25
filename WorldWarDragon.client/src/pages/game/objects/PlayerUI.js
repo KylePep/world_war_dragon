@@ -52,6 +52,15 @@ export class PlayerUi {
 
     // Create the top bar
     this.topBar = this.scene.add.rectangle(width / 2, 0, barWidth, barHeight, 0x000000).setOrigin(0.5, 0);
+    this.topBar.setInteractive();
+
+    this.topBar.on('pointerover', () => {
+      this.scene.input.setDefaultCursor('url(/assets/ui/cursor1.png), auto')
+    });
+
+    this.topBar.on('pointerout', () => {
+      this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), auto')
+    });
     this.uiContainer.add(this.topBar);
 
     // Create a Graphics object for the border
