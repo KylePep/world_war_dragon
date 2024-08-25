@@ -14,7 +14,7 @@
         <div class="modal-body">
           <div class="container-fluid">
 
-            <div class="row message-container px-0">
+            <div class="row px-0">
 
               <div v-if="account?.id" class="col-6 p-0 img-container">
                 <transition name="fade">
@@ -41,7 +41,11 @@
                 </div>
               </div>
 
-              <div class="button-container offset-8 col-4  px-0">
+
+            </div>
+
+            <div class="row px-0">
+              <div class="button-container offset-8 col-4 px-0">
                 <transition name="fade">
                   <div @click="handleReveal()" class=" btn btn-secondary continue "
                     v-if="account?.id && page.reveal < dialogue[page.pagination].messages.length - 1">
