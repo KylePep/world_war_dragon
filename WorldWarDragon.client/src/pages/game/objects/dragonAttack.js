@@ -97,15 +97,22 @@ export class DragonAttack {
       this.scene.events.off('dragon:out')
       this.scene.events.off('dragon:attackItem')
       this.scene.playerHp = this.scene.playerMaxHp
-      if (AppState.mode == 'single') {
-        this.scene.scene.start('GameOver');
-      } else {
-        if (AppState.winStreak > 0) {
-          this.scene.scene.start('GameResults')
-        } else {
+
+      this.scene.cameras.main.fadeOut(1000, 0, 0, 0);
+
+      this.scene.time.delayedCall(1000, () => {
+        if (AppState.mode == 'single') {
           this.scene.scene.start('GameOver');
+        } else {
+          if (AppState.winStreak > 0) {
+            this.scene.scene.start('GameResults')
+          } else {
+            this.scene.scene.start('GameOver');
+          }
         }
-      }
+      });
+
+
     }
   }
 
