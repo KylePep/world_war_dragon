@@ -84,8 +84,8 @@ export class Crystal {
         });
 
         obj.on('pointerout', () => {
-          this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
           if (!this.isDrawing && this.inputCode.length == 0) {
+            this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
             obj.setTint(0xffffff); // Default color
           }
         });
@@ -166,6 +166,7 @@ export class Crystal {
 
   stopDrawing(obj) {
     this.isDrawing = false;
+    this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
     if (this.startObject !== obj) {
       const line = this.currentLine;
       if (line) {
@@ -217,6 +218,7 @@ export class Crystal {
 
   cancelDrawing() {
     this.isDrawing = false;
+    this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
     this.lines.forEach(line => line.destroy());
     this.lines = [];
     this.interactiveObjects.forEach(obj => {

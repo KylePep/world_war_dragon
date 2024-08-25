@@ -36,7 +36,11 @@ export class BossUi {
     });
 
     this.bottomBar.on('pointerout', () => {
-      this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), auto')
+      if (this.scene.crystals.isDrawing == false) {
+        this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
+      } else {
+        this.scene.input.setDefaultCursor('url(/assets/ui/cursor4.png) 16 16, auto')
+      }
     });
     this.bossUiContainer.add(this.bottomBar);
 

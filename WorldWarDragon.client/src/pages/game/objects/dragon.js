@@ -178,7 +178,7 @@ export class Dragon {
   }
   onDragonHit() {
 
-    if (this.dragonAnimState == 'idle') {
+    if (this.dragonAnimState == 'idle' && this.scene.crystals.isDrawing == false) {
 
       this.dragonHP -= AppState.account.power + (AppState.powerMod[AppState.activeRoom.id] || 0)
 
@@ -225,11 +225,15 @@ export class Dragon {
   }
 
   onPointerOver() {
-    this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), pointer')
+    if (this.scene.crystals.isDrawing == false) {
+      this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), pointer')
+    }
   }
 
   onPointerOut() {
-    this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
+    if (this.scene.crystals.isDrawing == false) {
+      this.scene.input.setDefaultCursor('url(/assets/ui/cursor3.png), default')
+    }
   }
 
 

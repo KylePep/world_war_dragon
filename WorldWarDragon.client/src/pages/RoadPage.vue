@@ -46,6 +46,10 @@
         <div class="order-2 order-md-1 col-12 col-md-12 lore-content p-3">
           <h3>Change log</h3>
           <p>
+            8/25/24 - Overhaul to in game cursor behavior. Game now features new transitions, allowing for a smoother
+            more polished look.
+          </p>
+          <p>
             8/16/24 - New story system, As you level, new dialogues will become available. <br> New approach to
             animations, dragons animate on entry and exit. <br>Fixed animation bug where dragons would wander away with
             constant attack.

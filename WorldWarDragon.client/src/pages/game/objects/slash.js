@@ -60,7 +60,7 @@ export class Slash {
     });
 
     this.interactiveSlash.on('pointerout', (pointer) => {
-      if (this.scene.dragon.dragonAnimState != 'entrance' && this.scene.dragon.dragonAnimState != 'exiting') {
+      if (this.scene.dragon.dragonAnimState != 'entrance' && this.scene.dragon.dragonAnimState != 'exiting' && this.scene.crystals.isDrawing == false) {
         this.displaySlash.setTexture(this.getRandomSlash());
         this.setScaleToFitWindow(0);
         this.displaySlash.setAngle(Phaser.Math.RND.between(0, 180));
