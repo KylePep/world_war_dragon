@@ -162,21 +162,28 @@
               </div>
             </ul>
 
-            <li class="">
+            <li v-if="route.name != 'Game'">
+              <router-link class="btn text-light selectable text-uppercase" @click="closeNavbar()"
+                :to="{ name: 'Game' }">
+                Join the FIGHT!
+              </router-link>
+            </li>
+
+            <li>
               <router-link class="btn text-light selectable text-uppercase" @click="closeNavbar()"
                 :to="{ name: 'Home' }">
                 HOME
               </router-link>
             </li>
 
-            <li class="">
+            <li>
               <router-link @click="closeNavbar()" :to="{ name: 'Map' }"
                 class="btn text-light selectable text-uppercase">
                 Map
               </router-link>
             </li>
 
-            <li class="">
+            <li>
               <router-link class="btn text-light selectable text-uppercase" @click="closeNavbar()"
                 :to="{ name: 'Account' }">
                 Character
@@ -184,7 +191,7 @@
               </router-link>
             </li>
 
-            <li class="">
+            <li>
               <router-link @click="closeNavbar()" :to="{ name: 'Tutorial' }"
                 class="btn text-light selectable text-uppercase">
                 Tutorial
@@ -192,28 +199,28 @@
             </li>
 
 
-            <li class="">
+            <li>
               <router-link @click="closeNavbar()" :to="{ name: 'Score' }"
                 class="btn text-light selectable text-uppercase">
                 Hall of Valor
               </router-link>
             </li>
 
-            <li class="">
+            <li>
               <router-link @click="closeNavbar()" :to="{ name: 'About' }"
                 class="btn text-light selectable text-uppercase">
                 About
               </router-link>
             </li>
 
-            <li class="">
+            <li>
               <router-link @click="closeNavbar()" :to="{ name: 'Lore' }"
                 class="btn text-light selectable text-uppercase">
                 Lore
               </router-link>
             </li>
 
-            <li class="">
+            <li>
               <router-link @click="closeNavbar()" :to="{ name: 'RoadMap' }"
                 class="btn text-light selectable text-uppercase">
                 Changes

@@ -5,7 +5,7 @@
       About World War Dragon
     </div>
 
-    <div class="col-12 d-flex flex-column align-items-center">
+    <!-- <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card w-100 border border-2 border-light rounded-4 ">
         <div class="col-6 mx-auto lore-content p-3 pb-0 fs-3">
           <h3 class="text-center fs-1">CREDITS</h3>
@@ -30,7 +30,7 @@
         </div>
 
       </section>
-    </div>
+    </div> -->
 
     <div class="col-12 d-flex flex-column align-items-center">
       <section class="row lore-card border border-2 border-light rounded-4 ">
