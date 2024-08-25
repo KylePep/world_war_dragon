@@ -18,8 +18,6 @@ const route = useRoute()
             <KylePepButton />
         </div>
     </main>
-    <footer>
-    </footer>
 
     <DialogueModal />
 

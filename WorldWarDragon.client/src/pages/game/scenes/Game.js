@@ -26,6 +26,8 @@ export class Game extends Scene {
 
     create() {
 
+        this.cameras.main.fadeIn(250, 0, 0, 0)
+
         this.timerEvent = this.time.addEvent({
             delay: this.timerInterval,
             callback: this.onTimerEvent,

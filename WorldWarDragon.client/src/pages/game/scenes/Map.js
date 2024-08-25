@@ -9,6 +9,7 @@ export class Map extends Scene {
     }
 
     create() {
+        this.cameras.main.fadeIn(500, 0, 0, 0)
         AppState.winStreak = 0
 
         if (AppState.account.dragons < 1) {
@@ -26,6 +27,7 @@ export class Map extends Scene {
         this.backgroundMusic.play();
 
         this.mode = AppState.mode;
+        this.input.setDefaultCursor('url(/assets/star.png), pointer')
 
 
         // Your existing code to setup the game objects, etc.
@@ -174,15 +176,21 @@ export class Map extends Scene {
 
     buttonAction(buttonName, roomId) {
         AppState.activeRoom = MAP_DATA.find((m) => m.id == roomId);
-        this.changeScene()
+        this.cameras.main.fadeOut(250, 0, 0, 0);
+
+        this.time.delayedCall(250, () => {
+            this.changeScene()
+        });
     }
     buttonOver(button) {
         button.setColor('#ff7300');
-        this.input.setDefaultCursor('pointer');
+        // this.input.setDefaultCursor('pointer');
+        this.input.setDefaultCursor('url(/assets/star.png), pointer')
     }
     buttonOut(button) {
         button.setColor('white');
-        this.input.setDefaultCursor('default');
+        // this.input.setDefaultCursor('default');
+        this.input.setDefaultCursor('url(/assets/star.png), pointer')
     }
     changeScene() {
         this.scene.start('Game');

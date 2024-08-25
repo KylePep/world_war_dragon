@@ -9,6 +9,7 @@ export class GameOver extends Scene {
     }
 
     create() {
+        this.cameras.main.fadeIn(5000, 0, 0, 0)
 
         this.keptGold = Phaser.Math.RoundTo((AppState.account.gold * .9), 0)
         this.lostGoldAmount = AppState.account.gold -= this.keptGold

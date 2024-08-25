@@ -152,16 +152,10 @@ export class Preloader extends Scene {
         //  For example, you can define global animations here, so we can use them in other scenes.
 
         //  Move to the MainMenu. You could also swap this for a Scene Transition, such as a camera fade.
-        this.scene.start('Map');
+        this.cameras.main.fadeOut(500, 0, 0, 0);
+
+        this.time.delayedCall(500, () => {
+            this.scene.start('Map');
+        });
     }
-
-    // resize(gameSize, baseSize, displaySize, resolution) {
-    //     const width = gameSize.width;
-    //     const height = gameSize.height;
-
-    //     this.cameras.resize(width, height);
-
-    //     this.background.setDisplaySize(width, height);
-
-    // }
 }

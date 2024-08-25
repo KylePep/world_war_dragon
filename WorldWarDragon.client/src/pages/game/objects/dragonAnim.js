@@ -64,6 +64,7 @@ export class DragonAnim {
     sound.play();
     sound.volume = .75;
     sound.rate = randomRate
+    this.scene.cameras.main.fadeOut(2000, 0, 0, 0);
 
     this.scene.tweens.add({
       targets: this.copyDragon,

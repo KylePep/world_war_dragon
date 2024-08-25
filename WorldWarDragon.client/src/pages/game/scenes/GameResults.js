@@ -13,6 +13,7 @@ export class GameResults extends Scene {
     }
 
     create() {
+        this.cameras.main.fadeIn(500, 0, 0, 0)
         // Create and play the background music
         this.backgroundMusic = this.sound.add('victoryBGM', {
             volume: 0.1, // Adjust the volume
