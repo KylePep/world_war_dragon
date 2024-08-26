@@ -24,6 +24,9 @@ export const AccountSchema = new Schema(
     shieldAid: { type: Number, default: 0 },
     heal: { type: Number, default: 0 },
     healAid: { type: Number, default: 0 },
+    settings: {
+      volume: { type: Number, default: 0.5 }
+    }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

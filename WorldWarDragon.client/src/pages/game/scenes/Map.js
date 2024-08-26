@@ -22,7 +22,7 @@ export class Map extends Scene {
 
         // Create and play the background music
         this.backgroundMusic = this.sound.add('DragonKingDungeon', {
-            volume: 0.5, // Adjust the volume
+            volume: AppState.account.settings.volume, // Adjust the volume
             loop: true   // Loop the music
         });
 

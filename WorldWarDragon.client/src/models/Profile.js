@@ -24,5 +24,9 @@ export class Profile {
     this.shieldAid = data.shieldAid
     this.heal = data.heal
     this.healAid = data.healAid
+
+    this.settings = {
+      volume: data.settings?.volume ?? 0.5
+    }
   }
 }
