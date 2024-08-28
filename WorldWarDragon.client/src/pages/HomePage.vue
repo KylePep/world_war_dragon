@@ -170,6 +170,7 @@ export default {
 
 .button-container {
   display: flex;
+  justify-content: center;
   position: relative;
   height: 100%;
 
