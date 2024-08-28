@@ -32,9 +32,9 @@
 
             <OffStats />
 
-            <OffSettings />
-
             <OffLinks @handleClose="closeNavbar" />
+
+            <OffSettings />
 
 
           </ul>

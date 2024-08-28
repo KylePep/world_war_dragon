@@ -19,12 +19,12 @@ const account = computed(() => AppState.account)
     <li class="">
       Volume {{ account?.settings.volume }}
     </li>
-    <li class="">
+    <!-- <li class="">
       Volume {{ account?.settings.volume }}
     </li>
     <li class="">
       Volume {{ account?.settings.volume }}
-    </li>
+    </li> -->
   </ul>
 
 </template>
