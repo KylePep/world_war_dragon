@@ -1,7 +1,7 @@
-import { Auth0Provider } from '@bcwdev/auth0provider'
-import { attachHandlers } from '../../Setup'
-import { accountService } from '../services/AccountService'
-import { SocketHandler } from '../utils/SocketHandler'
+const { Auth0Provider } = await import("../utils/auth0provider/index.js");
+import { attachHandlers } from '../../Setup.js'
+import { accountService } from '../services/AccountService.js'
+import { SocketHandler } from '../utils/SocketHandler.js'
 
 export class AuthHandler extends SocketHandler {
   /**

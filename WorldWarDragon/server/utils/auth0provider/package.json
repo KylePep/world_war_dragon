@@ -1,0 +1,34 @@
+{
+  "name": "@bcwdev/auth0provider",
+  "version": "1.0.14",
+  "description": "Express based wrapper around Auth0",
+  "keywords": [
+    "auth0",
+    "express",
+    "jwt",
+    "authentication"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "/lib"
+  ],
+  "author": "Jake Overall <joverall22@gmail.com>",
+  "maintainers": [
+    "Jake Overall"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakeoverall/express-auth0provider.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jakeoverall/express-auth0provider/issues"
+  },
+  "homepage": "https://github.com/jakeoverall/express-auth0provider",
+  "dependencies": {
+    "express-oauth2-jwt-bearer": "^1.3.0",
+    "jsonwebtoken": "9.0.0",
+    "node-cache": "5.1.2"
+  }
+}

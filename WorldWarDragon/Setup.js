@@ -1,24 +1,30 @@
-import fs from 'fs'
-import path from 'path'
-import BaseController from './server/utils/BaseController'
-import { logger } from './server/utils/Logger'
+import fs from 'fs';
+import path from 'path';
+import { pathToFileURL } from 'url';
+import { fileURLToPath } from 'url';
+import BaseController from './server/utils/BaseController.js';
+import { logger } from './server/utils/Logger.js';
+
+// Construct __dirname for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export class Paths {
   static get Public() {
-    return path.join(__dirname, 'client')
+    return path.join(__dirname, 'client');
   }
 
   static get Server() {
-    return path.join(__dirname, 'server')
+    return path.join(__dirname, 'server');
   }
 
   static get Controllers() {
-    return this.Server + '/controllers'
+    return path.join(this.Server, 'controllers');
   }
 
-  static get Handlers() {
-    return this.Server + '/handlers'
-  }
+  // static get Handlers() {
+  //   return path.join(this.Server, 'handlers');
+  // }
 }
 
 export function RegisterControllers(router) {
@@ -27,7 +33,7 @@ export function RegisterControllers(router) {
   async function loadController(controllerName) {
     try {
       if (!controllerName.endsWith('.js')) return
-      const fileHandler = await import(Paths.Controllers + '/' + controllerName)
+      const fileHandler = await import(pathToFileURL(Paths.Controllers + '/' + controllerName).href);
       let ControllerClass = fileHandler[controllerName.slice(0, -3)]
       if (!ControllerClass) {
         throw new Error(`${controllerName} The exported class does not match the filename`)
@@ -50,36 +56,36 @@ export function RegisterControllers(router) {
   }
 }
 
-const HANDLERS = []
+// const HANDLERS = []
 
-export async function RegisterSocketHandlers() {
-  const directory = Paths.Handlers
-  const handlers = fs.readdirSync(directory)
-  handlers.forEach(async (handlerName) => {
-    try {
-      if (!handlerName.endsWith('.js')) { return }
-      const fileHandler = await import(directory + '/' + handlerName)
-      let HandlerClass = fileHandler[handlerName.slice(0, -3)]
-      if (!HandlerClass) {
-        throw new Error(`${handlerName} The exported class does not match the filename`)
-      }
-      if (HandlerClass.default) {
-        HandlerClass = HandlerClass.default
-      }
-      HANDLERS.push(HandlerClass)
-    } catch (e) {
-      logger.error(
-        '[SOCKET_HANDLER_ERROR] unable to attach socket handler, potential duplication, review mount path and controller class name, and see error below',
-        handlerName,
-        e
-      )
-    }
-  })
-}
+// export async function RegisterSocketHandlers() {
+//   const directory = Paths.Handlers
+//   const handlers = fs.readdirSync(directory)
+//   handlers.forEach(async (handlerName) => {
+//     try {
+//       if (!handlerName.endsWith('.js')) { return }
+//       const fileHandler = await import(directory + '/' + handlerName)
+//       let HandlerClass = fileHandler[handlerName.slice(0, -3)]
+//       if (!HandlerClass) {
+//         throw new Error(`${handlerName} The exported class does not match the filename`)
+//       }
+//       if (HandlerClass.default) {
+//         HandlerClass = HandlerClass.default
+//       }
+//       HANDLERS.push(HandlerClass)
+//     } catch (e) {
+//       logger.error(
+//         '[SOCKET_HANDLER_ERROR] unable to attach socket handler, potential duplication, review mount path and controller class name, and see error below',
+//         handlerName,
+//         e
+//       )
+//     }
+//   })
+// }
 
-export async function attachHandlers(io, socket, user, profile) {
-  if (socket._handlers && user && profile) {
-    return socket._handlers.forEach(handler => handler.attachUser(user, profile))
-  }
-  socket._handlers = HANDLERS.map(Handler => new Handler(io, socket))
-}
+// export async function attachHandlers(io, socket, user, profile) {
+//   if (socket._handlers && user && profile) {
+//     return socket._handlers.forEach(handler => handler.attachUser(user, profile))
+//   }
+//   socket._handlers = HANDLERS.map(Handler => new Handler(io, socket))
+// }

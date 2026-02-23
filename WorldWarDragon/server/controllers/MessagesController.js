@@ -1,4 +1,4 @@
-import { Auth0Provider } from "@bcwdev/auth0provider";
+const { Auth0Provider } = await import("../utils/auth0provider/index.js");
 import BaseController from "../utils/BaseController.js";
 import { messagesService } from "../services/MessagesServices.js";
 

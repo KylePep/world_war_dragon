@@ -1,6 +1,6 @@
 import { Server } from 'socket.io'
-import { logger } from './utils/Logger'
-import { attachHandlers } from '../Setup'
+import { logger } from './utils/Logger.js'
+import { attachHandlers } from '../Setup.js'
 
 const SOCKET_EVENTS = {
   connection: 'connection',

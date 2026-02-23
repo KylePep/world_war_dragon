@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { AccountSchema } from '../models/Account'
+import { AccountSchema } from '../models/Account.js'
 import { MessageSChema } from "../models/Message.js";
 import { AssistanceSChema } from "../models/Assistance.js";
 import { BossSchema } from "../models/Boss.js";

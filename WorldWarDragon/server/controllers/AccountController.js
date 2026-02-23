@@ -1,6 +1,6 @@
-import { Auth0Provider } from '@bcwdev/auth0provider'
-import { accountService } from '../services/AccountService'
-import BaseController from '../utils/BaseController'
+const { Auth0Provider } = await import("../utils/auth0provider/index.js")
+import { accountService } from "../services/AccountService.js"
+import BaseController from '../utils/BaseController.js'
 
 export class AccountController extends BaseController {
   constructor() {

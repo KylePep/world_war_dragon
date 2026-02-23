@@ -1,11 +1,12 @@
-import { Auth0Provider } from '@bcwdev/auth0provider'
-import { json } from 'body-parser'
+const { Auth0Provider } = await import("./utils/auth0provider/index.js");
+import jsonPkg from 'body-parser';
+const { json } = jsonPkg;
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
-import { Paths, RegisterControllers, RegisterSocketHandlers } from '../Setup'
-import { AccountValidator } from './utils/AccountValidator'
-import { logger } from './utils/Logger'
+import { Paths, RegisterControllers } from '../Setup.js'
+import { AccountValidator } from './utils/AccountValidator.js'
+import { logger } from './utils/Logger.js'
 
 export class Startup {
   static ConfigureGlobalMiddleware(app) {
@@ -46,7 +47,7 @@ export class Startup {
     const router = express.Router()
     app.use(AccountValidator)
     RegisterControllers(router)
-    RegisterSocketHandlers()
+    // RegisterSocketHandlers()
     app.use(router)
 
     app.use(process.env.ROUTE_PREFIX || '', express.static(Paths.Public))

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { logger } from '../utils/Logger'
+import { logger } from '../utils/Logger.js'
 
 mongoose.connection.on('error', err => {
   logger.error('[DATABASE ERROR]:', err)

@@ -1,6 +1,5 @@
-import { Auth0Provider } from '@bcwdev/auth0provider'
-import { accountService } from '../services/AccountService'
-
+import { accountService } from "../services/AccountService.js"
+const { Auth0Provider } = await import("./auth0provider/index.js")
 export async function AccountValidator(req, res, next) {
   try {
     const bearer = req.headers.Authorization || req.headers.authorization
