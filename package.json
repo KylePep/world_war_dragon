@@ -8,7 +8,8 @@
     "setup:client": "cd WorldWarDragon.client && npm i",
     "setup:server": "cd WorldWarDragon && npm i",
     "build:client": "cd WorldWarDragon.client && npm run build",
-    "start": "node WorldWarDragon/server/main.js"
+    "start": "node WorldWarDragon/server/main.js",
+    "start:prod": "npm run build:client && npm start"
   },
   "engines": {
     "node": "^16"

@@ -1,4 +1,5 @@
-import express from 'express'
+import express from 'express';
+import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
 import { createServer } from 'http'
@@ -11,6 +12,12 @@ import { logger } from './utils/Logger.js'
 // create server & socketServer
 const app = express()
 const port = process.env.PORT || 3000
+
+app.use(express.static(path.join(process.cwd(), 'WorldWarDragon/server/public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'WorldWarDragon/server/public/index.html'));
+});
 
 if (process.env.NODE_ENV == 'dev') {
   // @ts-ignore
