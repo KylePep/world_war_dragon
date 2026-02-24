@@ -19,7 +19,7 @@ const phasermsg = () => {
 }
 
 export default defineConfig({
-    base: './',
+    base: '/',
     plugins: [
         vue(),
         phasermsg()
@@ -31,6 +31,8 @@ export default defineConfig({
     },
     logLevel: 'warning',
     build: {
+        outDir: 'dist',
+        emptyOutDir: true,
         rollupOptions: {
             output: {
                 manualChunks: {
@@ -48,7 +50,6 @@ export default defineConfig({
                 comments: false
             }
         },
-        outDir: '../WorldWarDragon/client',
         sourcemap: false
     },
     server: {

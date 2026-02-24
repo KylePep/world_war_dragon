@@ -47,7 +47,6 @@ export class Startup {
     const router = express.Router()
     app.use(AccountValidator)
     RegisterControllers(router)
-    // RegisterSocketHandlers()
     app.use(router)
 
     app.use(process.env.ROUTE_PREFIX || '', express.static(Paths.Public))
