@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue'
-import path from 'path';
 
 const phasermsg = () => {
     return {
@@ -49,7 +48,7 @@ export default defineConfig({
                 comments: false
             }
         },
-        outDir: path.resolve(__dirname, '../WorldWarDragon/server/public'),
+        outDir: '../WorldWarDragon/client',
         sourcemap: false
     },
     server: {
