@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename)
 const app = express()
 const port = process.env.PORT || 3000
 
-const clientDistPath = path.join(__dirname, '../../WorldWarDragon.client/dist')
+const clientDistPath = path.join(__dirname, '../client')
 
 app.use(express.static(clientDistPath))
 
